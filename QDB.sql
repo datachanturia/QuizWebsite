@@ -1,22 +1,25 @@
 -- create schema if not exists Shaurma;
 
--- drop table if exists Users;
--- drop table if exists Quiz;
--- drop table if exists Questions;
--- drop table if exists Answers;
--- drop table if exists Achievements;
--- drop table if exists Friends;
--- drop table if exists Messages;
--- drop table if exists Requests;
--- drop table if exists Challenges;
--- drop table if exists TakenQuiz;
--- drop table if exists UsersAchievement;
+
+drop table if exists UsersAchievement;
+drop table if exists TakenQuiz;
+drop table if exists Challenges;
+drop table if exists Requests;
+drop table if exists Messages;
+drop table if exists Friends;
+drop table if exists Achievements;
+drop table if exists Answers;
+drop table if exists Questions;
+drop table if exists Quiz;
+drop table if exists Users;
+
 
 
 create table if not exists Users(
 	userID int not null auto_increment,
     username varchar(2048) CHARACTER SET utf8 default NULL, 
-    passward varchar(2048) CHARACTER SET utf8 default NULL,
+    pass varchar(2048) CHARACTER SET utf8 default NULL,
+    photo varchar(2048) CHARACTER SET utf8 default NULL,
     creationdate datetime,
     isadmin tinyint(1) default 0,
     
