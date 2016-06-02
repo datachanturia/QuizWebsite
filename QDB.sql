@@ -19,6 +19,7 @@ create table if not exists Users(
 	userID int not null auto_increment,
     username varchar(2048) CHARACTER SET utf8 default NULL, 
     pass varchar(2048) CHARACTER SET utf8 default NULL,
+    mail varchar(2048) CHARACTER SET utf8 default NULL,
     photo varchar(2048) CHARACTER SET utf8 default NULL,
     creationdate datetime,
     isadmin tinyint(1) default 0,
