@@ -32,7 +32,7 @@ create table if not exists Quiz(
     quizname varchar(2048) CHARACTER SET utf8 default null,
     authorID int,
     score int default 0,
-    category varchar(2048) CHARACTER SET utf8 default null,
+    category int,
     crationdate datetime,
     
     primary key (quizID),
@@ -42,7 +42,7 @@ create table if not exists Quiz(
 create table if not exists Questions(
 	questionID int not null auto_increment,
     question varchar(2048) CHARACTER SET utf8 default null,
-    questiontype varchar(2048) CHARACTER SET utf8 default null,
+    questiontype int,
     quizID int,
     
     primary key (questionID),
