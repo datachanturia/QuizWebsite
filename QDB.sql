@@ -61,7 +61,7 @@ create table if not exists Answers(
 
 create table if not exists Achievements(
 	achievementID int not null auto_increment,
-    achievement varchar(2048) CHARACTER SET utf8 default null,
+    achievement int,
     
     primary key (achievementID)
 );
