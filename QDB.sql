@@ -104,8 +104,6 @@ create table if not exists Challenges(
     receiverID int,
     quizID int,
     senddate datetime,
-    accepted tinyint(1) default 0,
-    denied tinyint(1) default 0,
     
     primary key (challengeID),
     foreign key (senderID) references Users (userID),
