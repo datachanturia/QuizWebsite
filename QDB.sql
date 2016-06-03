@@ -92,8 +92,6 @@ create table if not exists Requests(
     senderID int,
     receiverID int,
     senddate datetime,
-    accepted tinyint(1) default 0,
-    denied tinyint(1) default 0,
     
     primary key (requestID),
     foreign key (senderID) references Users (userID),
