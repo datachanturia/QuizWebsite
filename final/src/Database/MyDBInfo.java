@@ -1,4 +1,4 @@
-package BSW;
+package Database;
 
 public class MyDBInfo {
 	
