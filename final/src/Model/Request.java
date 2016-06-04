@@ -7,15 +7,13 @@ public class Request {
 	private int requestID;
 	private int senderID;
 	private int recieverID;
-	private int quizID;
 	private Date sendDate;
 	private boolean isread;
 	
-	public Request(int requestID, int senderID, int recieverID, int quizID, Date sendDate, boolean isread) {
+	public Request(int requestID, int senderID, int recieverID, Date sendDate, boolean isread) {
 		this.requestID = requestID;
 		this.senderID = senderID;
 		this.recieverID = recieverID;
-		this.quizID = quizID;
 		this.sendDate = sendDate;
 		this.isread = isread;
 	}
@@ -42,14 +40,6 @@ public class Request {
 
 	public void setRecieverID(int recieverID) {
 		this.recieverID = recieverID;
-	}
-
-	public int getQuizID() {
-		return quizID;
-	}
-
-	public void setQuizID(int quizID) {
-		this.quizID = quizID;
 	}
 
 	public Date getSendDate() {
