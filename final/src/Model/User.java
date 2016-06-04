@@ -112,8 +112,4 @@ public class User {
 	public void setFriends(ArrayList<User> friends) {
 		this.friends = friends;
 	}
-	
-	
-	
-	
 }
