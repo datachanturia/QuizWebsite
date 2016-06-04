@@ -1,5 +1,7 @@
 package Model;
 
+import java.util.ArrayList;
+
 public class Quiz {
 	
 	private int quizID;
@@ -8,6 +10,7 @@ public class Quiz {
 	private int score;
 	private int category;//?
 	private int creationDate;
+	private ArrayList<Question> questions;
 	
 	public Quiz(int quizID, String quizname, int authorID, int creationDate) {
 		super();
@@ -63,6 +66,14 @@ public class Quiz {
 
 	public void setCreationDate(int creationDate) {
 		this.creationDate = creationDate;
+	}
+
+	public ArrayList<Question> getQuestions() {
+		return questions;
+	}
+
+	public void setQuestions(ArrayList<Question> questions) {
+		this.questions = questions;
 	}
 	
 }
