@@ -1,20 +1,20 @@
 package Model;
 
 public class Answer {
-	private String asnwer;
+	private String answer;
 	private boolean isCorrect;
 	
 	public Answer(String answer, boolean isCorrect) {
-		this.asnwer = answer;
+		this.answer = answer;
 		this.isCorrect = isCorrect;
 	}
 
-	public String getAsnwer() {
-		return this.asnwer;
+	public String getAnswer() {
+		return this.answer;
 	}
 
-	public void setAsnwer(String asnwer) {
-		this.asnwer = asnwer;
+	public void setAnswer(String asnwer) {
+		this.answer = asnwer;
 	}
 	
 	public boolean getCorrect(){
