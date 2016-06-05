@@ -23,6 +23,7 @@ create table if not exists Users(
     photo varchar(2048) CHARACTER SET utf8 default NULL,
     creationdate datetime,
     isadmin tinyint(1) default 0,
+    isdelete tinyint(1) default 0,
     
     primary key (userID)
 );
@@ -34,6 +35,7 @@ create table if not exists Quiz(
     score int default 0,
     category int,
     crationdate datetime,
+    isdelete tinyint(1) default 0,
     
     primary key (quizID),
     foreign key (authorID) references Users (userID)
@@ -44,6 +46,7 @@ create table if not exists Questions(
     question varchar(2048) CHARACTER SET utf8 default null,
     questiontype int,
     quizID int,
+    isdelete tinyint(1) default 0,
     
     primary key (questionID),
     foreign key (quizID) references Quiz (quizID)
@@ -54,6 +57,7 @@ create table if not exists Answers(
     answer varchar(2048) CHARACTER SET utf8 default null,
     iscorrect tinyint(1) default 0,
     questionID int,
+    isdelete tinyint(1) default 0,
     
     primary key (answerID),
     foreign key (questionID) references Questions (questionID)
@@ -62,6 +66,7 @@ create table if not exists Answers(
 create table if not exists Achievements(
 	achievementID int not null auto_increment,
     achievement int,
+    isdelete tinyint(1) default 0,
     
     primary key (achievementID)
 );
@@ -70,6 +75,7 @@ create table if not exists Friends(
 	userID int,
     friendID int,
     crationdate datetime,
+    isdelete tinyint(1) default 0,
     
     foreign key (userID) references Users (userID),
     foreign key (friendID) references Users (userID)
@@ -82,6 +88,7 @@ create table if not exists Messages(
     message varchar(2048) CHARACTER SET utf8 default null,
     senddate datetime,
 	isread tinyint(1) default 0,
+    isdelete tinyint(1) default 0,
     
     primary key (messageID),
     foreign key (senderID) references Users (userID),
@@ -93,6 +100,7 @@ create table if not exists Requests(
     senderID int,
     receiverID int,
     senddate datetime,
+    isdelete tinyint(1) default 0,
     
     primary key (requestID),
     foreign key (senderID) references Users (userID),
@@ -105,6 +113,7 @@ create table if not exists Challenges(
     receiverID int,
     quizID int,
     senddate datetime,
+    isdelete tinyint(1) default 0,
     
     primary key (challengeID),
     foreign key (senderID) references Users (userID),
@@ -117,6 +126,7 @@ create table if not exists TakenQuiz(
     quizID int,
     takedate datetime,
     score int default 0,
+    isdelete tinyint(1) default 0,
     
     foreign key (userID) references Users (userID),
     foreign key (quizID) references Quiz (quizID)
@@ -125,6 +135,7 @@ create table if not exists TakenQuiz(
 create table if not exists UsersAchievement(
 	userID int,
     achievementID int,
+    isdelete tinyint(1) default 0,
     
     foreign key (userID) references Users (userID),
     foreign key (achievementID) references Achievements (achievementID)
