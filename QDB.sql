@@ -79,6 +79,7 @@ create table if not exists Messages(
 	messageID int not null auto_increment,
     senderID int,
     receiverID int,
+    message varchar(2048) CHARACTER SET utf8 default null,
     senddate datetime,
 	isread tinyint(1) default 0,
     
