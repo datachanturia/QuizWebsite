@@ -1,37 +1,79 @@
 package Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.Achievement;
+import Model.AchievementType;
+import Model.QuestionType;
+import Model.Request;
 
 public class AchievementDaoImpl implements AchievementDao {
 
+	private Connection con;
+
 	public AchievementDaoImpl(Connection con) {
-		// TODO Auto-generated constructor stub
+		this.con = con;
 	}
-	
+
 	@Override
 	public ArrayList<Achievement> getuserAchievements(int userID) {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Achievement> achiev = new ArrayList<Achievement>();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select u.userID, a.achievement, from UsersAchievement u inner join "
+					+ "Achievements a on u.achievementID = u.achievementID "
+					+ "where userID = " + userID + "and u.isdelete = 0");
+			while(rs.next()){
+				Achievement ach = new Achievement(rs.getInt("achievementID"),  AchievementType.values()[rs.getInt("senderID")]);
+				achiev.add(ach);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return achiev;
 	}
 
 	@Override
 	public void addUserAchievement(int userID, int AchievementID) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO UsersAchievement (userID, achievementID) VALUES(?,?)");
+			preparedStatement.setInt(1, userID);
+			preparedStatement.setInt(2, AchievementID);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void addAchievement(Achievement achievement) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Achievement (achievement) VALUES(?)");
+			preparedStatement.setInt(1, achievement.getAchievementType().ordinal());
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
 	@Override
 	public void deleteAchievement(int achievementID) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con.prepareStatement("update UsersAchievement set isdelete = ? "
+					+ "where achievementID = " + achievementID);
+			preparedStatement.setInt(1, 1);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
