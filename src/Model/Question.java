@@ -4,13 +4,16 @@ import java.util.ArrayList;
 
 public class Question {
 	
+	private int questionID;
 	private String question;
 	private ArrayList<Answer> answers;
 	private QuestionType type;
 	
-	public Question(String question, ArrayList<Answer> answers) {
+	public Question(int questionID, String question, ArrayList<Answer> answers,int type) {
 		this.question = question;
 		this.answers = answers;
+		this.questionID = questionID;
+		this.type = QuestionType.values()[type];
 	}
 
 	public String getQuestion() {
@@ -35,6 +38,14 @@ public class Question {
 
 	public void setType(QuestionType type) {
 		this.type = type;
+	}
+
+	public int getQuestionID() {
+		return questionID;
+	}
+
+	public void setQuestionID(int questionID) {
+		this.questionID = questionID;
 	}
 	
 	
