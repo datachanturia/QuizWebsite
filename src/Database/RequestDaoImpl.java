@@ -38,8 +38,8 @@ public class RequestDaoImpl implements RequestDao {
 	@Override
 	public void addRequest(Request request) {
 		try {
-			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO requests (senderID,receiverID"
-					+ "senddate,isdeleted) VALUES(?,?,?)");
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO requests (senderID,receiverID,"
+					+ "senddate,isdeleted) VALUES(?,?,?,?)");
 			preparedStatement.setInt(1, request.getSenderID());
 			preparedStatement.setInt(2, request.getRecieverID());
 			preparedStatement.setDate(3, request.getSendDate());
