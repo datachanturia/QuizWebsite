@@ -8,5 +8,5 @@ public interface ChallengeDao {
 	
 	public ArrayList<Challenge> getUserChallenges(int userID);
 	public void addChallenge(Challenge challenge);
-	public void deleteChallenge(int ChallengeID);
+	public void deleteChallenge(int challengeID);
 }
