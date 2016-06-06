@@ -10,6 +10,7 @@ public class Message {
 	private String recieverName;
 	private Date sendDate;
 	private boolean isread;
+	
 	public Message(int messageID, String message, String senderName, String recieverName, Date sendDate,
 			boolean isread) {
 		super();

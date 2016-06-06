@@ -9,16 +9,14 @@ public class Challenge {
 	private int recieverID;
 	private int quizID;
 	private Date sendDate;
-	private boolean isread;
 	
-	public Challenge(int challengeID, int senderID, int recieverID, int quizID, Date sendDate, boolean isread) {
+	public Challenge(int challengeID, int senderID, int recieverID, int quizID, Date sendDate) {
 		super();
 		this.challengeID = challengeID;
 		this.senderID = senderID;
 		this.recieverID = recieverID;
 		this.quizID = quizID;
 		this.sendDate = sendDate;
-		this.isread = isread;
 	}
 
 	public int getChallengeID() {
@@ -61,17 +59,5 @@ public class Challenge {
 		this.sendDate = sendDate;
 	}
 
-	public boolean isread() {
-		return isread;
-	}
-
-	public void setIsread(boolean isread) {
-		this.isread = isread;
-	}
-	
-	
-	
-	
-	
 	
 }
