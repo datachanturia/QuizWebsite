@@ -1,7 +1,7 @@
 package Model;
 
 import java.sql.Date;
-import java.util.ArrayList;import sun.text.normalizer.CharTrie.FriendAgent;
+import java.util.ArrayList;
 
 public class User {
 	
