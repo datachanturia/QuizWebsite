@@ -1,14 +1,18 @@
 package Database;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import Model.Quiz;
 
 public class QuizDaoImpl implements QuizDao {
+	
+	private Connection con;
 
 	public QuizDaoImpl(Connection con) {
-		// TODO Auto-generated constructor stub
+		this.con = con;
 	}
 
 	@Override
@@ -43,7 +47,14 @@ public class QuizDaoImpl implements QuizDao {
 
 	@Override
 	public void deleteQuiz(int quizID) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("update Quiz set isdelete = ? " + "where quizID = " + quizID);
+			preparedStatement.setInt(1, 1);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 
 	}
 
