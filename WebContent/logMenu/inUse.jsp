@@ -15,7 +15,7 @@
 
 	<p>Please enter another name and password.</p>
 
-	<form action="ServletCreateAcc" method="post">
+	<form action="../ServletCreateAcc" method="post">
 		<p>
 			User Name: <input name="username"></input>
 		</p>

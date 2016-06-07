@@ -43,9 +43,9 @@ public class ServletLogin extends HttpServlet {
 
 		RequestDispatcher rd;
 		if (am.matchesAccount(usr, pas)) {
-			rd = request.getRequestDispatcher("welcomeUser.jsp");
+			rd = request.getRequestDispatcher("logMenu/welcomeUser.jsp");
 		} else {
-			rd = request.getRequestDispatcher("informationIncorrect.html");
+			rd = request.getRequestDispatcher("logMenu/informationIncorrect.html");
 		}
 
 		rd.forward(request, response);
