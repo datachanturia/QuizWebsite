@@ -1,23 +1,28 @@
 package Model;
 
 import java.util.ArrayList;
+import java.sql.Date;
 
 public class Quiz {
-	
+
 	private int quizID;
 	private String quizname;
 	private int authorID;
 	private int score;
-	private int category;//?
-	private int creationDate;
+	private String category;
+	private Date creationDate;
 	private ArrayList<Question> questions;
-	
-	public Quiz(int quizID, String quizname, int authorID, int creationDate) {
+
+	public Quiz(int quizID, String quizname, int authorID, int score, String category, Date creationDate,
+			ArrayList<Question> questions) {
 		super();
 		this.quizID = quizID;
 		this.quizname = quizname;
 		this.authorID = authorID;
+		this.score = score;
+		this.category = category;
 		this.creationDate = creationDate;
+		this.questions = questions;
 	}
 
 	public int getQuizID() {
@@ -52,19 +57,19 @@ public class Quiz {
 		this.score = score;
 	}
 
-	public int getCategory() {
+	public String getCategory() {
 		return category;
 	}
 
-	public void setCategory(int category) {
+	public void setCategory(String category) {
 		this.category = category;
 	}
 
-	public int getCreationDate() {
+	public Date getCreationDate() {
 		return creationDate;
 	}
 
-	public void setCreationDate(int creationDate) {
+	public void setCreationDate(Date creationDate) {
 		this.creationDate = creationDate;
 	}
 
@@ -75,5 +80,5 @@ public class Quiz {
 	public void setQuestions(ArrayList<Question> questions) {
 		this.questions = questions;
 	}
-	
+
 }
