@@ -8,8 +8,11 @@ public class User {
 	private int userID;
 	private String username;
 	private String password;
+	private String mail;
+	private String photo;
 	private Date createDate;
 	private boolean isAdmin;
+	private boolean isDeleted;
 	private ArrayList<Quiz> quizesCreated;
 	private ArrayList<Quiz> quizesTaken;
 	private ArrayList<Message> messages;
@@ -17,12 +20,15 @@ public class User {
 	private ArrayList<Challenge> challenges;
 	private ArrayList<User> friends;
 	
-	public User(int userID, String username, String password, Date createDate, boolean isAdmin) {
+	public User(int userID, String username, String password, String mail, String photo, Date createDate, boolean isAdmin, boolean isDeleted) {
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
+		this.mail = mail;
+		this.photo = photo;
 		this.createDate = createDate;
 		this.isAdmin = isAdmin;
+		this.isDeleted = isDeleted;
 	}
 
 	public int getUserID() {
@@ -49,6 +55,22 @@ public class User {
 		this.password = password;
 	}
 
+	public String getMail() {
+		return mail;
+	}
+
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	public String getPhoto() {
+		return photo;
+	}
+
+	public void setPhoto(String photo) {
+		this.photo = photo;
+	}
+	
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -63,6 +85,14 @@ public class User {
 
 	public void setAdmin(boolean isAdmin) {
 		this.isAdmin = isAdmin;
+	}
+	
+	public boolean isDeleted() {
+		return isDeleted;
+	}
+
+	public void setDeleted(boolean isDeleted) {
+		this.isDeleted = isDeleted;
 	}
 
 	public ArrayList<Quiz> getQuizesCreated() {
