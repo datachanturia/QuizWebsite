@@ -56,7 +56,7 @@ public class UserDaoImpl implements UserDao {
 	public void deleteUser(int userID) {
 		try {
 			PreparedStatement preparedStatement = con
-					.prepareStatement("update Users set isdelete = ? " + "where answerID = " + userID);
+					.prepareStatement("update Users set isdelete = ? " + "where userID = " + userID);
 			preparedStatement.setInt(1, 1);
 			preparedStatement.execute();
 		} catch (SQLException e) {
