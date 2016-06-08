@@ -16,10 +16,10 @@ public class UserDaoImpl implements UserDao {
 		this.con = con;
 	}
 
-	public User getUser(String username, String password) {
+	public User getUser(String email, String password) {
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Users where username = " + username + " and pass = "
+			ResultSet rs = stmt.executeQuery("select * from Users where mail = " + email + " and pass = "
 					+ password + " and isdelete = 0");
 			while (rs.next()) {
 				User user = new User(rs.getInt("userID"), rs.getString("username"), rs.getString("pass"),

@@ -37,7 +37,7 @@ public class ServletLogin extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
-		String usr = request.getParameter("username");
+		String usr = request.getParameter("email");
 		String pas = request.getParameter("password");
 		
 
