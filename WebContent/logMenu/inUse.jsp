@@ -30,13 +30,8 @@
 			</p>
 		</div>
 
-		<form action="./ServletCreateFacebook" method="post" name="register">
-			<a class="facebook" href="#">Facebook</a>
-		</form>
-
-		<form action="./ServletCreateGoogle" method="post" name="register">
-			<a class="google" href="#">Google+</a>
-		</form>
+		<a class="facebook" href="./ServletCreateGoogle">Facebook</a>
+		<a class="google" href="./ServletCreateFacebook">Google+</a>
 
 		<div class="clr">
 			<hr />

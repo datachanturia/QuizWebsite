@@ -17,14 +17,6 @@
     <servlet-name>ServletCreateAcc</servlet-name>
     <servlet-class>ULS.ServletCreateAcc</servlet-class>
   </servlet>
-  <servlet-mapping>
-    <servlet-name>ServletLogin</servlet-name>
-    <url-pattern>/ServletLogin</url-pattern>
-  </servlet-mapping>
-  <servlet-mapping>
-    <servlet-name>ServletCreateAcc</servlet-name>
-    <url-pattern>/ServletCreateAcc</url-pattern>
-  </servlet-mapping>
   <listener>
     <listener-class>ULS.ListenR</listener-class>
   </listener>
