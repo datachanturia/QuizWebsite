@@ -29,7 +29,15 @@
 				is already in use
 			</p>
 		</div>
-		<a class="facebook" href="#">Facebook</a> <a class="google" href="#">Google+</a>
+
+		<form action="../ServletCreateFacebook" method="post" name="register">
+			<a class="facebook" href="#">Facebook</a>
+		</form>
+
+		<form action="../ServletCreateGoogle" method="post" name="register">
+			<a class="google" href="#">Google+</a>
+		</form>
+
 		<div class="clr">
 			<hr />
 		</div>

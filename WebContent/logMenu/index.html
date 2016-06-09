@@ -22,7 +22,15 @@
 		<div class="clr"></div>
 		<div class="login-options">Choose one of the following log in
 			methods.</div>
-		<a class="facebook" href="#">Facebook</a> <a class="google" href="#">Google+</a>
+
+		<form action="../ServletLoginFacebook" method="post" name="register">
+			<a class="facebook" href="#">Facebook</a>
+		</form>
+
+		<form action="../ServletLoginGoogle" method="post" name="register">
+			<a class="google" href="#">Google+</a>
+		</form>
+		
 		<div class="clr">
 			<hr />
 		</div>
@@ -31,18 +39,16 @@
 			<form action="../ServletLogin" method="post" name="register">
 				<input name="email" type="text"
 					placeholder="Enter your email address..." size="70"
-					onClick="border: 1px solid #30a8da;" id="mail" required/> <input
+					onClick="border: 1px solid #30a8da;" id="mail" required /> <input
 					name="password" type="password" placeholder="Enter a password..."
-					size="70" onClick="border: 1px solid #30a8da;" id="password" required/>
+					size="70" onClick="border: 1px solid #30a8da;" id="password"
+					required />
 
 				<button class="log-in-acc">Log In</button>
-				<br>
-				<br>
-				<br>
-				<br>
-				<br>
+				<br> <br> <br> <br> <br>
 				<div align="right">
-					<a class="mail-text" href="./newAccount.html">Create new Account</a>
+					<a class="mail-text" href="./newAccount.html">Create new
+						Account</a>
 				</div>
 			</form>
 		</div>
