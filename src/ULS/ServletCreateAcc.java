@@ -42,10 +42,10 @@ public class ServletCreateAcc extends HttpServlet {
 
 		RequestDispatcher rd;
 		if (am.accountExists(usr)) {
-			rd = request.getRequestDispatcher("logMenu/inUse.jsp");
+			rd = request.getRequestDispatcher("./logMenu/inUse.jsp");
 		} else {
 			am.createAccount(usr, pas);
-			rd = request.getRequestDispatcher("logMenu/welcomeUser.jsp");
+			rd = request.getRequestDispatcher("./logMenu/welcomeUser.jsp");
 		}
 
 		rd.forward(request, response);
