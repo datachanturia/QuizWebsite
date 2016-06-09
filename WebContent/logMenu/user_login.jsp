@@ -77,6 +77,7 @@
 		}
 	</script>
 	<div id="status"></div>
+	<br>
 
 	<button onclick="getInfo()">Get Info</button>
 	<button onclick="login()" id="login">Login</button>
