@@ -9,7 +9,7 @@
 <body>
 <h1>
 		The Name
-		<%out.println(request.getParameter("username"));%>
+		<%out.println(request.getParameter("email"));%>
 		is Already In Use
 	</h1>
 

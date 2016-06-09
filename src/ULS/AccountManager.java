@@ -1,90 +1,79 @@
 package ULS;
 
-import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Vector;
+import java.util.Calendar;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
-import Database.MyDBInfo;
+import com.mysql.jdbc.Connection;
+
 import Database.UserDaoImpl;
 import Model.User;
 
 public class AccountManager {
-	private static Vector<Account> accounts;
+	private User currentUser;
+
+	Connection con;
+	Encrypt en;
+	UserDaoImpl udi;
 
 	// constructor for account manager
-	public AccountManager() {
-		accounts = new Vector<Account>();
-		Account a = new Account("Patrick", "1234");
-		Account b = new Account("Molly", "FloPup");
-		accounts.add(a);
-		accounts.add(b);
+	public AccountManager(Connection con) {
+	}
+
+	// factory class
+	public void setConnection(Connection con) {
+		this.en = new Encrypt();
+		this.con = con;
+		this.udi = new UserDaoImpl(con);
 	}
 
 	// returns true if such account already exists
-	public boolean accountExists(String userName) {
-		if (userName.equals(""))
-			return true;
-		for (int i = 0; i < accounts.size(); i++) {
-			if (userName.toLowerCase().equals(accounts.get(i).getName().toLowerCase())) {
-				return true;
-			}
-		}
-		return false;
+	public boolean accountExists(String email) {
+		return udi.existsUser(email);
 	}
 
 	// return true if user name and password match account
 	public boolean matchesAccount(String email, String password)
 			throws ClassNotFoundException, SQLException, CloneNotSupportedException {
-		if (email == "" || email == null || password == "" || password == null) {
+
+		if (!isValidMail(email)) {
 			return false;
 		}
-		Class.forName("com.mysql.jdbc.Driver");
-		java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + MyDBInfo.MYSQL_DATABASE_SERVER,
-				MyDBInfo.MYSQL_USERNAME, MyDBInfo.MYSQL_PASSWORD);
 
-		UserDaoImpl udi = new UserDaoImpl(con);
-		Encrypt en = new Encrypt();
 		String passwordfinal = en.GenerationMode(password);
 		User us = udi.getUser(email, passwordfinal);
 
-		con.close();
 		if (us == null) {
 			return false;
 		}
+		currentUser = us;
 		return true;
 	}
 
 	// creates new account
-	public void createAccount(String userName, String password) {
-		if (!userName.equals("")) {
-			Account a = new Account(userName, password);
-			accounts.add(a);
-		}
+	public void createAccount(String userName, String email, String password) throws CloneNotSupportedException {
+
+		String passwordfinal = en.GenerationMode(password);
+
+		// when we don't have values we set -1 everywhere
+		currentUser = new User(-1, userName, passwordfinal, email, "-1",
+				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false);
+		udi.addUser(currentUser);
 	}
 
-	// in this class we just store information conveniently
-	private class Account {
-		private String name;
-		private String pass;
+	public boolean isValidMail(String email) {
 
-		// constructor to set variables
-		public Account(String userName, String password) {
-			name = userName;
-			pass = password;
-		}
+		Pattern pattern = Pattern.compile("[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}");
+		Matcher mat = pattern.matcher(email);
 
-		// here you can get account name
-		public String getName() {
-			return name;
+		if (mat.matches()) {
+			return true;
 		}
-
-		// only acc class knows if two acc class objects are equal
-		public boolean equalsAcc(String nm, String ps) {
-			if (ps.equals(pass) && nm.equals(name)) {
-				return true;
-			}
-			return false;
-		}
+		return false;
 	}
 
+	public User getUser() {
+		return currentUser;
+	}
 }

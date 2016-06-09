@@ -18,11 +18,14 @@ public class UserDaoImpl implements UserDao {
 
 	public User getUser(String email, String password) {
 		try {
+
 			Statement stmt = con.createStatement();
+
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
 					.prepareStatement("SELECT * FROM Users where mail = ? and pass = ? and isdelete = ?");
+
 			prdtmt.setString(1, email);
 			prdtmt.setString(2, password);
 			prdtmt.setBoolean(3, false);
@@ -39,6 +42,27 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public boolean existsUser(String email) {
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con.prepareStatement("SELECT * FROM Users where mail = ? and isdelete = ?");
+			prdtmt.setString(1, email);
+			prdtmt.setBoolean(2, false);
+
+			ResultSet rs = prdtmt.executeQuery();
+			if (rs.next()) {
+				return true;		
+			}
+			return false;
+		} catch (SQLException e) {
+			System.out.println("getUser(String email, String password) --> method failed");
+			e.printStackTrace();
+		}
+		return true;
 	}
 
 	@Override
