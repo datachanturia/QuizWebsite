@@ -64,21 +64,21 @@ public class ServletLogin extends HttpServlet {
 			am.setConnection(con);
 
 			if (am.matchesAccount(ema, pas)) {
-				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+				if(am.getUser().isAdmin()){
+					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
+				}else{
+					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+				}
 				request.setAttribute("accManager", am);
 			} else {
 				rd = request.getRequestDispatcher("./logMenu/informationIncorrect.html");
 			}
 			rd.forward(request, response);
 		} catch (ClassNotFoundException e) {
-			System.out.println("ServletLogin.java --> ClassNotFoundException");
-
 			e.printStackTrace();
 		} catch (SQLException e) {
-			System.out.println("ServletLogin.java --> SQLException");
 			e.printStackTrace();
 		} catch (CloneNotSupportedException e) {
-			System.out.println("ServletLogin.java --> CloneNotSupportedException");
 			e.printStackTrace();
 		} finally {
 			if (con != null)

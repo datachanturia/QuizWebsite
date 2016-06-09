@@ -78,7 +78,11 @@ public class ServletCreateAcc extends HttpServlet {
 			} else {
 				am.createAccount(usr, ema, pas);
 				request.setAttribute("accManager", am);
-				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+				if (am.getUser().isAdmin()) {
+					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
+				} else {
+					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+				}
 			}
 
 			rd.forward(request, response);
