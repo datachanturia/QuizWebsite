@@ -1,28 +1,62 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<title>Sign Up</title>
+
+
+
+
+<link rel="stylesheet" href="logMenu/css/style.css">
+
+
+
+
 </head>
+
 <body>
-<h1>
-		The Name
-		<%out.println(request.getParameter("email"));%>
-		is Already In Use
-	</h1>
 
-	<p>Please enter another name and password.</p>
+	<div id="wrapper">
+		<div class="join">Please Try Again!</div>
+		<div class="lock"></div>
+		<div class="clr"></div>
+		<div class="login-options">
+			<p>
+				the eMail
+				<%
+				out.println(request.getParameter("email"));
+			%>
+				is already in use
+			</p>
+		</div>
+		<a class="facebook" href="#">Facebook</a> <a class="google" href="#">Google+</a>
+		<div class="clr">
+			<hr />
+		</div>
+		<div class="mail-text">Or sign up using your email address.</div>
+		<div class="forms">
+			<form action="./ServletCreateAcc" method="post" name="register">
+				<input name="username"
+					placeholder="Enter your username or just name..." size="70"
+					onClick="border: 1px solid #30a8da;" id="username" required /> <input
+					name="email" type="text" placeholder="Enter your email address..."
+					size="70" onClick="border: 1px solid #30a8da;" id="mail" required />
+				<input name="password" type="password"
+					placeholder="Enter a password..." size="70"
+					onClick="border: 1px solid #30a8da;" id="password" required />
 
-	<form action="./ServletCreateAcc" method="post">
-		<p>
-			User Name: <input name="username"></input>
-		</p>
-		<p>
-			Password: <input name="password" type="password"></input>
-			<button>Login</button>
-		</p>
-	</form>
+				<button class="create-acc">Create Account</button>
+				<br> <br>
+				<div align="right">
+					<a class="mail-text" href="../ww/logMenu/index.html">Log In</a>
+				</div>
+			</form>
+		</div>
+	</div>
+
+
+
+
+
 </body>
 </html>
