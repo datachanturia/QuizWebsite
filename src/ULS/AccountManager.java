@@ -1,6 +1,12 @@
 package ULS;
 
+import java.sql.DriverManager;
+import java.sql.SQLException;
 import java.util.Vector;
+
+import Database.MyDBInfo;
+import Database.UserDaoImpl;
+import Model.User;
 
 public class AccountManager {
 	private static Vector<Account> accounts;
@@ -16,7 +22,8 @@ public class AccountManager {
 
 	// returns true if such account already exists
 	public boolean accountExists(String userName) {
-		if(userName.equals("")) return true;
+		if (userName.equals(""))
+			return true;
 		for (int i = 0; i < accounts.size(); i++) {
 			if (userName.toLowerCase().equals(accounts.get(i).getName().toLowerCase())) {
 				return true;
@@ -26,13 +33,25 @@ public class AccountManager {
 	}
 
 	// return true if user name and password match account
-	public boolean matchesAccount(String userName, String password) {
-		for (int i = 0; i < accounts.size(); i++) {
-			if (accounts.get(i).equalsAcc(userName, password)) {
-				return true;
-			}
+	public boolean matchesAccount(String email, String password)
+			throws ClassNotFoundException, SQLException, CloneNotSupportedException {
+		if (email == "" || email == null || password == "" || password == null) {
+			return false;
 		}
-		return false;
+		Class.forName("com.mysql.jdbc.Driver");
+		java.sql.Connection con = DriverManager.getConnection("jdbc:mysql://" + MyDBInfo.MYSQL_DATABASE_SERVER,
+				MyDBInfo.MYSQL_USERNAME, MyDBInfo.MYSQL_PASSWORD);
+
+		UserDaoImpl udi = new UserDaoImpl(con);
+		Encrypt en = new Encrypt();
+		String passwordfinal = en.GenerationMode(password);
+		User us = udi.getUser(email, passwordfinal);
+
+		con.close();
+		if (us == null) {
+			return false;
+		}
+		return true;
 	}
 
 	// creates new account

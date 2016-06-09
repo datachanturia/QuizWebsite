@@ -19,8 +19,15 @@ public class UserDaoImpl implements UserDao {
 	public User getUser(String email, String password) {
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Users where mail = " + email + " and pass = "
-					+ password + " and isdelete = 0");
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con
+					.prepareStatement("SELECT * FROM Users where mail = ? and pass = ? and isdelete = ?");
+			prdtmt.setString(1, email);
+			prdtmt.setString(2, password);
+			prdtmt.setBoolean(3, false);
+
+			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
 				User user = new User(rs.getInt("userID"), rs.getString("username"), rs.getString("pass"),
 						rs.getString("mail"), rs.getString("photo"), rs.getDate("creationdate"),
@@ -28,6 +35,7 @@ public class UserDaoImpl implements UserDao {
 				return user;
 			}
 		} catch (SQLException e) {
+			System.out.println("getUser(String email, String password) --> method failed");
 			e.printStackTrace();
 		}
 		return null;
