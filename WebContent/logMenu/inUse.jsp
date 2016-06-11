@@ -30,8 +30,8 @@
 			</p>
 		</div>
 
-		<a class="facebook" href="./ServletCreateGoogle">Facebook</a>
-		<a class="google" href="./ServletCreateFacebook">Google+</a>
+		<a class="facebook" href="./ServletCreateFacebook">Facebook</a>
+		<a class="google" href="./ServletCreateGoogle">Google+</a>
 
 		<div class="clr">
 			<hr />

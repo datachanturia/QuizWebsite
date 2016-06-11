@@ -7,24 +7,46 @@
 
 
 
-<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="./css/style.css">
 
+<script src="./func/facebook.js"></script>
 
 
 
 </head>
 
 <body>
-
 	<div id="wrapper">
 		<div class="join">Join Quiz Website</div>
 		<div class="lock"></div>
 		<div class="clr"></div>
 		<div class="login-options">Choose on of the following sign up
 			methods.</div>
+		<script>
+		// initialize and setupe facebook js sdk	
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '1248881405129739',
+				xfbml : true,
+				version : 'v2.6'
+			});
+			FB
+					.getLoginStatus(function(response) {
+						if (response.status === 'connected') {
+							getInfo();
+						} else if (response.status === 'not_authorized') {
+							
+						} else {
+							
+						}
+					});
+		};
+		
+		
+	</script>
 
-		<a class="facebook" href="../ServletCreateGoogle">Facebook</a>
-		<a class="google" href="../ServletCreateFacebook">Google+</a>
+		<a class="facebook" href="../ServletCreateFacebook">Facebook</a> <a
+			class="google" href="../ServletCreateGoogle">Google+</a>
 
 		<div class="clr">
 			<hr />
