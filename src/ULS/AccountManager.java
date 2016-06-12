@@ -1,11 +1,11 @@
 package ULS;
 
+import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.mysql.jdbc.Connection;
 
 import Database.UserDaoImpl;
 import Model.User;
@@ -13,7 +13,7 @@ import Model.User;
 public class AccountManager {
 	private User currentUser;
 
-	Connection con;
+	java.sql.Connection con;
 	Encrypt en;
 	UserDaoImpl udi;
 
@@ -22,10 +22,10 @@ public class AccountManager {
 	}
 
 	// factory class
-	public void setConnection(Connection con) {
+	public void setConnection(java.sql.Connection con2) {
 		this.en = new Encrypt();
-		this.con = con;
-		this.udi = new UserDaoImpl(con);
+		this.con = con2;
+		this.udi = new UserDaoImpl(con2);
 	}
 
 	// returns true if such account already exists
