@@ -65,7 +65,7 @@ public class ServletCreateFacebook extends HttpServlet {
 			} else if (am.accountExists(ema)) {
 				rd = request.getRequestDispatcher("./logMenu/inUse.jsp");
 			} else {
-				am.createFacebookAccount(usr, ema, pas, pho);
+				am.createSocAccount(usr, ema, pas, pho);
 
 				request.setAttribute("accManager", am);
 				if (am.getUser().isAdmin()) {

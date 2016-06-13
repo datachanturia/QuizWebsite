@@ -19,11 +19,10 @@ public class User {
 	private ArrayList<Challenge> challenges;
 	private ArrayList<User> friends;
 
-	private boolean isFbAcc;
-	private boolean isGpAcc;
+	private boolean isSocAcc;
 
 	public User(int userID, String username, String password, String mail, String photo, Date createDate,
-			boolean isAdmin, boolean isFb, boolean isGp) {
+			boolean isAdmin, boolean isSoc) {
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
@@ -31,8 +30,7 @@ public class User {
 		this.photo = photo;
 		this.createDate = createDate;
 		this.isAdmin = isAdmin;
-		this.isFbAcc = isFb;
-		this.isGpAcc = isGp;
+		this.isSocAcc = isSoc;
 	}
 
 	public int getUserID() {
@@ -139,19 +137,11 @@ public class User {
 		this.friends = friends;
 	}
 
-	public boolean getFbBool() {
-		return this.isFbAcc;
+	public boolean isSoc() {
+		return this.isSocAcc;
 	}
 
-	public void setFbBool(boolean isFbAcc) {
-		this.isFbAcc = isFbAcc;
-	}
-
-	public boolean getGpBool() {
-		return this.isGpAcc;
-	}
-
-	public void setGpBool(boolean isGpAcc) {
-		this.isGpAcc = isFbAcc;
+	public void setFbBool(boolean isSocAcc) {
+		this.isSocAcc = isSocAcc;
 	}
 }

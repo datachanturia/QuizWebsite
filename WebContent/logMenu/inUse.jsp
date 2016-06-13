@@ -30,7 +30,7 @@
 			</p>
 		</div>
 
-		<a class="facebook" href="./ServletCreateFacebook">Facebook</a>
+		<a class="facebook" href="./logMenu/facebookCreate.jsp">Facebook</a>
 		<a class="google" href="./ServletCreateGoogle">Google+</a>
 
 		<div class="clr">

@@ -57,19 +57,19 @@ public class AccountManager {
 
 		// when we don't have values we set -1 everywhere
 		currentUser = new User(-1, userName, passwordfinal, email, "-1",
-				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, false, false);
+				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, false);
 		udi.addUser(currentUser);
 	}
 
 	// creates new account only from facebook
-	public void createFacebookAccount(String userName, String email, String password, String photo)
+	public void createSocAccount(String userName, String email, String password, String photo)
 			throws CloneNotSupportedException {
 
 		String passwordfinal = en.GenerationMode(password);
 
 		// when we don't have values we set -1 everywhere
 		currentUser = new User(-1, userName, passwordfinal, email, photo,
-				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, true, false);
+				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, true);
 		udi.addUser(currentUser);
 	}
 
