@@ -1,14 +1,29 @@
-<%@ page import="ULS.AccountManager" %>
+<%@ page import="ULS.AccountManager"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="ISO-8859-1">
 <title>
-	<% AccountManager am = (AccountManager)request.getAttribute("accManager");
-	out.println("Welcome " + am.getUser().getUsername()); %>
+	<%
+		AccountManager am = (AccountManager) request.getAttribute("accManager");
+	%>
 </title>
 </head>
 <body>
-	<% out.println("<h1>Welcome " + am.getUser().getUsername() + "</h1>"); %>
+	<script>
+		var auto_refresh = setInterval(function() {
+			submitform();
+		}, 0);
+
+		function submitform() {
+			document.myForm.submit();
+		}
+	</script>
+	<form name="myForm" action="./loggedIn/homeUser.jsp"
+		method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=am.getUser().getUsername()%>">
+	</form>
 </body>
+
 </html>

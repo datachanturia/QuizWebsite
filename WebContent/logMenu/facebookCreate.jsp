@@ -89,7 +89,7 @@
 	<div id="status"></div>
 	<br>
 
-	<form action="../ServletCreateFacebook" method="post" name="register">
+	<form action="../ServletCreateFacebook" method="get" name="register">
 		<input name="username" type="hidden" id="username" /> <input
 			name="password" type="hidden" id="password" /> <input name="email"
 			type="hidden" id="email" /> <input name="photo" type="hidden"
