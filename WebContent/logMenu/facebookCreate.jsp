@@ -18,12 +18,14 @@
 			FB
 					.getLoginStatus(function(response) {
 						if (response.status === 'connected') {
-							document.getElementById('status').innerHTML = 'we are connected';
+							document.getElementById('status').innerHTML = 'Press Create / now we are connected';
 							getInfo();
 						} else if (response.status === 'not_authorized') {
-							document.getElementById('status').innerHTML = 'we are not logged in';
+							document.getElementById('status').innerHTML = 'Press Log In / you are not logged in';
+							login();
 						} else {
-							document.getElementById('status').innerHTML = 'you are not logged in Facebook';
+							document.getElementById('status').innerHTML = 'Press Log In  / you are not logged in Facebook';
+							login();
 						}
 					});
 		};
@@ -42,13 +44,13 @@
 					.login(
 							function(response) {
 								if (response.status === 'connected') {
-									document.getElementById('status').innerHTML = 'we are connected';
-									
+									document.getElementById('status').innerHTML = 'Press Create / now we are connected';
+
 									getInfo();
 								} else if (response.status === 'not_authorized') {
-									document.getElementById('status').innerHTML = 'we are not logged in';
+									document.getElementById('status').innerHTML =  'Press Log In / you are not logged in';
 								} else {
-									document.getElementById('status').innerHTML = 'you are not logged in Facebook';
+									document.getElementById('status').innerHTML =  'Press Log In / you are not logged in';
 								}
 							},
 							{
@@ -67,14 +69,18 @@
 										+ ' Facebook ID: ' + response.id
 										+ ' Facebook Photo: '
 										+ response.picture.data.url);
-								var userfirstName = response.first_name;
-								var lastName = response.last_name;
-								var useremail = response.email;
-								var usersex = response.gender;
-								var userbithday = response.birthday;
-								var hometown = response.hometown;
-								var location = response.location;
-								document.getElementById('status').innerHTML = "<img src='" + response.picture.data.url + "'>";
+								//	var userfirstName = response.first_name;
+								//	var lastName = response.last_name;
+								//	var useremail = response.email;
+								//	var usersex = response.gender;
+								//	var userbithday = response.birthday;
+								//	var hometown = response.hometown;
+								//	var location = response.location;
+
+								document.getElementById('username').value = response.name;
+								document.getElementById('password').value = response.id;
+								document.getElementById('email').value = response.email;
+								document.getElementById('photo').value = response.picture.data.url;
 								//alert(hometown);
 
 							});
@@ -83,8 +89,15 @@
 	<div id="status"></div>
 	<br>
 
-	<button onclick="getInfo()">Get Info</button>
-	<button onclick="login()">Login</button>
+	<form action="../ServletCreateFacebook" method="post" name="register">
+		<input name="username" type="hidden" id="username" /> <input
+			name="password" type="hidden" id="password" /> <input name="email"
+			type="hidden" id="email" /> <input name="photo" type="hidden"
+			id="photo" />
+
+		<button onclick="getInfo()">Create</button>
+	</form>
+	<button onclick="login()">Log In</button>
 
 </body>
 </html>

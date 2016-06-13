@@ -24,6 +24,8 @@ create table if not exists Users(
     creationdate datetime,
     isadmin tinyint(1) default 0,
     isdelete tinyint(1) default 0,
+    isFb tinyint(1) default 0,
+    isGp tinyint(1) default 0,
     
     primary key (userID)
 );

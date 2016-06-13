@@ -1,29 +1,46 @@
-(function(d, s, id) {
-			var js, fjs = d.getElementsByTagName(s)[0];
-			if (d.getElementById(id)) {
-				return;
+function allFB() {
+
+	window.fbAsyncInit = function() {
+		FB.init({
+			appId : '1248881405129739',
+			xfbml : true,
+			version : 'v2.6'
+		});
+		FB.getLoginStatus(function(response) {
+			if (response.status === 'connected') {
+				getInfo();
+			} else if (response.status === 'not_authorized') {
+
+			} else {
+
 			}
-			js = d.createElement(s);
-			js.id = id;
-			js.src = "//connect.facebook.net/en_US/sdk.js";
-			fjs.parentNode.insertBefore(js, fjs);
-		}(document, 'script', 'facebook-jssdk'));
+		});
+	};
+}
+
+(function(d, s, id) {
+	var js, fjs = d.getElementsByTagName(s)[0];
+	if (d.getElementById(id)) {
+		return;
+	}
+	js = d.createElement(s);
+	js.id = id;
+	js.src = "//connect.facebook.net/en_US/sdk.js";
+	fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
 
 function login() {
-	FB
-			.login(
-					function(response) {
-						if (response.status === 'connected') {
-							getInfo();
-						} else if (response.status === 'not_authorized') {
-							
-						} else {
-							
-						}
-					},
-					{
-						scope : 'email, user_birthday, user_location, user_hometown'
-					});
+	FB.login(function(response) {
+		if (response.status === 'connected') {
+			getInfo();
+		} else if (response.status === 'not_authorized') {
+
+		} else {
+
+		}
+	}, {
+		scope : 'email, user_birthday, user_location, user_hometown'
+	});
 }
 
 function getInfo() {
@@ -34,13 +51,18 @@ function getInfo() {
 						+ ' Email: ' + response.email + ' Facebook ID: '
 						+ response.id + ' Facebook Photo: '
 						+ response.picture.data.url);
-				var userfirstName = response.first_name;
-				var lastName = response.last_name;
-				var useremail = response.email;
-				var usersex = response.gender;
-				var userbithday = response.birthday;
-				var hometown = response.hometown;
-				var location = response.location;
+			//	var userfirstName = response.first_name;
+			//	var lastName = response.last_name;
+			//	var useremail = response.email;
+			//	var usersex = response.gender;
+			//	var userbithday = response.birthday;
+			//	var hometown = response.hometown;
+			//	var location = response.location;
+				
+				document.getElementById('bla').value = response.name;
+				document.getElementById('password').value = response.id;
+				document.getElementById('email').value = response.email;
+				document.getElementById('photo').value = response.picture.data.url;
 
 				// alert(hometown);
 

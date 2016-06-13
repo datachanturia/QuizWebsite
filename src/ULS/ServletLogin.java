@@ -51,7 +51,6 @@ public class ServletLogin extends HttpServlet {
 
 		RequestDispatcher rd;
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
 			con = DataSource.getInstance().getConnection();
 			am.setConnection(con);
 

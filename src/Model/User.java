@@ -4,7 +4,7 @@ import java.sql.Date;
 import java.util.ArrayList;
 
 public class User {
-	
+
 	private int userID;
 	private String username;
 	private String password;
@@ -18,8 +18,12 @@ public class User {
 	private ArrayList<Request> requests;
 	private ArrayList<Challenge> challenges;
 	private ArrayList<User> friends;
-	
-	public User(int userID, String username, String password, String mail, String photo, Date createDate, boolean isAdmin) {
+
+	private boolean isFbAcc;
+	private boolean isGpAcc;
+
+	public User(int userID, String username, String password, String mail, String photo, Date createDate,
+			boolean isAdmin, boolean isFb, boolean isGp) {
 		this.userID = userID;
 		this.username = username;
 		this.password = password;
@@ -27,6 +31,8 @@ public class User {
 		this.photo = photo;
 		this.createDate = createDate;
 		this.isAdmin = isAdmin;
+		this.isFbAcc = isFb;
+		this.isGpAcc = isGp;
 	}
 
 	public int getUserID() {
@@ -60,7 +66,7 @@ public class User {
 	public void setMail(String mail) {
 		this.mail = mail;
 	}
-	
+
 	public String getPhoto() {
 		return photo;
 	}
@@ -68,7 +74,7 @@ public class User {
 	public void setPhoto(String photo) {
 		this.photo = photo;
 	}
-	
+
 	public Date getCreateDate() {
 		return createDate;
 	}
@@ -131,5 +137,21 @@ public class User {
 
 	public void setFriends(ArrayList<User> friends) {
 		this.friends = friends;
+	}
+
+	public boolean getFbBool() {
+		return this.isFbAcc;
+	}
+
+	public void setFbBool(boolean isFbAcc) {
+		this.isFbAcc = isFbAcc;
+	}
+
+	public boolean getGpBool() {
+		return this.isGpAcc;
+	}
+
+	public void setGpBool(boolean isGpAcc) {
+		this.isGpAcc = isFbAcc;
 	}
 }

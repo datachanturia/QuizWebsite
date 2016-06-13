@@ -35,7 +35,7 @@ public class UserDaoImpl implements UserDao {
 			while (rs.next()) {
 				User user = new User(rs.getInt("userID"), rs.getString("username"), rs.getString("pass"),
 						rs.getString("mail"), rs.getString("photo"), rs.getDate("creationdate"),
-						rs.getBoolean("isadmin"));
+						rs.getBoolean("isadmin"), rs.getBoolean("isFb"), rs.getBoolean("isGp"));
 				return user;
 			}
 		} catch (SQLException e) {
@@ -70,7 +70,7 @@ public class UserDaoImpl implements UserDao {
 	public void addUser(User user) {
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement(
-					"INSERT INTO Users (username, pass, mail, photo, creationdate, isadmin) VALUES(?,?,?,?,?,?)");
+					"INSERT INTO Users (username, pass, mail, photo, creationdate, isadmin, isFB, isGp) VALUES(?,?,?,?,?,?,?,?)");
 
 			preparedStatement.setString(1, user.getUsername());
 			preparedStatement.setString(2, user.getPassword());
@@ -78,6 +78,9 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setString(4, user.getPhoto());
 			preparedStatement.setDate(5, user.getCreateDate());
 			preparedStatement.setBoolean(6, user.isAdmin());
+			preparedStatement.setBoolean(7, user.getFbBool());
+			preparedStatement.setBoolean(8, user.getGpBool());
+			
 
 			preparedStatement.execute();
 		} catch (SQLException e) {

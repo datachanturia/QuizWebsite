@@ -6,7 +6,6 @@ import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
 import Database.UserDaoImpl;
 import Model.User;
 
@@ -58,7 +57,19 @@ public class AccountManager {
 
 		// when we don't have values we set -1 everywhere
 		currentUser = new User(-1, userName, passwordfinal, email, "-1",
-				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false);
+				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, false, false);
+		udi.addUser(currentUser);
+	}
+
+	// creates new account only from facebook
+	public void createFacebookAccount(String userName, String email, String password, String photo)
+			throws CloneNotSupportedException {
+
+		String passwordfinal = en.GenerationMode(password);
+
+		// when we don't have values we set -1 everywhere
+		currentUser = new User(-1, userName, passwordfinal, email, photo,
+				new java.sql.Date(Calendar.getInstance().getTime().getTime()), false, true, false);
 		udi.addUser(currentUser);
 	}
 
