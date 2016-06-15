@@ -8,7 +8,7 @@
 
 
 <link rel="stylesheet" href="css/style.css">
-
+<script src="./func/facebook.js"></script>
 
 
 
@@ -24,7 +24,15 @@
 			methods.</div>
 
 		
-			<a class="facebook" href="./fbLogin.html">log in with Facebook</a>
+		<form action="../ServletLoginFacebook" method="get" name="register"
+			id="myForm">
+			<input name="fusername" type="hidden" id="fusername" /> <input
+				name="fpassword" type="hidden" id="fpassword" /> <input
+				name="femail" type="hidden" id="femail" /> <input name="fphoto"
+				type="hidden" id="fphoto" /> <a class="facebook" href="" onclick="">log
+				in with Facebook</a>
+		</form>
+
 		
 		<div class="clr">
 			<hr />

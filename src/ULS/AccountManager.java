@@ -49,6 +49,24 @@ public class AccountManager {
 		currentUser = us;
 		return true;
 	}
+	
+	// return true if user name and password match account and they try to log in with soc network
+	public boolean matchesSocAccount(String email, String password)
+			throws ClassNotFoundException, SQLException, CloneNotSupportedException {
+
+		if (!isValidMail(email)) {
+			return false;
+		}
+
+		String passwordfinal = en.GenerationMode(password);
+		User us = udi.getUser(email, passwordfinal);
+
+		if (us == null) {
+			return false;
+		}
+		currentUser = us;
+		return true;
+	}
 
 	// creates new account
 	public void createAccount(String userName, String email, String password) throws CloneNotSupportedException {
