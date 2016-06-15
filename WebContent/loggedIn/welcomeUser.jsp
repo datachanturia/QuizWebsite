@@ -23,6 +23,8 @@
 		method="GET">
 		<input type="hidden" id="thisField" name="inputName"
 			value="<%=am.getUser().getUsername()%>">
+		<input type="hidden" id="fphoto" name="fphoto"
+			value="<%=am.getUser().getPhoto()%>">
 	</form>
 </body>
 
