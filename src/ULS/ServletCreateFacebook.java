@@ -39,10 +39,10 @@ public class ServletCreateFacebook extends HttpServlet {
 		Connection con = null;
 
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
-		String usr = request.getParameter("username");
-		String ema = request.getParameter("email");
-		String pas = request.getParameter("password");
-		String pho = request.getParameter("photo");
+		String usr = request.getParameter("fusername");
+		String ema = request.getParameter("femail");
+		String pas = request.getParameter("fpassword");
+		String pho = request.getParameter("fphoto");
 
 		RequestDispatcher rd;
 

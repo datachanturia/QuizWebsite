@@ -8,27 +8,6 @@
 </head>
 <body>
 	<script>
-		// initialize and setupe facebook js sdk	
-		window.fbAsyncInit = function() {
-			FB.init({
-				appId : '1248881405129739',
-				xfbml : true,
-				version : 'v2.6'
-			});
-			FB
-					.getLoginStatus(function(response) {
-						if (response.status === 'connected') {
-							document.getElementById('status').innerHTML = 'Press Create / now we are connected';
-							getInfo();
-						} else if (response.status === 'not_authorized') {
-							document.getElementById('status').innerHTML = 'Press Log In / you are not logged in';
-							login();
-						} else {
-							document.getElementById('status').innerHTML = 'Press Log In  / you are not logged in Facebook';
-							login();
-						}
-					});
-		};
 		(function(d, s, id) {
 			var js, fjs = d.getElementsByTagName(s)[0];
 			if (d.getElementById(id)) {
@@ -39,23 +18,40 @@
 			js.src = "//connect.facebook.net/en_US/sdk.js";
 			fjs.parentNode.insertBefore(js, fjs);
 		}(document, 'script', 'facebook-jssdk'));
-		function login() {
-			FB
-					.login(
-							function(response) {
-								if (response.status === 'connected') {
-									document.getElementById('status').innerHTML = 'Press Create / now we are connected';
+		
+		// initialize and setupe facebook js sdk	
+		window.fbAsyncInit = function() {
+			FB.init({
+				appId : '1248881405129739',
+				xfbml : true,
+				version : 'v2.6'
+			});
 
-									getInfo();
-								} else if (response.status === 'not_authorized') {
-									document.getElementById('status').innerHTML =  'Press Log In / you are not logged in';
-								} else {
-									document.getElementById('status').innerHTML =  'Press Log In / you are not logged in';
-								}
-							},
-							{
-								scope : 'email, user_birthday, user_location, user_hometown'
-							});
+			FB.getLoginStatus(function(response) {
+				if (response.status === 'connected') {
+					getInfo();
+				} else if (response.status === 'not_authorized') {
+					login();
+
+				} else {
+
+				}
+			});
+
+		};
+
+		function login() {
+			FB.login(function(response) {
+				if (response.status === 'connected') {
+					getInfo();
+				} else if (response.status === 'not_authorized') {
+					login();
+				} else {
+					login();
+				}
+			}, {
+				scope : 'email, user_birthday, user_location, user_hometown'
+			});
 		}
 		function getInfo() {
 			console.log('Welcome!  Fetching your information.... ');
@@ -89,15 +85,16 @@
 	<div id="status"></div>
 	<br>
 
-	<form action="../ServletCreateFacebook" method="get" name="register">
+	<form action="../ServletCreateFacebook" method="get" name="register"
+		id="myForm">
 		<input name="username" type="hidden" id="username" /> <input
 			name="password" type="hidden" id="password" /> <input name="email"
 			type="hidden" id="email" /> <input name="photo" type="hidden"
 			id="photo" />
 
-		<button onclick="getInfo()">Create</button>
+		<button onclick="getInfo()">login</button>
 	</form>
-	<button onclick="login()">Log In</button>
+	<button onclick="login()">bla</button>
 
 </body>
 </html>

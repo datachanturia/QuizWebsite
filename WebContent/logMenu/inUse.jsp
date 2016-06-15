@@ -24,14 +24,14 @@
 			<p>
 				the eMail
 				<%
-				out.println(request.getParameter("email"));
+				out.println(request.getParameter("femail"));
 			%>
 				is already in use
 			</p>
 		</div>
 
-		<a class="facebook" href="./logMenu/facebookCreate.jsp">Facebook</a>
-		<a class="google" href="./ServletCreateGoogle">Google+</a>
+		<a class="facebook" href="./logMenu/fbCreate.html">sign up with
+			Facebook</a>
 
 		<div class="clr">
 			<hr />
@@ -49,7 +49,6 @@
 					onClick="border: 1px solid #30a8da;" id="password" required />
 
 				<button class="create-acc">Create Account</button>
-				<br> <br>
 				<div align="right">
 					<a class="mail-text" href="../ww/logMenu/index.html">Log In</a>
 				</div>

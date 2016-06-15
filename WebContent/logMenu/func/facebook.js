@@ -1,22 +1,22 @@
-function allFB() {
 
-	window.fbAsyncInit = function() {
-		FB.init({
-			appId : '1248881405129739',
-			xfbml : true,
-			version : 'v2.6'
-		});
-		FB.getLoginStatus(function(response) {
-			if (response.status === 'connected') {
-				getInfo();
-			} else if (response.status === 'not_authorized') {
+window.fbAsyncInit = function() {
+	FB.init({
+		appId : '1248881405129739',
+		xfbml : true,
+		version : 'v2.6',
+	});
+	FB.getLoginStatus(function(response) {
+		if (response.status === 'connected') {
+			getInfo();
+		} else if (response.status === 'not_authorized') {
+			login();
 
-			} else {
+		} else {
+			login();
 
-			}
-		});
-	};
-}
+		}
+	});
+};
 
 (function(d, s, id) {
 	var js, fjs = d.getElementsByTagName(s)[0];
@@ -34,7 +34,7 @@ function login() {
 		if (response.status === 'connected') {
 			getInfo();
 		} else if (response.status === 'not_authorized') {
-
+			login();
 		} else {
 
 		}
@@ -45,26 +45,32 @@ function login() {
 
 function getInfo() {
 	console.log('Welcome!  Fetching your information.... ');
-	FB.api('/me?fields=name, email, id, picture.width(150).height(150)', 'GET',
-			function(response) {
-				console.log('Good to see you, ' + response.name + '.'
-						+ ' Email: ' + response.email + ' Facebook ID: '
-						+ response.id + ' Facebook Photo: '
-						+ response.picture.data.url);
-			//	var userfirstName = response.first_name;
-			//	var lastName = response.last_name;
-			//	var useremail = response.email;
-			//	var usersex = response.gender;
-			//	var userbithday = response.birthday;
-			//	var hometown = response.hometown;
-			//	var location = response.location;
-				
-				document.getElementById('bla').value = response.name;
-				document.getElementById('password').value = response.id;
-				document.getElementById('email').value = response.email;
-				document.getElementById('photo').value = response.picture.data.url;
+	FB
+			.api(
+					'/me?fields=name, email, id, picture.width(150).height(150)',
+					'GET',
+					function(response) {
+						console.log('Good to see you, ' + response.name + '.'
+								+ ' Email: ' + response.email
+								+ ' Facebook ID: ' + response.id
+								+ ' Facebook Photo: '
+								+ response.picture.data.url);
+						// var userfirstName = response.first_name;
+						// var lastName = response.last_name;
+						// var useremail = response.email;
+						// var usersex = response.gender;
+						// var userbithday = response.birthday;
+						// var hometown = response.hometown;
+						// var location = response.location;
 
-				// alert(hometown);
+						document.getElementById('fusername').value = response.name;
+						document.getElementById('fpassword').value = response.id;
+						document.getElementById('femail').value = response.email;
+						document.getElementById('fphoto').value = response.picture.data.url;
+						
+						document.getElementById('myForm').submit();
 
-			});
+						// alert(hometown);
+
+					});
 }
