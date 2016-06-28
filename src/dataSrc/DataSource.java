@@ -8,7 +8,7 @@ import org.apache.commons.dbcp.BasicDataSource;
 
 public class DataSource {
 
-	private static DataSource datasource;
+	private  DataSource datasource;
 	private BasicDataSource ds;
 
 	private DataSource() {
