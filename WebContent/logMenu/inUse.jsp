@@ -50,7 +50,7 @@
 
 				<button class="create-acc">Create Account</button>
 				<div align="right">
-					<a class="mail-text" href="../ww/logMenu/index.html">Log In</a>
+					<a class="mail-text" href="./logMenu/index.html">Log In</a>
 				</div>
 			</form>
 		</div>
