@@ -21,20 +21,20 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="../loggedIn/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
-	href="assets/css/zabuto_calendar.css">
+	href="../loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
-	href="assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
+	href="../loggedIn/assets/js/gritter/css/jquery.gritter.css" />
+<link rel="stylesheet" type="text/css" href="../loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
-<link href="assets/css/style.css" rel="stylesheet">
-<link href="assets/css/style-responsive.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/style.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/style-responsive.css" rel="stylesheet">
 
-<script src="assets/js/chart-master/Chart.js"></script>
+<script src="../loggedIn/assets/js/chart-master/Chart.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -115,7 +115,7 @@
 								for (int i = 0; i < newMsgs; i++) {
 							%>
 							<li><a href="index.html#"> <span class="photo"><img
-										alt="avatar" src="assets/img/ui-zac.jpg"></span> <span
+										alt="avatar" src="../loggedIn/assets/img/ui-zac.jpg"></span> <span
 									class="subject"> <span class="from">Zac Snider</span> <span
 										class="time">Just now</span>
 								</span> <span class="message"> Hi mate, how is everything? </span>
@@ -282,7 +282,7 @@
 						%>
 						<div class="desc">
 							<div class="thumb">
-								<img class="img-circle" src="assets/img/ui-divya.jpg"
+								<img class="img-circle" src="../loggedIn/assets/img/ui-divya.jpg"
 									width="35px" height="35px">
 							</div>
 							<div class="details">
@@ -314,26 +314,26 @@
 	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/jquery-1.8.3.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="../loggedIn/assets/js/jquery.js"></script>
+	<script src="../loggedIn/assets/js/jquery-1.8.3.min.js"></script>
+	<script src="../loggedIn/assets/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
-		src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="assets/js/jquery.scrollTo.min.js"></script>
-	<script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/js/jquery.sparkline.js"></script>
+		src="../loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="../loggedIn/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="../loggedIn/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="../loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
 	<!--common script for all pages-->
-	<script src="assets/js/common-scripts.js"></script>
+	<script src="../loggedIn/assets/js/common-scripts.js"></script>
 
 	<script type="text/javascript"
-		src="assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+		src="../loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript" src="../loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
-	<script src="assets/js/sparkline-chart.js"></script>
-	<script src="assets/js/zabuto_calendar.js"></script>
+	<script src="../loggedIn/assets/js/sparkline-chart.js"></script>
+	<script src="../loggedIn/assets/js/zabuto_calendar.js"></script>
 
 	<script type="text/javascript">
 		$(document)
@@ -346,7 +346,7 @@
 										// (string | mandatory) the text inside the notification
 										text : 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
 										// (string | optional) the image to display on the left
-										image : 'assets/img/ui-sam.jpg',
+										image : '../loggedIn/assets/img/ui-sam.jpg',
 										// (bool | optional) if you want it to fade out on its own or just sit there
 										sticky : true,
 										// (int | optional) the time you want it to be alive for before fading out
