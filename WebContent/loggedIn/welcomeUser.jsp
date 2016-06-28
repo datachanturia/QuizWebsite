@@ -25,6 +25,8 @@
 			value="<%=am.getUser().getUsername()%>">
 		<input type="hidden" id="fphoto" name="fphoto"
 			value="<%=am.getUser().getPhoto()%>">
+		<input type="hidden" id="usId" name="usId"
+			value="<%=am.getUser().getUserID()%>">
 	</form>
 </body>
 
