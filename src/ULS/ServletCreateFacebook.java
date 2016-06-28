@@ -54,7 +54,7 @@ public class ServletCreateFacebook extends HttpServlet {
 			if (!am.isValidMail(ema)) {
 				rd = request.getRequestDispatcher("./logMenu/invalidMailing.html");
 			} else if (am.accountExists(ema)) {
-				rd = request.getRequestDispatcher("./logMenu/inUse.jsp");
+				rd = request.getRequestDispatcher("./logMenu/fbInUse.jsp");
 			} else {
 				am.createSocAccount(usr, ema, pas, pho);
 

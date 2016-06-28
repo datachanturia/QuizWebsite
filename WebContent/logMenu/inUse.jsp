@@ -24,7 +24,7 @@
 			<p>
 				the eMail
 				<%
-				out.println(request.getParameter("femail"));
+				out.println(request.getParameter("email"));
 			%>
 				is already in use
 			</p>
@@ -43,7 +43,7 @@
 					placeholder="Enter your username or just name..." size="70"
 					onClick="border: 1px solid #30a8da;" id="username" required /> <input
 					name="email" type="text" placeholder="Enter your email address..."
-					size="70" onClick="border: 1px solid #30a8da;" id="mail" required />
+					size="70" onClick="border: 1px solid #30a8da;" id="email" required />
 				<input name="password" type="password"
 					placeholder="Enter a password..." size="70"
 					onClick="border: 1px solid #30a8da;" id="password" required />
