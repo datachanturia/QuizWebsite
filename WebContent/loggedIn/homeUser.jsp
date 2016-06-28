@@ -131,7 +131,7 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="../logMenu/index.html">Logout</a></li>
+					<li><a class="logout" href="../index.jsp">Logout</a></li>
 				</ul>
 			</div>
 		</header>
@@ -155,6 +155,9 @@
 
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Create Quiz</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
 							<span>My Friends</span>

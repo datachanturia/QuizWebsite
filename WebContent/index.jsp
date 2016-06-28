@@ -1,5 +1,3 @@
-<%@ page import="ULS.AccountManager"%>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,31 +8,24 @@
 <meta name="keyword"
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-<title>Home <%
-	String hidden = request.getParameter("inputName");
-	String fphoto = request.getParameter("fphoto");
-	String usId = request.getParameter("usId");
-	int newMsgs = 4;
-	int newRequests = 5;
-%> <%=hidden%></title>
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="../loggedIn/assets/css/bootstrap.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="../loggedIn/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="./loggedIn/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
-	href="../loggedIn/assets/css/zabuto_calendar.css">
+	href="./loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
-	href="../loggedIn/assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css" href="../loggedIn/assets/lineicons/style.css">
+	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
+<link rel="stylesheet" type="text/css" href="./loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
-<link href="../loggedIn/assets/css/style.css" rel="stylesheet">
-<link href="../loggedIn/assets/css/style-responsive.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/style.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/style-responsive.css" rel="stylesheet">
 
-<script src="../loggedIn/assets/js/chart-master/Chart.js"></script>
+<script src="./loggedIn/assets/js/chart-master/Chart.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -60,78 +51,14 @@
 			<a href="" class="logo"><b>QUIZ WEBSITE</b></a>
 
 			<!--logo end-->
-			<div class="nav notify-row" id="top_menu">
-				<!--  notification start -->
-				<ul class="nav top-menu">
-					<!-- settings start -->
-					<li class="dropdown"><a data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
-							class="fa fa-tasks"></i> <span class="badge bg-theme"> <%
- 	out.println(newRequests);
- %>
-						</span>
-					</a>
-						<ul class="dropdown-menu extended tasks-bar">
-							<li>
-								<p class="green">
-									You have
-									<%
-									out.println(newRequests);
-								%>
-									pending requests
-								</p>
-							</li>
-							<%
-								for (int i = 0; i < newRequests; i++) {
-							%>
-							<li><a href="index.html#"> </a></li>
-							<%
-								}
-							%>
-							<li class="external"><a href="#">See All Requests</a></li>
-						</ul></li>
-					<!-- settings end -->
-					<!-- inbox dropdown start-->
-					<li id="header_inbox_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-							<i class="fa fa-envelope-o"></i> <span class="badge bg-theme">
-								<%
-									out.println(newMsgs);
-								%>
-						</span>
-					</a>
-						<ul class="dropdown-menu extended inbox">
-
-							<li>
-								<p class="green">
-									You have
-									<%
-									out.println(newMsgs);
-								%>
-									new messages
-								</p>
-							</li>
-							<%
-								for (int i = 0; i < newMsgs; i++) {
-							%>
-							<li><a href="index.html#"> <span class="photo"><img
-										alt="avatar" src="../loggedIn/assets/img/ui-zac.jpg"></span> <span
-									class="subject"> <span class="from">Zac Snider</span> <span
-										class="time">Just now</span>
-								</span> <span class="message"> Hi mate, how is everything? </span>
-							</a></li>
-							<%
-								}
-							%>
-							<li><a href="index.html#">See all messages</a></li>
-						</ul></li>
-					<!-- inbox dropdown end -->
+			<div class="top-menu">
+				<ul class="nav pull-right top-menu">
+					<li><a class="logout" href="./logMenu/index.html">Log In</a></li>
 				</ul>
-				<!--  notification end -->
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="../index.jsp">Logout</a></li>
+					<li><a class="logout" href="./logMenu/newAccount.html">Sign Up</a></li>
 				</ul>
 			</div>
 		</header>
@@ -146,45 +73,12 @@
 				<!-- sidebar menu start-->
 				<ul class="sidebar-menu" id="nav-accordion">
 
-					<p class="centered">
-						<a><img src="<%=fphoto%>" class="img-circle" width="60"></img></a>
-					</p>
-					<h5 class="centered">
-						<%=hidden%>
-					</h5>
-
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
-							<span>My Friends</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
-							<span>Search Friends</span>
-					</a>
+					
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Change Password</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Change Profile Picture</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Write Post</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Make User Admin By Id</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Bann User By Id</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Add Quiz</span>
-					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Remove Quiz</span>
 					</a>
 				</ul>
 				<!-- sidebar menu end-->
@@ -255,7 +149,7 @@
 
 						<!-- First Action -->
 						<%
-							for (int i = 0; i < 4; i++) {
+							for (int i = 0; i < 6; i++) {
 						%>
 						<div class="desc">
 							<div class="thumb">
@@ -272,28 +166,6 @@
 							}
 						%>
 
-						<!-- USERS ONLINE SECTION -->
-						<h3>
-							NEW MESSAGES <a href=""> -- see all</a>
-						</h3>
-						<!-- First Member -->
-						<%
-							for (int i = 0; i < 4; i++) {
-						%>
-						<div class="desc">
-							<div class="thumb">
-								<img class="img-circle" src="../loggedIn/assets/img/ui-divya.jpg"
-									width="35px" height="35px">
-							</div>
-							<div class="details">
-								<p>
-									<a href="#">DIVYA MANIAN</a><br />
-								</p>
-							</div>
-						</div>
-						<%
-							}
-						%>
 					</div>
 					<!-- /col-lg-3 -->
 				</div>
@@ -314,26 +186,26 @@
 	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="../loggedIn/assets/js/jquery.js"></script>
-	<script src="../loggedIn/assets/js/jquery-1.8.3.min.js"></script>
-	<script src="../loggedIn/assets/js/bootstrap.min.js"></script>
+	<script src="./loggedIn/assets/js/jquery.js"></script>
+	<script src="./loggedIn/assets/js/jquery-1.8.3.min.js"></script>
+	<script src="./loggedIn/assets/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
-		src="../loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="../loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="../loggedIn/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="../loggedIn/assets/js/jquery.sparkline.js"></script>
+		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="./loggedIn/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
 	<!--common script for all pages-->
-	<script src="../loggedIn/assets/js/common-scripts.js"></script>
+	<script src="./loggedIn/assets/js/common-scripts.js"></script>
 
 	<script type="text/javascript"
-		src="../loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="../loggedIn/assets/js/gritter-conf.js"></script>
+		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript" src="./loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
-	<script src="../loggedIn/assets/js/sparkline-chart.js"></script>
-	<script src="../loggedIn/assets/js/zabuto_calendar.js"></script>
+	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
+	<script src="./loggedIn/assets/js/zabuto_calendar.js"></script>
 
 	<script type="text/javascript">
 		$(document)
@@ -346,7 +218,7 @@
 										// (string | mandatory) the text inside the notification
 										text : 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
 										// (string | optional) the image to display on the left
-										image : '../loggedIn/assets/img/ui-sam.jpg',
+										image : './loggedIn/assets/img/ui-sam.jpg',
 										// (bool | optional) if you want it to fade out on its own or just sit there
 										sticky : true,
 										// (int | optional) the time you want it to be alive for before fading out
@@ -360,7 +232,6 @@
 	</script>
 
 	<script type="application/javascript">
-		
 		
 		
 		
@@ -403,7 +274,6 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
-	
 	
 	
 	
