@@ -47,6 +47,11 @@
 </head>
 
 <body>
+	<script>
+		function submitform() {
+			document.myForm.submit();
+		}
+	</script>
 	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
 			value="<%=hidden%>"> <input type="hidden" id="fphoto"
@@ -102,8 +107,9 @@
 					<!-- settings end -->
 					<!-- inbox dropdown start-->
 					<li id="header_inbox_bar" class="dropdown"><a
-						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-							<i class="fa fa-envelope-o"></i> <span class="badge bg-theme">
+						onclick="submitform" data-toggle="dropdown"
+						class="dropdown-toggle" href="index.html#"> <i
+							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
 								<%
 									out.println(newMsgs);
 								%>
@@ -383,6 +389,7 @@
 		
 		
 		
+		
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -416,6 +423,7 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
+	
 	
 	
 	
