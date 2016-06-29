@@ -38,17 +38,23 @@ public class QuestionDaoImpl implements QuestionDao {
 
 	@Override
 	public void addQuestion(int quizID, Question question) {
+		int qid = -1;
 		try {
-			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO questions (question,questiontype"
-					+ "quizID) VALUES(?,?,?)");
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO questions (question,questiontype,"
+					+ "quizID) VALUES(?,?,?)",Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, question.getQuestion());
 			preparedStatement.setInt(2, question.getType().ordinal());
 			preparedStatement.setInt(3, quizID);
-			preparedStatement.execute();
+			preparedStatement.executeUpdate();
+			ResultSet rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()){
+	            qid=(int) rs.getLong(1);
+	        }
+	        rs.close();
 			AnswerDaoImpl ans = new AnswerDaoImpl(con);
 			ArrayList<Answer> answers = question.getAnswers();
 			for (int i = 0; i < answers.size(); i++) {
-				ans.addAnswer(question.getQuestionID(), answers.get(i));
+				ans.addAnswer(qid, answers.get(i));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
