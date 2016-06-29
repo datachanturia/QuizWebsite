@@ -1,4 +1,5 @@
-<%@ page import="ULS.AccountManager" import="Model.Quiz" import="java.util.ArrayList" %>
+<%@ page import="ULS.AccountManager" import="Model.Quiz"
+	import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,9 +7,7 @@
 <title>
 	<%
 		AccountManager am = (AccountManager) request.getAttribute("accManager");
-		ArrayList<Quiz> qzls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
-		
-		request.getSession().setAttribute("quizlist", qzls);
+		ArrayList<Quiz> qzls = (ArrayList<Quiz>)request.getAttribute("dayPopuLs");
 	%>
 </title>
 </head>
@@ -22,14 +21,33 @@
 			document.myForm.submit();
 		}
 	</script>
-	<form name="myForm" action="./loggedIn/homeUser.jsp"
-		method="GET">
+	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
-			value="<%=am.getUser().getUsername()%>">
-		<input type="hidden" id="fphoto" name="fphoto"
-			value="<%=am.getUser().getPhoto()%>">
+			value="<%=am.getUser().getUsername()%>"> <input type="hidden"
+			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
 		<input type="hidden" id="usId" name="usId"
 			value="<%=am.getUser().getUserID()%>">
+			
+			<input type="hidden" id="usId" name="usId"
+			value="<%=qzls.get(0).getAuthorID()%>">
+
+		<%
+			int size = 10;
+			if (qzls.size() < 10)
+				size = qzls.size();
+
+			for (int i = 0; i < size; i++) {
+		%>
+		
+			
+		<input type="hidden"
+			id="<%out.print("quizName" + i);%>"
+			name="
+			<%out.print("quizName" + i);%>"
+			value="<%=qzls.get(i).getQuizname()%>">
+		<%
+			}
+		%>
 	</form>
 </body>
 

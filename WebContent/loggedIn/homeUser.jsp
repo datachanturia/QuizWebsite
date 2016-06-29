@@ -1,4 +1,5 @@
-<%@ page import="ULS.AccountManager"  import="Model.Quiz" import="java.util.ArrayList" %>
+<%@ page import="ULS.AccountManager" import="Model.Quiz"
+	import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +17,14 @@
 	String usId = request.getParameter("usId");
 	int newMsgs = 4;
 	int newRequests = 5;
-	
-	ArrayList<Quiz> qqq = (ArrayList<Quiz>)request.getParameter("quizlist");
+
+	ArrayList<String> idls = new ArrayList<String>();
+	ArrayList<String> nmls = new ArrayList<String>();
+
+	for (int i = 0; i < 10; i++) {
+		nmls.add(request.getParameter("quizName" + i));
+		idls.add(request.getParameter("quizID" + i));
+	}
 %> <%=hidden%></title>
 
 
@@ -46,6 +53,12 @@
 </head>
 
 <body>
+	<%
+		for (int i = 0; i < 10; i++) {
+			out.println(nmls.get(i));
+			out.println(idls.get(i));
+		}
+	%>
 	<script>
 		function submitform() {
 			document.myForm.submit();
@@ -73,11 +86,11 @@
 	<form name="forMessage" action="../ServletMessage" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forChallenge" action="../ServletChallenge" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forRequest" action="../ServletRequest" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
@@ -361,6 +374,7 @@
 		
 		
 		
+		
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -394,6 +408,7 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
+	
 	
 	
 	
