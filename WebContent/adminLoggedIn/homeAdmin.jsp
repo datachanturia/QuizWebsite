@@ -51,12 +51,36 @@
 		function submitform() {
 			document.myForm.submit();
 		}
+
+		function submitMessage() {
+			document.forMessage.submit();
+		}
+
+		function submitChallenge() {
+			document.forChallenge.submit();
+		}
+
+		function submitRequest() {
+			document.forRequest.submit();
+		}
 	</script>
-	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+	<form name="myForm" action="" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
 			value="<%=hidden%>"> <input type="hidden" id="fphoto"
 			name="fphoto" value="<%=fphoto%>"> <input type="hidden"
 			id="usId" name="usId" value="<%=usId%>">
+	</form>
+
+	<form name="forMessage" action="../ServletMessage" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	
+	<form name="forChallenge" action="../ServletChallenge" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	
+	<form name="forRequest" action="../ServletRequest" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
@@ -78,7 +102,7 @@
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- settings start -->
-					<li class="dropdown"><a onclick="submitform()" data-toggle="dropdown"
+					<li class="dropdown"><a onclick="submitRequest()" data-toggle="dropdown"
 						class="dropdown-toggle" href="index.html#"> <i
 							class="fa fa-tasks"></i> <span class="badge bg-theme"> <%
  	out.println(newRequests);
@@ -88,7 +112,7 @@
 					<!-- settings end -->
 					<!-- inbox dropdown start-->
 					<li id="header_inbox_bar" class="dropdown"><a
-						onclick="submitform()" data-toggle="dropdown"
+						onclick="submitMessage()" data-toggle="dropdown"
 						class="dropdown-toggle" href="index.html#"> <i
 							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
 								<%
