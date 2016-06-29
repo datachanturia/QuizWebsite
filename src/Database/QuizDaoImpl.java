@@ -84,14 +84,17 @@ public class QuizDaoImpl implements QuizDao {
 		int qid = -1;
 		try {
 			PreparedStatement preparedStatement = con.prepareStatement(
-					"INSERT INTO quiz (quizname,authorID," + "score,category,crationdate,isdelete) VALUES(?,?,?,?,?,?)",
+					"INSERT INTO quiz (quizname,authorID," + "score,category,crationdate,description,random,multiple_page,immediate_correction) VALUES(?,?,?,?,?,?,?,?,?)",
 					Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, quiz.getQuizname());
 			preparedStatement.setInt(2, userID);
 			preparedStatement.setInt(3, quiz.getScore());
 			preparedStatement.setString(4, quiz.getCategory());
 			preparedStatement.setDate(5, quiz.getCreationDate());
-			preparedStatement.setBoolean(6, false);
+			preparedStatement.setString(6, quiz.getDescription());
+			preparedStatement.setBoolean(7, quiz.isRandom());
+			preparedStatement.setBoolean(8, quiz.isMultiple_page());
+			preparedStatement.setBoolean(9, quiz.isImmediate_correction());
 
 			preparedStatement.executeUpdate();
 			ResultSet rs = preparedStatement.getGeneratedKeys();
