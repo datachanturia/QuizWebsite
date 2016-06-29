@@ -78,68 +78,24 @@
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- settings start -->
-					<li class="dropdown"><a data-toggle="dropdown"
+					<li class="dropdown"><a onclick="submitform()" data-toggle="dropdown"
 						class="dropdown-toggle" href="index.html#"> <i
 							class="fa fa-tasks"></i> <span class="badge bg-theme"> <%
  	out.println(newRequests);
  %>
 						</span>
-					</a>
-						<ul class="dropdown-menu extended tasks-bar">
-							<li>
-								<p class="green">
-									You have
-									<%
-									out.println(newRequests);
-								%>
-									pending requests
-								</p>
-							</li>
-							<%
-								for (int i = 0; i < newRequests; i++) {
-							%>
-							<li><a href="index.html#"> </a></li>
-							<%
-								}
-							%>
-							<li class="external"><a href="#">See All Requests</a></li>
-						</ul></li>
+					</a></li>
 					<!-- settings end -->
 					<!-- inbox dropdown start-->
 					<li id="header_inbox_bar" class="dropdown"><a
-						onclick="submitform" data-toggle="dropdown"
+						onclick="submitform()" data-toggle="dropdown"
 						class="dropdown-toggle" href="index.html#"> <i
 							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
 								<%
 									out.println(newMsgs);
 								%>
 						</span>
-					</a>
-						<ul class="dropdown-menu extended inbox">
-
-							<li>
-								<p class="green">
-									You have
-									<%
-									out.println(newMsgs);
-								%>
-									new messages
-								</p>
-							</li>
-							<%
-								for (int i = 0; i < newMsgs; i++) {
-							%>
-							<li><a href="index.html#"> <span class="photo"><img
-										alt="avatar" src="../loggedIn/assets/img/ui-zac.jpg"></span> <span
-									class="subject"> <span class="from">Zac Snider</span> <span
-										class="time">Just now</span>
-								</span> <span class="message"> Hi mate, how is everything? </span>
-							</a></li>
-							<%
-								}
-							%>
-							<li><a href="index.html#">See all messages</a></li>
-						</ul></li>
+					</a></li>
 					<!-- inbox dropdown end -->
 				</ul>
 				<!--  notification end -->
