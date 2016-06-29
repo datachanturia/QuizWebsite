@@ -65,7 +65,6 @@ public class QuizDaoImpl implements QuizDao {
 			while (rs.next()) {
 				QuestionDaoImpl qdi = new QuestionDaoImpl(con);
 
-				
 				Quiz qz = new Quiz(rs.getInt("quizID"), rs.getString("quizname"), rs.getInt("authorID"),
 						rs.getInt("score"), rs.getString("category"), rs.getDate("creationdate"),
 						qdi.getQuizQuestions(rs.getInt("quizID")),rs.getString("description"),
@@ -175,15 +174,23 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con.prepareStatement(
-					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE crationdate > SUBDATE(NOW(),1)) GROUP BY quizID desc limit 10");
+					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE creationdate > SUBDATE(NOW(),1)) GROUP BY quizID desc limit 10");
+			
 			ResultSet rs = prdtmt.executeQuery();
+			
+			
 			while (rs.next()) {
 				Quiz qzz = getQuiz(rs.getInt("quizID"));
+				System.out.println(qzz.getQuizname());
 				ls.add(qzz);
+			}
+			for (int i = 0; i < ls.size(); i++){
+				System.out.println(ls.get(i).getQuizname());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+		
 		return ls;
 	}
 
@@ -195,14 +202,12 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("select quizID from quiz order by crationdate desc limit 10");
+					.prepareStatement("select quizID from quiz order by creationdate desc limit 10");
 
 			ResultSet rs = prdtmt.executeQuery();
-			int i = 0;
 			while (rs.next()) {
 				Quiz qzz = getQuiz(rs.getInt("quizID"));
 				ls.add(qzz);
-				i++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
