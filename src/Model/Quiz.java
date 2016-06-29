@@ -12,9 +12,13 @@ public class Quiz {
 	private String category;
 	private Date creationDate;
 	private ArrayList<Question> questions;
+	private String description;
+	private boolean random;
+	private boolean multiple_page;
+	private boolean immediate_correction;
 
 	public Quiz(int quizID, String quizname, int authorID, int score, String category, Date creationDate,
-			ArrayList<Question> questions) {
+			ArrayList<Question> questions,String description,boolean random,boolean multiple_page,boolean immediate_correction) {
 		super();
 		this.quizID = quizID;
 		this.quizname = quizname;
@@ -23,7 +27,61 @@ public class Quiz {
 		this.category = category;
 		this.creationDate = creationDate;
 		this.questions = questions;
+		this.description = description;
+		this.random = random;
+		this.multiple_page = multiple_page;
+		this.immediate_correction = immediate_correction;
 	}
+	
+	
+
+	public String getDescription() {
+		return description;
+	}
+
+
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+
+
+	public boolean isRandom() {
+		return random;
+	}
+
+
+
+	public void setRandom(boolean random) {
+		this.random = random;
+	}
+
+
+
+	public boolean isMultiple_page() {
+		return multiple_page;
+	}
+
+
+
+	public void setMultiple_page(boolean multiple_page) {
+		this.multiple_page = multiple_page;
+	}
+
+
+
+	public boolean isImmediate_correction() {
+		return immediate_correction;
+	}
+
+
+
+	public void setImmediate_correction(boolean immediate_correction) {
+		this.immediate_correction = immediate_correction;
+	}
+
+
 
 	public int getQuizID() {
 		return quizID;

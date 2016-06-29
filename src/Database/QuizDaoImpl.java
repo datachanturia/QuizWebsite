@@ -68,7 +68,8 @@ public class QuizDaoImpl implements QuizDao {
 				
 				Quiz qz = new Quiz(rs.getInt("quizID"), rs.getString("quizname"), rs.getInt("authorID"),
 						rs.getInt("score"), rs.getString("category"), rs.getDate("creationdate"),
-						qdi.getQuizQuestions(rs.getInt("quizID")));
+						qdi.getQuizQuestions(rs.getInt("quizID")),rs.getString("description"),
+						rs.getBoolean("random"),rs.getBoolean("multiple_page"),rs.getBoolean("immediate_correction"));
 				return qz;
 			}
 		} catch (SQLException e) {

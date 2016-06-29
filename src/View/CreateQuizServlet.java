@@ -55,6 +55,10 @@ public class CreateQuizServlet extends HttpServlet {
 		String quizName = request.getParameter("quizName");
 		int score = Integer.parseInt(request.getParameter("score"));
 		String category = request.getParameter("category");
+		String description = request.getParameter("description");
+		boolean random = request.getParameter("random").equals("isRandom");
+		boolean immediate = request.getParameter("immediate").equals("immediate");
+		boolean multiple = request.getParameter("Page").equals("Multiple");
 		Date createDate = new Date((new java.util.Date()).getTime());
 		ArrayList<Question> questions = new ArrayList<Question>();
 		int counter = 1;
@@ -69,8 +73,9 @@ public class CreateQuizServlet extends HttpServlet {
 			int j = 0;
 			for (int i = 0; i < answers.length; i++) {
 				boolean isCorrect = false;
-				if(correct != null && j<correct.length && correct[j] == "q"+counter+"a"+i){
+				if(correct != null && j<correct.length && correct[j].equals("q"+counter+"a"+i)){
 					isCorrect = true;
+					j++;
 				}
 				ans.add(new Answer(answers[i], isCorrect));
 			}
@@ -82,7 +87,8 @@ public class CreateQuizServlet extends HttpServlet {
 			con = DataSource.getInstance().getConnection();
 			QuizDaoImpl quizdao = new QuizDaoImpl(con);
 			User user = am.getUser();
-			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, "", createDate, questions);//TODO:Category
+			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, "", createDate, questions,description,
+					random,multiple,immediate);
 			quizdao.addUserCreatedQuiz(user.getUserID(), quiz);
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -35,7 +35,11 @@ create table if not exists Quiz(
     authorID int,
     score int default 0,
     category varchar(2048) CHARACTER SET utf8 default null,
+    description varchar(2048) CHARACTER SET utf8 default null,
     creationdate datetime,
+    random tinyint(1) default 0,
+    multiple_page tinyint(1) default 0,
+    immediate_correction tinyint(1) default 0,
     isdelete tinyint(1) default 0,
     
     primary key (quizID),
@@ -75,7 +79,7 @@ create table if not exists Achievements(
 create table if not exists Friends(
 	userID int,
     friendID int,
-    crationdate datetime,
+    creationdate datetime,
     isdelete tinyint(1) default 0,
     
     foreign key (userID) references Users (userID),
