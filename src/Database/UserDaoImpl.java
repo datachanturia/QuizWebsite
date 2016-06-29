@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 import Model.User;
 import dataSrc.MyDBInfo;
@@ -111,5 +112,57 @@ public class UserDaoImpl implements UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	@Override
+	public ArrayList<Integer> getUserFriends(int userID){
+		ArrayList<Integer> friends = new ArrayList<Integer>();
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
+			ResultSet res = stm.executeQuery("select friendID from Friends where userID = " + userID);
+			while(res.next()){
+				friends.add(res.getInt("friendID"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}		
+		
+		return friends;
+	}
+	
+	public String getUserPhoto(int userID){
+		String photo = "";
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
+			ResultSet res = stm.executeQuery("select photo from Users where userID = " + userID);
+			while(res.next()){
+				photo = res.getString("photo");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return photo;		
+	}
+	
+	public String getUserName(int userID){
+		String userName = "";
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
+			ResultSet res = stm.executeQuery("select username from Users where userID = " + userID);
+			while(res.next()){
+				userName = res.getString("username");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return userName;		
 	}
 }

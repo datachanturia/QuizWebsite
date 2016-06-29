@@ -1,8 +1,9 @@
-package MRC;
+package friends;
 
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,20 +12,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import ULS.AccountManager;
 import dataSrc.DataSource;
 
 /**
- * Servlet implementation class ServletMessage
+ * Servlet implementation class myFriends
  */
-@WebServlet("/ServletMessage")
-public class ServletMessage extends HttpServlet {
+@WebServlet("/myFriends")
+public class myFriends extends HttpServlet{
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ServletMessage() {
+    public myFriends() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -35,31 +35,6 @@ public class ServletMessage extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-		Connection con = null;
-		
-		RequestDispatcher rd;
-		
-		MessageManager mm = (MessageManager) getServletContext().getAttribute("MessMan");
-		int userID = Integer.parseInt(request.getParameter("usId"));
-		mm.setUserID(userID);
-		
-		try {
-			con = DataSource.getInstance().getConnection();
-			mm.setConnection(con);
-
-			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
-			request.setAttribute("MessManager", mm);
-			
-			rd.forward(request, response);
-		} finally {
-			if (con != null)
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-		}
 	}
 
 	/**
@@ -67,7 +42,24 @@ public class ServletMessage extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		doGet(request, response);
+		Connection con;
+		con = DataSource.getInstance().getConnection();
+		friendsDatabaseConnector fdc = new friendsDatabaseConnector(con);
+		
+		fdc.setConnection(con);
+		
+		ArrayList<Integer> friends = fdc.getUserFriends(1);
+		
+		request.setAttribute("userFriends", friends);
+		RequestDispatcher rd;
+		rd = request.getRequestDispatcher("./myFriends/user/userFriends.jsp");
+		rd.forward(request, response);
+		
+		if (con != null)
+			try {
+				con.close();
+			} catch (SQLException e) {
+			}
+		
 	}
-
 }
