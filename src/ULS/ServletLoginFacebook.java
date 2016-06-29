@@ -47,9 +47,9 @@ public class ServletLoginFacebook extends HttpServlet {
 
 		RequestDispatcher rd;
 		try {
-			QuizDaoImpl qdi = new QuizDaoImpl(con);
 			con = DataSource.getInstance().getConnection();
 			am.setConnection(con);
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
 			if (am.matchesSocAccount(ema, pas)) {
 				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();

@@ -13,7 +13,6 @@ import Model.Quiz;
 
 import dataSrc.MyDBInfo;
 
-
 public class QuizDaoImpl implements QuizDao {
 
 	private Connection con;
@@ -59,14 +58,16 @@ public class QuizDaoImpl implements QuizDao {
 
 	@Override
 	public Quiz getQuiz(int quizID) {
+		
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt.executeQuery("select * from Quiz where quizID = " + quizID + " and isdelete = 0");
 			while (rs.next()) {
 				QuestionDaoImpl qdi = new QuestionDaoImpl(con);
 
+				
 				Quiz qz = new Quiz(rs.getInt("quizID"), rs.getString("quizname"), rs.getInt("authorID"),
-						rs.getInt("score"), Integer.parseInt(rs.getString("category")), rs.getDate("creationdate"),
+						rs.getInt("score"), rs.getString("category"), rs.getDate("creationdate"),
 						qdi.getQuizQuestions(rs.getInt("quizID")));
 				return qz;
 			}
@@ -81,22 +82,22 @@ public class QuizDaoImpl implements QuizDao {
 	public void addUserCreatedQuiz(int userID, Quiz quiz) {
 		int qid = -1;
 		try {
-			PreparedStatement preparedStatement = con
-					.prepareStatement("INSERT INTO quiz (quizname,authorID,"
-					+ "score,category,crationdate,isdelete) VALUES(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement preparedStatement = con.prepareStatement(
+					"INSERT INTO quiz (quizname,authorID," + "score,category,crationdate,isdelete) VALUES(?,?,?,?,?,?)",
+					Statement.RETURN_GENERATED_KEYS);
 			preparedStatement.setString(1, quiz.getQuizname());
 			preparedStatement.setInt(2, userID);
 			preparedStatement.setInt(3, quiz.getScore());
-			preparedStatement.setInt(4,quiz.getCategory());
+			preparedStatement.setString(4, quiz.getCategory());
 			preparedStatement.setDate(5, quiz.getCreationDate());
 			preparedStatement.setBoolean(6, false);
-			
+
 			preparedStatement.executeUpdate();
 			ResultSet rs = preparedStatement.getGeneratedKeys();
-			if (rs.next()){
-	            qid=(int) rs.getLong(1);
-	        }
-	        rs.close();
+			if (rs.next()) {
+				qid = (int) rs.getLong(1);
+			}
+			rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -137,7 +138,8 @@ public class QuizDaoImpl implements QuizDao {
 		}
 
 	}
-	
+
+	// --------------------------------------------------------------------------------------------------
 	@Override
 	public ArrayList<Quiz> getPopularQuiz() {
 		ArrayList<Quiz> ls = new ArrayList<Quiz>();
@@ -169,8 +171,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con.prepareStatement(
-					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE crationdate > DATEDIFF(now(), '0000-00-00 24:00:00')) GROUP BY quizID desc limit 10");
-
+					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE crationdate > SUBDATE(NOW(),1)) GROUP BY quizID desc limit 10");
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
 				Quiz qzz = getQuiz(rs.getInt("quizID"));
@@ -187,16 +188,17 @@ public class QuizDaoImpl implements QuizDao {
 		ArrayList<Quiz> ls = new ArrayList<Quiz>();
 		try {
 			Statement stmt = con.createStatement();
-
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
-			PreparedStatement prdtmt = con.prepareStatement(
-					"select quizID from quiz order by crationdate desc limit 10");
+			PreparedStatement prdtmt = con
+					.prepareStatement("select quizID from quiz order by crationdate desc limit 10");
 
 			ResultSet rs = prdtmt.executeQuery();
+			int i = 0;
 			while (rs.next()) {
 				Quiz qzz = getQuiz(rs.getInt("quizID"));
 				ls.add(qzz);
+				i++;
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
