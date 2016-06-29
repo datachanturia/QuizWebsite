@@ -44,6 +44,14 @@
 </head>
 
 <body>
+	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=hidden%>"> 
+		<input type="hidden"
+			id="fphoto" name="fphoto" value="<%=fphoto%>">
+		<input type="hidden" id="usId" name="usId"
+			value="<%=usId%>">
+	</form>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -357,6 +365,8 @@
 		
 		
 		
+		
+		
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -390,6 +400,8 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
+	
+	
 	
 	
 	
