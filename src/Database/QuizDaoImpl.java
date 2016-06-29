@@ -139,5 +139,71 @@ public class QuizDaoImpl implements QuizDao {
 		}
 
 	}
+	
+	@Override
+	public ArrayList<Quiz> getPopularQuiz() {
+		ArrayList<Quiz> ls = new ArrayList<Quiz>();
+		try {
+			Statement stmt = con.createStatement();
+
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con
+					.prepareStatement("SELECT quizID FROM takenquiz GROUP BY quizID desc limit 10");
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				Quiz qzz = getQuiz(rs.getInt("quizID"));
+				ls.add(qzz);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	}
+
+	@Override
+	public ArrayList<Quiz> getDayPopularQuiz() {
+		ArrayList<Quiz> ls = new ArrayList<Quiz>();
+		try {
+			Statement stmt = con.createStatement();
+
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con.prepareStatement(
+					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE crationdate > DATEDIFF(now(), '0000-00-00 24:00:00')) GROUP BY quizID desc limit 10");
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				Quiz qzz = getQuiz(rs.getInt("quizID"));
+				ls.add(qzz);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	}
+
+	@Override
+	public ArrayList<Quiz> getNewQuiz() {
+		ArrayList<Quiz> ls = new ArrayList<Quiz>();
+		try {
+			Statement stmt = con.createStatement();
+
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con.prepareStatement(
+					"select quizID from quiz order by crationdate desc limit 10");
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				Quiz qzz = getQuiz(rs.getInt("quizID"));
+				ls.add(qzz);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	}
 
 }
