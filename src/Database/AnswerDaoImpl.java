@@ -39,8 +39,7 @@ public class AnswerDaoImpl implements AnswerDao {
 	@Override
 	public void addAnswer(int questionID, Answer answer) {
 		try {
-			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Answers (answer, iscorrect, "
-					+ "questionID) VALUES(?,?,?)");
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO Answers (answer, iscorrect,questionID) VALUES(?,?,?)");
 			preparedStatement.setString(1, answer.getAnswer());
 			preparedStatement.setBoolean(2, answer.getCorrect());
 			preparedStatement.setInt(3, questionID);

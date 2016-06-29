@@ -34,8 +34,8 @@ create table if not exists Quiz(
     quizname varchar(2048) CHARACTER SET utf8 default null,
     authorID int,
     score int default 0,
-    category varchar(2048) CHARACTER SET utf8 default null,
-    crationdate datetime,
+    category int default 0,
+    creationdate datetime,
     isdelete tinyint(1) default 0,
     
     primary key (quizID),

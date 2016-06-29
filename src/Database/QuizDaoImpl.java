@@ -8,7 +8,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import Model.Question;
 import Model.Quiz;
+import Model.User;
 
 public class QuizDaoImpl implements QuizDao {
 
@@ -62,7 +64,7 @@ public class QuizDaoImpl implements QuizDao {
 				QuestionDaoImpl qdi = new QuestionDaoImpl(con);
 
 				Quiz qz = new Quiz(rs.getInt("quizID"), rs.getString("quizname"), rs.getInt("authorID"),
-						rs.getInt("score"), rs.getString("category"), rs.getDate("creationdate"),
+						rs.getInt("score"), Integer.parseInt(rs.getString("category")), rs.getDate("creationdate"),
 						qdi.getQuizQuestions(rs.getInt("quizID")));
 				return qz;
 			}
@@ -75,14 +77,31 @@ public class QuizDaoImpl implements QuizDao {
 
 	@Override
 	public void addUserCreatedQuiz(int userID, Quiz quiz) {
+		int qid = -1;
 		try {
 			PreparedStatement preparedStatement = con
-					.prepareStatement("update Quiz set authorID = ? " + "where quizID = " + quiz.getQuizID());
-			preparedStatement.setInt(1, userID);
-
-			preparedStatement.execute();
+					.prepareStatement("INSERT INTO quiz (quizname,authorID,"
+					+ "score,category,crationdate,isdelete) VALUES(?,?,?,?,?,?)",Statement.RETURN_GENERATED_KEYS);
+			preparedStatement.setString(1, quiz.getQuizname());
+			preparedStatement.setInt(2, userID);
+			preparedStatement.setInt(3, quiz.getScore());
+			preparedStatement.setInt(4,quiz.getCategory());
+			preparedStatement.setDate(5, quiz.getCreationDate());
+			preparedStatement.setBoolean(6, false);
+			
+			preparedStatement.executeUpdate();
+			ResultSet rs = preparedStatement.getGeneratedKeys();
+			if (rs.next()){
+	            qid=(int) rs.getLong(1);
+	        }
+	        rs.close();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		}
+		QuestionDaoImpl qdao = new QuestionDaoImpl(con);
+		ArrayList<Question> questions = quiz.getQuestions();
+		for (int i = 0; i < questions.size(); i++) {
+			qdao.addQuestion(qid, questions.get(i));
 		}
 
 	}

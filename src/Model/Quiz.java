@@ -9,11 +9,11 @@ public class Quiz {
 	private String quizname;
 	private int authorID;
 	private int score;
-	private String category;
+	private int category;
 	private Date creationDate;
 	private ArrayList<Question> questions;
 
-	public Quiz(int quizID, String quizname, int authorID, int score, String category, Date creationDate,
+	public Quiz(int quizID, String quizname, int authorID, int score, int category, Date creationDate,
 			ArrayList<Question> questions) {
 		super();
 		this.quizID = quizID;
@@ -57,11 +57,11 @@ public class Quiz {
 		this.score = score;
 	}
 
-	public String getCategory() {
+	public int getCategory() {
 		return category;
 	}
 
-	public void setCategory(String category) {
+	public void setCategory(int category) {
 		this.category = category;
 	}
 
