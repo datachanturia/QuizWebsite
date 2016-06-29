@@ -23,16 +23,19 @@
 <!-- Bootstrap core CSS -->
 <link href="../loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="../loggedIn/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="../loggedIn/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="../loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
 	href="../loggedIn/assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css" href="../loggedIn/assets/lineicons/style.css">
+<link rel="stylesheet" type="text/css"
+	href="../loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
 <link href="../loggedIn/assets/css/style.css" rel="stylesheet">
-<link href="../loggedIn/assets/css/style-responsive.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/style-responsive.css"
+	rel="stylesheet">
 
 <script src="../loggedIn/assets/js/chart-master/Chart.js"></script>
 
@@ -44,6 +47,12 @@
 </head>
 
 <body>
+	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=hidden%>"> <input type="hidden" id="fphoto"
+			name="fphoto" value="<%=fphoto%>"> <input type="hidden"
+			id="usId" name="usId" value="<%=usId%>">
+	</form>
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -282,8 +291,9 @@
 						%>
 						<div class="desc">
 							<div class="thumb">
-								<img class="img-circle" src="../loggedIn/assets/img/ui-divya.jpg"
-									width="35px" height="35px">
+								<img class="img-circle"
+									src="../loggedIn/assets/img/ui-divya.jpg" width="35px"
+									height="35px">
 							</div>
 							<div class="details">
 								<p>
@@ -320,7 +330,8 @@
 	<script class="include" type="text/javascript"
 		src="../loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
 	<script src="../loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="../loggedIn/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="../loggedIn/assets/js/jquery.nicescroll.js"
+		type="text/javascript"></script>
 	<script src="../loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
@@ -329,7 +340,8 @@
 
 	<script type="text/javascript"
 		src="../loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="../loggedIn/assets/js/gritter-conf.js"></script>
+	<script type="text/javascript"
+		src="../loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
 	<script src="../loggedIn/assets/js/sparkline-chart.js"></script>
@@ -344,7 +356,7 @@
 										// (string | mandatory) the heading of the notification
 										title : 'Welcome to Dashgum!',
 										// (string | mandatory) the text inside the notification
-										text : 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for <a href="http://blacktie.co" target="_blank" style="color:#ffd777">BlackTie.co</a>.',
+										text : 'Hover me to enable the Close Button. You can hide the left sidebar clicking on the button next to the logo. Free version for _$tag______________________________________________________________BlackTie.co_$ta.',
 										// (string | optional) the image to display on the left
 										image : '../loggedIn/assets/img/ui-sam.jpg',
 										// (bool | optional) if you want it to fade out on its own or just sit there
@@ -360,6 +372,7 @@
 	</script>
 
 	<script type="application/javascript">
+		
 		
 		
 		
@@ -403,6 +416,7 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
+	
 	
 	
 	
