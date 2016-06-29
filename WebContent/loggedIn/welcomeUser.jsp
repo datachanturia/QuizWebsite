@@ -1,4 +1,4 @@
-<%@ page import="ULS.AccountManager"%>
+<%@ page import="ULS.AccountManager" import="Model.Quiz" import="java.util.ArrayList" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,6 +6,7 @@
 <title>
 	<%
 		AccountManager am = (AccountManager) request.getAttribute("accManager");
+		ArrayList<Quiz> qzls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
 	%>
 </title>
 </head>

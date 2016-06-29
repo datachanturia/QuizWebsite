@@ -13,4 +13,8 @@ public interface QuizDao {
 	public void addUserCreatedQuiz(int userID, Quiz quiz);
 	public void addUserTakenQuiz(int userID, int quizID, Date taketime, int score);
 	public void deleteQuiz(int quizID);
+	
+	public ArrayList<Quiz> getPopularQuiz();
+	public ArrayList<Quiz> getDayPopularQuiz();
+	public ArrayList<Quiz> getNewQuiz();
 }

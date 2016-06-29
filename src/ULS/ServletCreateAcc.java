@@ -3,6 +3,8 @@ package ULS;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,6 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dataSrc.DataSource;
+import Database.QuizDaoImpl;
+import Model.Quiz;
 
 /**
  * Servlet implementation class ServletCreateAcc
@@ -55,6 +59,7 @@ public class ServletCreateAcc extends HttpServlet {
 		try {
 			con = DataSource.getInstance().getConnection();
 			am.setConnection(con);
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
 			if (!am.isValidMail(ema)) {
 				rd = request.getRequestDispatcher("./logMenu/invalidMailing.html");
@@ -63,8 +68,18 @@ public class ServletCreateAcc extends HttpServlet {
 			} else {
 				am.createAccount(usr, ema, pas);
 				request.setAttribute("accManager", am);
+				
+				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+				
+				request.setAttribute("dayPopuLs", dayPopuLs);
+				request.setAttribute("popQuizLs", popQuizLs);
+				request.setAttribute("newQuizLs", newQuizLs);
+				
 				if (am.getUser().isAdmin()) {
 					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
+					
 				} else {
 					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
 				}
