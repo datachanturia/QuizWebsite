@@ -10,11 +10,10 @@ import Database.UserDaoImpl;
 import Model.User;
 
 public class AccountManager {
+	
 	private User currentUser;
-
-	java.sql.Connection con;
-	Encrypt en;
-	UserDaoImpl udi;
+	private Encrypt en;
+	private UserDaoImpl udi;
 
 	// constructor for account manager
 	public AccountManager(Connection con) {
@@ -23,7 +22,6 @@ public class AccountManager {
 	// factory class
 	public void setConnection(java.sql.Connection con2) {
 		this.en = new Encrypt();
-		this.con = con2;
 		this.udi = new UserDaoImpl(con2);
 	}
 
