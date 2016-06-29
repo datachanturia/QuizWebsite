@@ -60,6 +60,7 @@ public class ServletLoginFacebook extends HttpServlet {
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
 				
+				
 				if (am.getUser().isAdmin()) {
 					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
 				} else {

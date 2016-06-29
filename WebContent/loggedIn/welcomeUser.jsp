@@ -7,7 +7,7 @@
 <title>
 	<%
 		AccountManager am = (AccountManager) request.getAttribute("accManager");
-		ArrayList<Quiz> qzls = (ArrayList<Quiz>)request.getAttribute("dayPopuLs");
+		ArrayList<Quiz> qzls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
 	%>
 </title>
 </head>
@@ -26,7 +26,13 @@
 			value="<%=am.getUser().getUsername()%>"> <input type="hidden"
 			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
 		<input type="hidden" id="usId" name="usId"
-			value="<%=am.getUser().getUserID()%>">
+			value="<%=am.getUser().getUserID()%>"> 
+			
+			
+		<input type="hidden"
+			id="<%out.print("quizSize");%>"
+			name="
+			<%out.print("quizSize");%>" value="<%=qzls.size()%>">
 
 		<%
 			int size = 10;
@@ -35,13 +41,13 @@
 
 			for (int i = 0; i < size; i++) {
 		%>
-		
-			
+
+
 		<input type="hidden"
-			id="<%out.print("quizName" + i);%>"
+			id="<%out.print("quizSize" + i);%>"
 			name="
-			<%out.print("quizName" + i);%>"
-			value="<%=qzls.size()%>">
+			<%out.print("quizSize" + i);%>" value="<%=qzls.get(i).getQuizname()%>">
+		
 		<%
 			}
 		%>

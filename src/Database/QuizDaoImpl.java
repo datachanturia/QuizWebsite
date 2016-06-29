@@ -181,11 +181,7 @@ public class QuizDaoImpl implements QuizDao {
 			
 			while (rs.next()) {
 				Quiz qzz = getQuiz(rs.getInt("quizID"));
-				System.out.println(qzz.getQuizname());
 				ls.add(qzz);
-			}
-			for (int i = 0; i < ls.size(); i++){
-				System.out.println(ls.get(i).getQuizname());
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

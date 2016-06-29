@@ -18,11 +18,18 @@
 	int newMsgs = 4;
 	int newRequests = 5;
 
-	ArrayList<String> idls = new ArrayList<String>();
+	//ArrayList<String> idls = new ArrayList<String>();
 	ArrayList<String> nmls = new ArrayList<String>();
 
-	for (int i = 0; i < 10; i++) {
-		nmls.add(request.getParameter("quizName" + i));
+	String a = request.getParameter("quizSize");
+	out.print(a);
+	
+	
+	int ssz = Integer.parseInt(a);
+	
+	
+	for (int i = 0; i < ssz; i++) {
+		nmls.add(request.getParameter("quizSize" + i));
 		//idls.add(request.getParameter("quizID" + i));
 	}
 %> <%=hidden%></title>
@@ -54,7 +61,7 @@
 
 <body>
 	<%
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < ssz; i++) {
 			out.println(nmls.get(i));
 			//out.println(idls.get(i));
 		}
