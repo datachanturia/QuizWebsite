@@ -6,7 +6,9 @@
 <title>
 	<%
 		AccountManager am = (AccountManager) request.getAttribute("accManager");
-		//ArrayList<Quiz> qzls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
+		ArrayList<Quiz> qzls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
+		
+		request.getSession().setAttribute("quizlist", qzls);
 	%>
 </title>
 </head>

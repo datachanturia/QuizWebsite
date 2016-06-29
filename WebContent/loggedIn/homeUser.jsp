@@ -1,4 +1,4 @@
-<%@ page import="ULS.AccountManager"%>
+<%@ page import="ULS.AccountManager"  import="Model.Quiz" import="java.util.ArrayList" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +16,8 @@
 	String usId = request.getParameter("usId");
 	int newMsgs = 4;
 	int newRequests = 5;
+	
+	ArrayList<Quiz> qqq = (ArrayList<Quiz>)request.getParameter("quizlist");
 %> <%=hidden%></title>
 
 

@@ -82,7 +82,7 @@ public class CreateQuizServlet extends HttpServlet {
 			con = DataSource.getInstance().getConnection();
 			QuizDaoImpl quizdao = new QuizDaoImpl(con);
 			User user = am.getUser();
-			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, 1, createDate, questions);//TODO:Category
+			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, "", createDate, questions);//TODO:Category
 			quizdao.addUserCreatedQuiz(user.getUserID(), quiz);
 		} catch (Exception e) {
 			e.printStackTrace();
