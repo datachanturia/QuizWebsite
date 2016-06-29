@@ -10,11 +10,9 @@ import java.util.ArrayList;
 
 import Model.Question;
 import Model.Quiz;
-import Model.User;
-<<<<<<< HEAD
+
 import dataSrc.MyDBInfo;
-=======
->>>>>>> c2f2a3bd6666d5e14a7e4446de7fabf36f6166fa
+
 
 public class QuizDaoImpl implements QuizDao {
 
