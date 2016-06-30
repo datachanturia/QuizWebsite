@@ -37,6 +37,7 @@ public class ListenR implements ServletContextListener {
 
 		ServletContext sc = arg0.getServletContext();
 		sc.setAttribute("AccMan", am);
+
     }
 	
 }
