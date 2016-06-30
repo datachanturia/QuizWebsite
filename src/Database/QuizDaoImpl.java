@@ -10,7 +10,7 @@ import java.util.ArrayList;
 
 import Model.Question;
 import Model.Quiz;
-
+import Model.TakenQuiz;
 import dataSrc.MyDBInfo;
 
 public class QuizDaoImpl implements QuizDao {
@@ -209,6 +209,26 @@ public class QuizDaoImpl implements QuizDao {
 			e.printStackTrace();
 		}
 		return ls;
+	}
+
+	@Override
+	public ArrayList<TakenQuiz> takenquiz(int quizID, int userID) {
+		ArrayList<TakenQuiz> tq = new ArrayList<TakenQuiz>();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con
+					.prepareStatement("select * from TakenQuiz where userID="+userID+"and quizID="+quizID);
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				tq.add(new TakenQuiz(rs.getDate("takedate"), rs.getInt("score")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tq;
 	}
 
 }
