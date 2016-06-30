@@ -20,7 +20,7 @@
 			document.myForm.submit();
 		}
 	</script>
-	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+	<form name="myForm" action="./adminLoggedIn/homeAdmin.jsp" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
 			value="<%=am.getUser().getUsername()%>"> <input type="hidden"
 			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
