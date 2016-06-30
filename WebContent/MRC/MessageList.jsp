@@ -155,6 +155,10 @@
 		function submitRequest() {
 			document.forRequest.submit();
 		}
+		
+		function submitHomePage() {
+			document.forHomePage.submit();
+		}
 	</script>
 	<form name="myForm" action="" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
@@ -172,6 +176,10 @@
 	</form>
 
 	<form name="forRequest" action="../ServletRequest" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	
+	<form name="forHomePage" action="./HomePageServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 	<section id="container">
@@ -240,7 +248,7 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
+					<li class="sub-menu"><a onclick="submitHomePage()" href="#"> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
 					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
