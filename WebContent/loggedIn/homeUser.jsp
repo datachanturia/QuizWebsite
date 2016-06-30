@@ -23,7 +23,7 @@
 
 	for (int i = 0; i < 10; i++) {
 		nmls.add(request.getParameter("quizName" + i));
-		idls.add(request.getParameter("quizID" + i));
+		//idls.add(request.getParameter("quizID" + i));
 	}
 %> <%=hidden%></title>
 
@@ -56,7 +56,7 @@
 	<%
 		for (int i = 0; i < 10; i++) {
 			out.println(nmls.get(i));
-			out.println(idls.get(i));
+			//out.println(idls.get(i));
 		}
 	%>
 	<script>

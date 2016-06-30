@@ -27,9 +27,6 @@
 			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
 		<input type="hidden" id="usId" name="usId"
 			value="<%=am.getUser().getUserID()%>">
-			
-			<input type="hidden" id="usId" name="usId"
-			value="<%=qzls.get(0).getAuthorID()%>">
 
 		<%
 			int size = 10;
@@ -44,7 +41,7 @@
 			id="<%out.print("quizName" + i);%>"
 			name="
 			<%out.print("quizName" + i);%>"
-			value="<%=qzls.get(i).getQuizname()%>">
+			value="<%=qzls.size()%>">
 		<%
 			}
 		%>
