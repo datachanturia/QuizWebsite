@@ -20,7 +20,7 @@ import dataSrc.DataSource;
 /**
  * Servlet implementation class loggedInOutServlet
  */
-@WebServlet("/loggedInOutServlet")
+@WebServlet("/loggedOutServlet")
 public class loggedOutServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 

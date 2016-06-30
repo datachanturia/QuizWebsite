@@ -6,13 +6,8 @@
 <html lang="en">
 <head>
 <meta charset="ISO-8859-1">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="">
-<meta name="author" content="Dashboard">
-<meta name="keyword"
-	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
-<title>Home <%
+<title>Quiz Website <%
 	AccountManager am = (AccountManager) request.getAttribute("accManager");
 
 	String hidden = am.getUser().getUsername();
@@ -21,13 +16,13 @@
 
 	String isAdmin = Boolean.toString(am.getUser().isAdmin());
 
-	int newMsgs = 4;
-	int newRequests = 5;
-
 	ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
 	ArrayList<Quiz> qzPQls = (ArrayList<Quiz>) request.getAttribute("popQuizLs");
 	ArrayList<Quiz> qzNQls = (ArrayList<Quiz>) request.getAttribute("newQuizLs");
-%> <%=hidden%></title>
+
+	int newMsgs = 4;
+	int newRequests = 5;
+%></title>
 
 
 
@@ -36,85 +31,13 @@
 <!--external css-->
 <link href="./loggedIn/assets/font-awesome/css/font-awesome.css"
 	rel="stylesheet" />
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
 <link href="./loggedIn/assets/css/style.css" rel="stylesheet">
-<link href="./loggedIn/assets/css/style-responsive.css" rel="stylesheet">
 
-<script src="./loggedIn/assets/js/chart-master/Chart.js"></script>
-
-<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-<!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
-      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
 </head>
-
 <body>
-
-	<script>
-		function submitform() {
-			document.myForm.submit();
-		}
-
-		function submitMessage() {
-			document.forMessage.submit();
-		}
-
-		function submitChallenge() {
-			document.forChallenge.submit();
-		}
-
-		function submitRequest() {
-			document.forRequest.submit();
-		}
-
-		function submitHomePage() {
-			document.forHomePage.submit();
-		}
-
-		function forLoggedOut() {
-			document.forLogOut.submit();
-		}
-
-		function submitFriendsSearch() {
-			document.forFriendsSearch.submit();
-		}
-	</script>
-	<form name="myForm" action="" method="GET">
-		<input type="hidden" id="thisField" name="inputName"
-			value="<%=hidden%>"> <input type="hidden" id="fphoto"
-			name="fphoto" value="<%=fphoto%>"> <input type="hidden"
-			id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<form name="forMessage" action="./ServletMessage" method="GET">
-		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<form name="forChallenge" action="../ServletChallenge" method="GET">
-		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<form name="forRequest" action="../ServletRequest" method="GET">
-		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<form name="forHomePage" action="./HomePageServlet" method="GET">
-		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<form name="forLogOut" action="./loggedInOutServlet" method="GET">
-		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
-	</form>
-
-	<section id="container">
+	<section>
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
       *********************************************************************************************************************************************************** -->
@@ -124,42 +47,39 @@
 				<div class="fa fa-bars tooltips" data-placement="right"
 					data-original-title="Toggle Navigation"></div>
 			</div>
+
 			<!--logo start-->
-
-
 			<a href="" class="logo"><b>QUIZ WEBSITE</b></a>
-
 			<!--logo end-->
-			<div class="nav notify-row" id="top_menu">
+
+			<div class="nav notify-row">
+
 				<!--  notification start -->
 				<ul class="nav top-menu">
+
 					<!-- settings start -->
-					<li class="dropdown"><a onclick="submitRequest()"
-						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
-							<i class="fa fa-tasks"></i> <span class="badge bg-theme">
-								<%
-									out.println(newRequests);
-								%>
+					<li><a href="./ServletRequest"> <i class="fa fa-tasks"></i>
+							<span class="badge bg-theme"> <%=newRequests%>
 						</span>
 					</a></li>
 					<!-- settings end -->
+
 					<!-- inbox dropdown start-->
-					<li id="header_inbox_bar" class="dropdown"><a
-						onclick="submitMessage()" data-toggle="dropdown"
-						class="dropdown-toggle" href="#" onclick="submitMessage()"> <i
+					<li id="header_inbox_bar"><a href="./ServletMessage"> <i
 							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
-								<%
-									out.println(newMsgs);
-								%>
+								<%=newMsgs%>
 						</span>
 					</a></li>
 					<!-- inbox dropdown end -->
+
 				</ul>
 				<!--  notification end -->
+
 			</div>
+
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="#" onclick="forLoggedOut()">Logout</a></li>
+					<li><a class="logout" href="./loggedOutServlet">Logout</a></li>
 				</ul>
 			</div>
 		</header>
@@ -180,43 +100,45 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a onclick="submitHomePage()" href="#">
+					<li class="sub-menu"><a href="./HomePageServlet">
 							<i class="fa fa-book"></i> <span>Home Page</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
 							class=" fa"></i> <span>Create Quiz</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
 							<span>My Friends</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="./friendsSearchServlet"> <i
 							class="fa"></i> <span>Search Friends</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Change Password</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Change Profile Picture</span>
-					</a> <%
- 	if (isAdmin.equals("true")) {
- %>
+					</a></li>
+					<%
+						if (isAdmin.equals("true")) {
+					%>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Write Post</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Make User Admin By Id</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Bann User By Id</span>
-					</a>
+					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Remove Quiz</span>
-					</a> <%
- 	}
- %>
+					</a></li>
+					<%
+						}
+					%>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>
@@ -233,8 +155,9 @@
 				<div class="row">
 					<div class="col-lg-9 main-chart">
 
-
+						<!-- start row -->
 						<div class="row mt">
+							<!-- start 1 black panel -->
 							<div class="col-md-4 col-sm-4 mb">
 								<div class="darkblue-panel pn">
 									<div class="darkblue-header">
@@ -247,14 +170,13 @@
 										}
 									%>
 								</div>
-								<!-- /grey-panel -->
 							</div>
-							<!-- /col-md-4-->
+							<!-- end 1 black panel -->
 
-
+							<!-- start 2 black panel -->
 							<div class="col-md-4 col-sm-4 mb">
-								<div class="white-panel pn">
-									<div class="white-header">
+								<div class="darkblue-panel pn">
+									<div class="darkblue-header">
 										<h5>TOP NEW QUIZES</h5>
 									</div>
 									<%
@@ -265,10 +187,11 @@
 									%>
 								</div>
 							</div>
-							<!-- /col-md-4 -->
+							<!-- end 2 black panel -->
 
+							<!-- start 3 black panel -->
 							<div class="col-md-4 mb">
-								<!-- WHITE PANEL - TOP FRIENDS -->
+								<!-- BLACK PANNEL - TOP FRIENDS -->
 								<div class="darkblue-panel pn">
 									<div class="darkblue-header">
 										<h5>QUIZES OF THE DAY</h5>
@@ -281,14 +204,12 @@
 									%>
 								</div>
 							</div>
-							<!-- /col-md-4 -->
-
-
+							<!-- end 3 black panel -->
 						</div>
-						<!-- /row -->
+						<!-- end row -->
 
 					</div>
-					<!-- /col-lg-9 END SECTION MIDDLE -->
+					<!-- END SECTION MIDDLE -->
 
 
 					<!-- **********************************************************************************************************************************************************
@@ -296,12 +217,11 @@
       *********************************************************************************************************************************************************** -->
 
 					<div class="col-lg-3 ds">
-						<!--COMPLETED ACTIONS DONUTS CHART-->
+						<!-- Admin Posts Start -->
 						<h3>
 							ADMIN POSTS <a href=""> -- see all</a>
 						</h3>
 
-						<!-- First Action -->
 						<%
 							for (int i = 0; i < 4; i++) {
 						%>
@@ -319,12 +239,13 @@
 						<%
 							}
 						%>
+						<!-- Admin Posts End -->
 
-						<!-- USERS ONLINE SECTION -->
+						<!-- Challenges Start -->
 						<h3>
-							NEW MESSAGES <a href=""> -- see all</a>
+							NEW CHALLENGES <a href=""> -- see all</a>
 						</h3>
-						<!-- First Member -->
+
 						<%
 							for (int i = 0; i < 4; i++) {
 						%>
@@ -342,14 +263,16 @@
 						<%
 							}
 						%>
+						<!-- Challenges End -->
 					</div>
-					<!-- /col-lg-3 -->
+					<!-- RIGHT SLIDEBAR CONTENT END -->
+
 				</div>
-				<!--/row -->
+				<!--MAIN + RIGHT END -->
 			</section>
 		</section>
-
 		<!--main content end-->
+
 		<!--footer start-->
 		<footer class="site-footer">
 			<div class="text-center">
@@ -359,33 +282,7 @@
 			</div>
 		</footer>
 		<!--footer end-->
+
 	</section>
-
-	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="./loggedIn/assets/js/jquery.js"></script>
-	<script src="./loggedIn/assets/js/jquery-1.8.3.min.js"></script>
-	<script src="./loggedIn/assets/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="./loggedIn/assets/js/jquery.nicescroll.js"
-		type="text/javascript"></script>
-	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
-
-
-	<!--common script for all pages-->
-	<script src="./loggedIn/assets/js/common-scripts.js"></script>
-
-	<script type="text/javascript"
-		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript"
-		src="./loggedIn/assets/js/gritter-conf.js"></script>
-
-	<!--script for this page-->
-	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
-	<script src="./loggedIn/assets/js/zabuto_calendar.js"></script>
-
-
 </body>
 </html>
-

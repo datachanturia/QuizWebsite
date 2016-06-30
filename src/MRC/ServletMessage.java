@@ -46,7 +46,7 @@ public class ServletMessage extends HttpServlet {
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 		
 		
-		int userID = Integer.parseInt(request.getParameter("usId"));
+		int userID = am.getUser().getUserID();
 		mm.setUserID(userID);
 		
 		try {
