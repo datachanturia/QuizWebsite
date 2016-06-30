@@ -14,4 +14,5 @@ public interface UserDao {
 	public ArrayList<Integer> getUserFriends(int userID);
 	public String getUserPhoto(int UserID);
 	public String getUserName(int userID);
+	public ArrayList<Integer> getUserIDs(String username);
 }
