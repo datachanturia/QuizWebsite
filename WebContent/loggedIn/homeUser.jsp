@@ -103,7 +103,7 @@
 					<li class="sub-menu"><a href="./HomePageServlet">
 							<i class="fa fa-book"></i> <span>Home Page</span>
 					</a></li>
-					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
+					<li class="sub-menu"><a href="./createQuizServlet"> <i
 							class=" fa"></i> <span>Create Quiz</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
