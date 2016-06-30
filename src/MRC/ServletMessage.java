@@ -3,6 +3,7 @@ package MRC;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.QuizDaoImpl;
+import Model.Quiz;
 import ULS.AccountManager;
 import dataSrc.DataSource;
 
@@ -41,17 +44,33 @@ public class ServletMessage extends HttpServlet {
 		RequestDispatcher rd;
 		
 		MessageManager mm = (MessageManager) getServletContext().getAttribute("MessMan");
+		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
+		
+		
 		int userID = Integer.parseInt(request.getParameter("usId"));
 		mm.setUserID(userID);
 		
 		try {
 			con = DataSource.getInstance().getConnection();
 			mm.setConnection(con);
-
-			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
-			request.setAttribute("MessManager", mm);
 			
-			rd.forward(request, response);
+			request.setAttribute("MessManager", mm);
+			//------------------------------------------
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
+			
+			request.setAttribute("accManager", am);
+
+			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+
+			request.setAttribute("dayPopuLs", dayPopuLs);
+			request.setAttribute("popQuizLs", popQuizLs);
+			request.setAttribute("newQuizLs", newQuizLs);
+			//--------------------------------------------------
+			
+			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
+			
 		} finally {
 			if (con != null)
 				try {
@@ -60,6 +79,7 @@ public class ServletMessage extends HttpServlet {
 					e.printStackTrace();
 				}
 		}
+		rd.forward(request, response);
 	}
 
 	/**

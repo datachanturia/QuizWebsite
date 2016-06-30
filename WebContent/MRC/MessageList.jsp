@@ -1,53 +1,440 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1" import="MRC.MessageManager"
+<%@ page import="ULS.AccountManager" import="Model.Quiz"
+	import="java.util.ArrayList" import="MRC.MessageManager"
 	import="Model.Message"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
+
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<meta charset="ISO-8859-1">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="">
+<meta name="author" content="Dashboard">
+<meta name="keyword"
+	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
+
+<title>Home <%
+	out.println("shemovida aqac");
+	AccountManager am = (AccountManager) request.getAttribute("accManager");
+
+	String hidden = am.getUser().getUsername();
+	String fphoto = am.getUser().getPhoto();
+	String usId = Integer.toString(am.getUser().getUserID());
+
+	String isAdmin = Boolean.toString(am.getUser().isAdmin());
+
+	int newMsgs = 4;
+	int newRequests = 5;
+%> <%=hidden%></title>
+
+
+
+<!-- Bootstrap core CSS -->
+<link href="./loggedIn/assets/css/bootstrap.css" rel="stylesheet">
+<!--external css-->
+<link href="./loggedIn/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
+<link rel="stylesheet" type="text/css"
+	href="./loggedIn/assets/css/zabuto_calendar.css">
+<link rel="stylesheet" type="text/css"
+	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
+<link rel="stylesheet" type="text/css"
+	href="./loggedIn/assets/lineicons/style.css">
+
+<!-- Custom styles for this template -->
+<link href="./loggedIn/assets/css/style.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/style-responsive.css" rel="stylesheet">
+
+<script src="./loggedIn/assets/js/chart-master/Chart.js"></script>
+
+<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+<!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
 </head>
+
 <body>
+	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=am.getUser().getUsername()%>"> <input type="hidden"
+			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
+		<input type="hidden" id="usId" name="usId"
+			value="<%=am.getUser().getUserID()%>">
 
 
-	<%
-		MessageManager mm = (MessageManager) request.getAttribute("MessManager");
-		int len = 20;
-		Message m = null;
 
-		for (int i = 0; i < mm.getMessages().size(); i++) {
-			m = mm.getMessages().get(i);
-			String sender = m.getSenderName();
-			String msg = m.getMessage();
-			if (msg.length() > len) {
-				msg = msg.substring(0, len) + "...";
-			}
-	%>
-	<p>
+		<!-- here goes day popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
 		<%
-			sender += "\t" + msg;
+			ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
+
+			int sizeDP = 6;
+			if (qzDPls.size() < 6)
+				sizeDP = qzDPls.size();
 		%>
-		<button onclick="readForm()">Read</button>
-	</p>
 
-	<br>
-	<br>
-	<%
-		}
-	%>
-	<p>No More Messages</p>
+		<input type="hidden" id="qzDPSize" name="qzDPSize" value="<%=sizeDP%>">
 
-	<%
-		if (m != null) {
-	%>
-	<form name="readForm" action="./MRC/Message.jsp" method="GET">
-		<input type="hidden" id="message" name="message"
-			value="<%=m.getMessage()%>"> <input type="hidden" id="sender"
-			name="sender" value="<%=m.getSenderName()%>">
+		<%
+			for (int i = 0; i < sizeDP; i++) {
+		%>
+		<input type="hidden" id="<%="qzDPName" + i%>"
+			name="<%="qzDPName" + i%>" value="<%=qzDPls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzDPId" + i%>" name="<%="qzDPId" + i%>"
+			value="<%=qzDPls.get(i).getQuizID()%>">
+		<%
+			}
+		%>
+		<!-- end of day popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+		<!-- here goes popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<%
+			ArrayList<Quiz> qzPQls = (ArrayList<Quiz>) request.getAttribute("popQuizLs");
+
+			int sizePQ = 6;
+			if (qzPQls.size() < 6)
+				sizePQ = qzPQls.size();
+		%>
+
+		<input type="hidden" id="qzPQSize" name="qzPQSize" value="<%=sizePQ%>">
+
+		<%
+			for (int i = 0; i < sizePQ; i++) {
+		%>
+		<input type="hidden" id="<%="qzPQName" + i%>"
+			name="<%="qzPQName" + i%>" value="<%=qzPQls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzPQId" + i%>" name="<%="qzPQId" + i%>"
+			value="<%=qzPQls.get(i).getQuizID()%>">
+		<%
+			}
+		%>
+		<!-- end of popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+		<!-- here goes new quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<%
+			ArrayList<Quiz> qzNQls = (ArrayList<Quiz>) request.getAttribute("newQuizLs");
+
+			int sizeNQ = 6;
+			if (qzNQls.size() < 6)
+				sizeNQ = qzNQls.size();
+		%>
+
+		<input type="hidden" id="qzNQSize" name="qzNQSize" value="<%=sizeNQ%>">
+
+		<%
+			for (int i = 0; i < sizeNQ; i++) {
+		%>
+		<input type="hidden" id="<%="qzNQName" + i%>"
+			name="<%="qzNQName" + i%>" value="<%=qzNQls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzNQId" + i%>" name="<%="qzNQId" + i%>"
+			value="<%=qzNQls.get(i).getQuizID()%>"> <input type="hidden"
+			id="<%="qzNQDt" + i%>" name="<%="qzNQDt" + i%>"
+			value="<%=qzNQls.get(i).getCreationDate()%>">
+		<%
+			}
+		%>
+		<!-- end of new quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+		<!-- is admin or not O.o -->
+		<input type="hidden" id="isAdmin" name="isAdmin"
+			value="<%=am.getUser().isAdmin()%>">
 	</form>
-	<%
+	<script>
+		function submitform() {
+			document.myForm.submit();
 		}
-	%>
+
+		function submitMessage() {
+			document.forMessage.submit();
+		}
+
+		function submitChallenge() {
+			document.forChallenge.submit();
+		}
+
+		function submitRequest() {
+			document.forRequest.submit();
+		}
+	</script>
+	<form name="myForm" action="" method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=hidden%>"> <input type="hidden" id="fphoto"
+			name="fphoto" value="<%=fphoto%>"> <input type="hidden"
+			id="usId" name="usId" value="<%=usId%>">
+	</form>
+
+	<form name="forMessage" action="./ServletMessage" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+
+	<form name="forChallenge" action="../ServletChallenge" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+
+	<form name="forRequest" action="../ServletRequest" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	<section id="container">
+		<!-- **********************************************************************************************************************************************************
+      TOP BAR CONTENT & NOTIFICATIONS
+      *********************************************************************************************************************************************************** -->
+		<!--header start-->
+		<header class="header black-bg">
+			<div class="sidebar-toggle-box">
+				<div class="fa fa-bars tooltips" data-placement="right"
+					data-original-title="Toggle Navigation"></div>
+			</div>
+			<!--logo start-->
+
+
+			<a href="" class="logo"><b>QUIZ WEBSITE</b></a>
+
+			<!--logo end-->
+			<div class="nav notify-row" id="top_menu">
+				<!--  notification start -->
+				<ul class="nav top-menu">
+					<!-- settings start -->
+					<li class="dropdown"><a onclick="submitRequest()"
+						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+							<i class="fa fa-tasks"></i> <span class="badge bg-theme">
+								<%
+									out.println(newRequests);
+								%>
+						</span>
+					</a></li>
+					<!-- settings end -->
+					<!-- inbox dropdown start-->
+					<li id="header_inbox_bar" class="dropdown"><a
+						onclick="submitMessage()" data-toggle="dropdown"
+						class="dropdown-toggle" href="index.html#"> <i
+							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
+								<%
+									out.println(newMsgs);
+								%>
+						</span>
+					</a></li>
+					<!-- inbox dropdown end -->
+				</ul>
+				<!--  notification end -->
+			</div>
+			<div class="top-menu">
+				<ul class="nav pull-right top-menu">
+					<li><a class="logout" href="../index.jsp">Logout</a></li>
+				</ul>
+			</div>
+		</header>
+		<!--header end-->
+
+		<!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+		<!--sidebar start-->
+		<aside>
+			<div id="sidebar" class="nav-collapse ">
+				<!-- sidebar menu start-->
+				<ul class="sidebar-menu" id="nav-accordion">
+
+					<p class="centered">
+						<a><img src="<%=fphoto%>" class="img-circle" width="60"></img></a>
+					</p>
+					<h5 class="centered">
+						<%=hidden%>
+					</h5>
+					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
+							<span>Home Page</span>
+					</a>
+					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
+							class=" fa"></i> <span>Create Quiz</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
+							<span>My Friends</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
+							<span>Search Friends</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Search Quizes</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Change Password</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Change Profile Picture</span>
+					</a> <%
+ 	if (isAdmin.equals("true")) {
+ %>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Write Post</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Make User Admin By Id</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Bann User By Id</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Remove Quiz</span>
+					</a> <%
+ 	}
+ %>
+				</ul>
+				<!-- sidebar menu end-->
+			</div>
+		</aside>
+		<!--sidebar end-->
+
+		<!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+		<!--main content start-->
+		<section id="main-content">
+			<section class="wrapper">
+
+				<div class="row">
+					<div class="col-lg-9 main-chart">
+
+
+						<div class="row mt">
+							<%
+								MessageManager mm = (MessageManager) request.getAttribute("MessManager");
+								int len = 20;
+								Message m = null;
+
+								for (int i = 0; i < mm.getMessages().size(); i++) {
+									m = mm.getMessages().get(i);
+									String sender = m.getSenderName();
+									String msg = m.getMessage();
+									if (msg.length() > len) {
+										msg = msg.substring(0, len) + "...";
+									}
+							%>
+							<p>
+								<%
+									sender += "\t" + msg;
+								%>
+								<button onclick="readForm()">Read</button>
+							</p>
+
+							<br> <br>
+							<%
+								}
+							%>
+							<h5>End Of Messages</h5>
+
+							<%
+								if (m != null) {
+							%>
+							<form name="readForm" action="./MRC/Message.jsp" method="GET">
+								<input type="hidden" id="message" name="message"
+									value="<%=m.getMessage()%>"> <input type="hidden"
+									id="sender" name="sender" value="<%=m.getSenderName()%>">
+							</form>
+							<%
+								}
+							%>
+
+
+						</div>
+						<!-- /row -->
+
+					</div>
+					<!-- /col-lg-9 END SECTION MIDDLE -->
+
+
+					<!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT
+      *********************************************************************************************************************************************************** -->
+
+					<div class="col-lg-3 ds">
+						<!--COMPLETED ACTIONS DONUTS CHART-->
+						<h3>
+							ADMIN POSTS <a href=""> -- see all</a>
+						</h3>
+
+						<!-- First Action -->
+						<%
+							for (int i = 0; i < 4; i++) {
+						%>
+						<div class="desc">
+							<div class="thumb">
+								<span><i class="fa"></i></span>
+							</div>
+							<div class="details">
+								<p>
+									<br /> <a href="#">James Brown</a> subscribed to your
+									newsletter.<br />
+								</p>
+							</div>
+						</div>
+						<%
+							}
+						%>
+
+						<!-- USERS ONLINE SECTION -->
+						<h3>
+							NEW MESSAGES <a href=""> -- see all</a>
+						</h3>
+						<!-- First Member -->
+						<%
+							for (int i = 0; i < 4; i++) {
+						%>
+						<div class="desc">
+							<div class="thumb">
+								<img class="img-circle" src="./loggedIn/assets/img/ui-divya.jpg"
+									width="35px" height="35px">
+							</div>
+							<div class="details">
+								<p>
+									<a href="#">DIVYA MANIAN</a><br />
+								</p>
+							</div>
+						</div>
+						<%
+							}
+						%>
+					</div>
+					<!-- /col-lg-3 -->
+				</div>
+				<!--/row -->
+			</section>
+		</section>
+
+		<!--main content end-->
+		<!--footer start-->
+		<footer class="site-footer">
+			<div class="text-center">
+				2016 - www.freeuni.edu.ge - QUIZ WEBSITE <a href="" class="go-top">
+					<i class="fa fa-angle-up"></i>
+				</a>
+			</div>
+		</footer>
+		<!--footer end-->
+	</section>
+
+	<!-- js placed at the end of the document so the pages load faster -->
+	<script src="./loggedIn/assets/js/jquery.js"></script>
+	<script src="./loggedIn/assets/js/jquery-1.8.3.min.js"></script>
+	<script src="./loggedIn/assets/js/bootstrap.min.js"></script>
+	<script class="include" type="text/javascript"
+		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="./loggedIn/assets/js/jquery.nicescroll.js"
+		type="text/javascript"></script>
+	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
+
+
+	<!--common script for all pages-->
+	<script src="./loggedIn/assets/js/common-scripts.js"></script>
+
+	<script type="text/javascript"
+		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript"
+		src="./loggedIn/assets/js/gritter-conf.js"></script>
+
+	<!--script for this page-->
+	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
+	<script src="./loggedIn/assets/js/zabuto_calendar.js"></script>
+
 
 </body>
 </html>
