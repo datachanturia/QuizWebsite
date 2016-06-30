@@ -165,4 +165,23 @@ public class UserDaoImpl implements UserDao {
 		}
 		return userName;		
 	}
+	
+	public ArrayList<Integer> getUserIDs(String username){
+		ArrayList<Integer> users = new ArrayList<Integer>();
+		
+		try {
+			Statement stm = con.createStatement();
+			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
+			ResultSet res = stm.executeQuery("select userID from Users where username = \"" + username + "\"");
+			while(res.next()){
+				users.add(res.getInt("userID"));
+			}
+			
+		} catch (SQLException e) {
+			
+			e.printStackTrace();
+		}
+		
+		return users;
+	}
 }
