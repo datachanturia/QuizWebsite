@@ -68,6 +68,7 @@ public class ServletLogin extends HttpServlet {
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
 
+				am.setLogStatus(true);
 				rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 
 				request.setAttribute("accManager", am);

@@ -60,7 +60,7 @@ public class ServletLoginFacebook extends HttpServlet {
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
 
-				rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
+				am.setLogStatus(true);
 
 				rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 

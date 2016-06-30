@@ -77,6 +77,7 @@ public class ServletCreateAcc extends HttpServlet {
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
 
+				am.setLogStatus(true);
 				rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 
 			}

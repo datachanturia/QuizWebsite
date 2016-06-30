@@ -71,6 +71,8 @@ public class ServletCreateFacebook extends HttpServlet {
 				request.setAttribute("dayPopuLs", dayPopuLs);
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
+				
+				am.setLogStatus(true);
 
 				rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 
