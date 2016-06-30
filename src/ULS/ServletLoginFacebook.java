@@ -55,12 +55,11 @@ public class ServletLoginFacebook extends HttpServlet {
 				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
 				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
-				
+
 				request.setAttribute("dayPopuLs", dayPopuLs);
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
-				
-				
+
 				if (am.getUser().isAdmin()) {
 					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
 				} else {
