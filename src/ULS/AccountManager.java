@@ -14,7 +14,7 @@ public class AccountManager {
 	private User currentUser;
 	private Encrypt en;
 	private UserDaoImpl udi;
-	private boolean loggedIn = false;
+	private boolean loggedIn;
 
 	// constructor for account manager
 	public AccountManager(Connection con) {

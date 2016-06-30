@@ -1,3 +1,7 @@
+<%@ page import="ULS.AccountManager" import="Model.Quiz"
+	import="java.util.ArrayList" import="MRC.MessageManager"
+	import="Model.Message"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,12 +18,14 @@
 <!-- Bootstrap core CSS -->
 <link href="./loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="./loggedIn/assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="./loggedIn/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
 	href="./loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
 	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css" href="./loggedIn/assets/lineicons/style.css">
+<link rel="stylesheet" type="text/css"
+	href="./loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
 <link href="./loggedIn/assets/css/style.css" rel="stylesheet">
@@ -35,6 +41,27 @@
 </head>
 
 <body>
+	<%
+		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
+		if (am != null && am.getLogStatus()) {
+	%>
+	<script type="text/javascript">
+		window.onload = function() {
+			var auto = setTimeout(function() {
+				submitform();
+			}, 0);
+
+			function submitform() {
+				document.forms["forLogIn"].submit();
+			}
+		}
+	</script>
+
+	<form name="forLogIn" action="./loggedInServlet" method="GET"></form>
+	<%
+		}
+	%>
+
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -58,7 +85,8 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="./logMenu/newAccount.html">Sign Up</a></li>
+					<li><a class="logout" href="./logMenu/newAccount.html">Sign
+							Up</a></li>
 				</ul>
 			</div>
 		</header>
@@ -76,7 +104,6 @@
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
-					
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
 					</a>
@@ -104,9 +131,7 @@
 									<div class="darkblue-header">
 										<h5>TOP POPULAR QUIZES</h5>
 									</div>
-									<br>
-									<br>
-									<br>
+									<br> <br> <br>
 									<h5>YOU NEED TO LOGIN OR SIGN UP</h5>
 								</div>
 								<!-- /grey-panel -->
@@ -119,9 +144,7 @@
 									<div class="white-header">
 										<h5>TOP NEW QUIZES</h5>
 									</div>
-									<br>
-									<br>
-									<br>
+									<br> <br> <br>
 									<h5>YOU NEED TO LOGIN OR SIGN UP</h5>
 								</div>
 							</div>
@@ -133,9 +156,7 @@
 									<div class="darkblue-header">
 										<h5>QUIZES OF THE DAY</h5>
 									</div>
-									<br>
-									<br>
-									<br>
+									<br> <br> <br>
 									<h5>YOU NEED TO LOGIN OR SIGN UP</h5>
 								</div>
 							</div>
@@ -178,6 +199,7 @@
 							}
 						%>
 
+
 					</div>
 					<!-- /col-lg-3 -->
 				</div>
@@ -204,7 +226,8 @@
 	<script class="include" type="text/javascript"
 		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
 	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="./loggedIn/assets/js/jquery.nicescroll.js" type="text/javascript"></script>
+	<script src="./loggedIn/assets/js/jquery.nicescroll.js"
+		type="text/javascript"></script>
 	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
@@ -213,7 +236,8 @@
 
 	<script type="text/javascript"
 		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="./loggedIn/assets/js/gritter-conf.js"></script>
+	<script type="text/javascript"
+		src="./loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
 	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
