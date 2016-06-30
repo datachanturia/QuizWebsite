@@ -55,7 +55,6 @@ public class ServletCreateFacebook extends HttpServlet {
 			am.setConnection(con);
 			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
-
 			if (!am.isValidMail(ema)) {
 				rd = request.getRequestDispatcher("./logMenu/invalidMailing.html");
 			} else if (am.accountExists(ema)) {
@@ -64,7 +63,7 @@ public class ServletCreateFacebook extends HttpServlet {
 				am.createSocAccount(usr, ema, pas, pho);
 
 				request.setAttribute("accManager", am);
-				
+
 				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
 				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
@@ -72,13 +71,9 @@ public class ServletCreateFacebook extends HttpServlet {
 				request.setAttribute("dayPopuLs", dayPopuLs);
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
-				
-				if (am.getUser().isAdmin()) {
-					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
-				} else {
 
-					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
-				}
+				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+
 			}
 
 			rd.forward(request, response);

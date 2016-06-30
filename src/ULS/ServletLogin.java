@@ -67,12 +67,9 @@ public class ServletLogin extends HttpServlet {
 				request.setAttribute("dayPopuLs", dayPopuLs);
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
-				
-				if (am.getUser().isAdmin()) {
-					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
-				} else {
-					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
-				}
+
+				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+
 				request.setAttribute("accManager", am);
 			} else {
 				rd = request.getRequestDispatcher("./logMenu/informationIncorrect.html");

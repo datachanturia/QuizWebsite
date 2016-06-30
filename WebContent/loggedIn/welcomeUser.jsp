@@ -100,6 +100,10 @@
 			}
 		%>
 		<!-- end of new quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		
+		<!-- is admin or not O.o -->
+		<input type="hidden" id="isAdmin" name="isAdmin"
+			value="<%=am.getUser().isAdmin()%>">
 	</form>
 </body>
 

@@ -15,6 +15,9 @@
 	String hidden = request.getParameter("inputName");
 	String fphoto = request.getParameter("fphoto");
 	String usId = request.getParameter("usId");
+
+	String isAdmin = request.getParameter("isAdmin");
+
 	int newMsgs = 4;
 	int newRequests = 5;
 
@@ -60,20 +63,23 @@
 
 
 <!-- Bootstrap core CSS -->
-<link href="assets/css/bootstrap.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="assets/font-awesome/css/font-awesome.css" rel="stylesheet" />
+<link href="../loggedIn/assets/font-awesome/css/font-awesome.css"
+	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
-	href="assets/css/zabuto_calendar.css">
+	href="../loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
-	href="assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css" href="assets/lineicons/style.css">
+	href="../loggedIn/assets/js/gritter/css/jquery.gritter.css" />
+<link rel="stylesheet" type="text/css"
+	href="../loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
-<link href="assets/css/style.css" rel="stylesheet">
-<link href="assets/css/style-responsive.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/style.css" rel="stylesheet">
+<link href="../loggedIn/assets/css/style-responsive.css"
+	rel="stylesheet">
 
-<script src="assets/js/chart-master/Chart.js"></script>
+<script src="../loggedIn/assets/js/chart-master/Chart.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -118,7 +124,6 @@
 	<form name="forRequest" action="../ServletRequest" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -185,7 +190,6 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
@@ -206,7 +210,23 @@
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Change Profile Picture</span>
+					</a> <%
+ 	if (isAdmin.equals("true")) {
+ %>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Write Post</span>
 					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Make User Admin By Id</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Bann User By Id</span>
+					</a>
+					<li class="sub-menu"><a href="javascript:;"> <i
+							class=" fa"></i> <span>Remove Quiz</span>
+					</a> <%
+ 	}
+ %>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>
@@ -264,14 +284,12 @@
 									<div class="darkblue-header">
 										<h5>QUIZES OF THE DAY</h5>
 									</div>
-
 									<%
 										for (int i = 0; i < DPSize; i++) {
 											out.println("<h5>" + nmDPls.get(i) + " Quiz"
 													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
 										}
 									%>
-
 								</div>
 							</div>
 							<!-- /col-md-4 -->
@@ -315,7 +333,7 @@
 
 						<!-- USERS ONLINE SECTION -->
 						<h3>
-							NEW CHALLENGES <a href=""> -- see all</a>
+							NEW MESSAGES <a href=""> -- see all</a>
 						</h3>
 						<!-- First Member -->
 						<%
@@ -323,8 +341,9 @@
 						%>
 						<div class="desc">
 							<div class="thumb">
-								<img class="img-circle" src="assets/img/ui-divya.jpg"
-									width="35px" height="35px">
+								<img class="img-circle"
+									src="../loggedIn/assets/img/ui-divya.jpg" width="35px"
+									height="35px">
 							</div>
 							<div class="details">
 								<p>
@@ -355,26 +374,29 @@
 	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="assets/js/jquery.js"></script>
-	<script src="assets/js/jquery-1.8.3.min.js"></script>
-	<script src="assets/js/bootstrap.min.js"></script>
+	<script src="../loggedIn/assets/js/jquery.js"></script>
+	<script src="../loggedIn/assets/js/jquery-1.8.3.min.js"></script>
+	<script src="../loggedIn/assets/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
-		src="assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="assets/js/jquery.scrollTo.min.js"></script>
-	<script src="assets/js/jquery.nicescroll.js" type="text/javascript"></script>
-	<script src="assets/js/jquery.sparkline.js"></script>
+		src="../loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="../loggedIn/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="../loggedIn/assets/js/jquery.nicescroll.js"
+		type="text/javascript"></script>
+	<script src="../loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
 	<!--common script for all pages-->
-	<script src="assets/js/common-scripts.js"></script>
+	<script src="../loggedIn/assets/js/common-scripts.js"></script>
 
 	<script type="text/javascript"
-		src="assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript" src="assets/js/gritter-conf.js"></script>
+		src="../loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
+	<script type="text/javascript"
+		src="../loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
-	<script src="assets/js/sparkline-chart.js"></script>
-	<script src="assets/js/zabuto_calendar.js"></script>
+	<script src="../loggedIn/assets/js/sparkline-chart.js"></script>
+	<script src="../loggedIn/assets/js/zabuto_calendar.js"></script>
+
 
 </body>
 </html>

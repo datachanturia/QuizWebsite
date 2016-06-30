@@ -68,21 +68,17 @@ public class ServletCreateAcc extends HttpServlet {
 			} else {
 				am.createAccount(usr, ema, pas);
 				request.setAttribute("accManager", am);
-				
+
 				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
 				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
-				
+
 				request.setAttribute("dayPopuLs", dayPopuLs);
 				request.setAttribute("popQuizLs", popQuizLs);
 				request.setAttribute("newQuizLs", newQuizLs);
-				
-				if (am.getUser().isAdmin()) {
-					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
-					
-				} else {
-					rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
-				}
+
+				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+
 			}
 
 			rd.forward(request, response);
