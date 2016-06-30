@@ -191,6 +191,7 @@
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
+					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
 							<span>My Friends</span>
 					</a>
@@ -215,8 +216,8 @@
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Bann User By Id</span>
 					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Add Quiz</span>
+					<li class="sub-menu"><a href="../Quiz/CreateQuiz.html"> <i
+							class=" fa"></i> <span>Create Quiz</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Remove Quiz</span>

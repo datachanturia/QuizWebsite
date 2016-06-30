@@ -189,7 +189,7 @@
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a href="../Quiz/CreateQuiz.html"> <i
 							class=" fa"></i> <span>Create Quiz</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
@@ -250,7 +250,7 @@
 									</div>
 									<%
 										for (int i = 0; i < NQSize; i++) {
-											out.println("<h5> <"+ dtNQls.get(i) + "> " + nmNQls.get(i) + " Quiz"
+											out.println("<h5> <" + dtNQls.get(i) + "> " + nmNQls.get(i) + " Quiz"
 													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
 										}
 									%>
