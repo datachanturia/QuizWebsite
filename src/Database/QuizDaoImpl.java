@@ -152,7 +152,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("SELECT quizID FROM takenquiz GROUP BY quizID desc limit 10");
+					.prepareStatement("SELECT quizID FROM takenquiz GROUP BY quizID desc limit 6");
 
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
@@ -174,7 +174,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con.prepareStatement(
-					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE creationdate > SUBDATE(NOW(),1)) GROUP BY quizID desc limit 10");
+					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE creationdate > SUBDATE(NOW(),1)) GROUP BY quizID desc limit 6");
 			
 			ResultSet rs = prdtmt.executeQuery();
 			
@@ -198,7 +198,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("select quizID from quiz order by creationdate desc limit 10");
+					.prepareStatement("select quizID from quiz order by creationdate desc limit 6");
 
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {

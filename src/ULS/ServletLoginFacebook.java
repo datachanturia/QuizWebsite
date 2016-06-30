@@ -62,7 +62,7 @@ public class ServletLoginFacebook extends HttpServlet {
 
 				rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
 
-				rd = request.getRequestDispatcher("./loggedIn/welcomeUser.jsp");
+				rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 
 				request.setAttribute("accManager", am);
 			} else {

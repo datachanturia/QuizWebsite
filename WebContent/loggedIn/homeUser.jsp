@@ -1,5 +1,6 @@
 <%@ page import="ULS.AccountManager" import="Model.Quiz"
-	import="java.util.ArrayList"%>
+	import="java.util.ArrayList" import="MRC.MessageManager"
+	import="Model.Message"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,74 +13,42 @@
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
 <title>Home <%
-	String hidden = request.getParameter("inputName");
-	String fphoto = request.getParameter("fphoto");
-	String usId = request.getParameter("usId");
+	out.println("shemovida aqac");
+	AccountManager am = (AccountManager) request.getAttribute("accManager");
 
-	String isAdmin = request.getParameter("isAdmin");
+	String hidden = am.getUser().getUsername();
+	String fphoto = am.getUser().getPhoto();
+	String usId = Integer.toString(am.getUser().getUserID());
+
+	String isAdmin = Boolean.toString(am.getUser().isAdmin());
 
 	int newMsgs = 4;
 	int newRequests = 5;
-
-	// <<<<<<<<<<<<<<<<< day popular quizes start here
-	ArrayList<String> idDPls = new ArrayList<String>();
-	ArrayList<String> nmDPls = new ArrayList<String>();
-
-	int DPSize = Integer.parseInt(request.getParameter("qzDPSize"));
-
-	for (int i = 0; i < DPSize; i++) {
-		nmDPls.add(request.getParameter("qzDPName" + i));
-		idDPls.add(request.getParameter("qzDPId" + i));
-	}
-	// day popular quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
-
-	// <<<<<<<<<<<<<<<<< popular quizes start here
-	ArrayList<String> idPQls = new ArrayList<String>();
-	ArrayList<String> nmPQls = new ArrayList<String>();
-
-	int PQSize = Integer.parseInt(request.getParameter("qzPQSize"));
-
-	for (int i = 0; i < PQSize; i++) {
-		nmPQls.add(request.getParameter("qzPQName" + i));
-		idPQls.add(request.getParameter("qzPQId" + i));
-	}
-	// popular quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
-
-	// <<<<<<<<<<<<<<<<< new quizes start here
-	ArrayList<String> idNQls = new ArrayList<String>();
-	ArrayList<String> nmNQls = new ArrayList<String>();
-	ArrayList<String> dtNQls = new ArrayList<String>();
-
-	int NQSize = Integer.parseInt(request.getParameter("qzNQSize"));
-
-	for (int i = 0; i < NQSize; i++) {
-		nmNQls.add(request.getParameter("qzNQName" + i));
-		idNQls.add(request.getParameter("qzNQId" + i));
-		dtNQls.add(request.getParameter("qzNQDt" + i));
-	}
-	// new quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
+	
+	ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
+	ArrayList<Quiz> qzPQls = (ArrayList<Quiz>) request.getAttribute("popQuizLs");
+	ArrayList<Quiz> qzNQls = (ArrayList<Quiz>) request.getAttribute("newQuizLs");
 %> <%=hidden%></title>
 
 
 
 <!-- Bootstrap core CSS -->
-<link href="../loggedIn/assets/css/bootstrap.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/bootstrap.css" rel="stylesheet">
 <!--external css-->
-<link href="../loggedIn/assets/font-awesome/css/font-awesome.css"
+<link href="./loggedIn/assets/font-awesome/css/font-awesome.css"
 	rel="stylesheet" />
 <link rel="stylesheet" type="text/css"
-	href="../loggedIn/assets/css/zabuto_calendar.css">
+	href="./loggedIn/assets/css/zabuto_calendar.css">
 <link rel="stylesheet" type="text/css"
-	href="../loggedIn/assets/js/gritter/css/jquery.gritter.css" />
+	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
 <link rel="stylesheet" type="text/css"
-	href="../loggedIn/assets/lineicons/style.css">
+	href="./loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
-<link href="../loggedIn/assets/css/style.css" rel="stylesheet">
-<link href="../loggedIn/assets/css/style-responsive.css"
-	rel="stylesheet">
+<link href="./loggedIn/assets/css/style.css" rel="stylesheet">
+<link href="./loggedIn/assets/css/style-responsive.css" rel="stylesheet">
 
-<script src="../loggedIn/assets/js/chart-master/Chart.js"></script>
+<script src="./loggedIn/assets/js/chart-master/Chart.js"></script>
 
 <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
 <!--[if lt IE 9]>
@@ -89,6 +58,85 @@
 </head>
 
 <body>
+	<form name="myForm" action="./loggedIn/homeUser.jsp" method="GET">
+		<input type="hidden" id="thisField" name="inputName"
+			value="<%=am.getUser().getUsername()%>"> <input type="hidden"
+			id="fphoto" name="fphoto" value="<%=am.getUser().getPhoto()%>">
+		<input type="hidden" id="usId" name="usId"
+			value="<%=am.getUser().getUserID()%>">
+
+
+
+		<!-- here goes day popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<%
+			int sizeDP = 6;
+			if (qzDPls.size() < 6)
+				sizeDP = qzDPls.size();
+		%>
+
+		<input type="hidden" id="qzDPSize" name="qzDPSize" value="<%=sizeDP%>">
+
+		<%
+			for (int i = 0; i < sizeDP; i++) {
+		%>
+		<input type="hidden" id="<%="qzDPName" + i%>"
+			name="<%="qzDPName" + i%>" value="<%=qzDPls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzDPId" + i%>" name="<%="qzDPId" + i%>"
+			value="<%=qzDPls.get(i).getQuizID()%>">
+		<%
+			}
+		%>
+		<!-- end of day popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+
+		<!-- here goes popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<%
+			int sizePQ = 6;
+			if (qzPQls.size() < 6)
+				sizePQ = qzPQls.size();
+		%>
+
+		<input type="hidden" id="qzPQSize" name="qzPQSize" value="<%=sizePQ%>">
+
+		<%
+			for (int i = 0; i < sizePQ; i++) {
+		%>
+		<input type="hidden" id="<%="qzPQName" + i%>"
+			name="<%="qzPQName" + i%>" value="<%=qzPQls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzPQId" + i%>" name="<%="qzPQId" + i%>"
+			value="<%=qzPQls.get(i).getQuizID()%>">
+		<%
+			}
+		%>
+		<!-- end of popular quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+		<!-- here goes new quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+		<%
+			int sizeNQ = 6;
+			if (qzNQls.size() < 6)
+				sizeNQ = qzNQls.size();
+		%>
+
+		<input type="hidden" id="qzNQSize" name="qzNQSize" value="<%=sizeNQ%>">
+
+		<%
+			for (int i = 0; i < sizeNQ; i++) {
+		%>
+		<input type="hidden" id="<%="qzNQName" + i%>"
+			name="<%="qzNQName" + i%>" value="<%=qzNQls.get(i).getQuizname()%>">
+		<input type="hidden" id="<%="qzNQId" + i%>" name="<%="qzNQId" + i%>"
+			value="<%=qzNQls.get(i).getQuizID()%>"> <input type="hidden"
+			id="<%="qzNQDt" + i%>" name="<%="qzNQDt" + i%>"
+			value="<%=qzNQls.get(i).getCreationDate()%>">
+		<%
+			}
+		%>
+		<!-- end of new quizes!!!!!!!!!!!!!!!!!!!!!!!!! -->
+
+		<!-- is admin or not O.o -->
+		<input type="hidden" id="isAdmin" name="isAdmin"
+			value="<%=am.getUser().isAdmin()%>">
+	</form>
 	<script>
 		function submitform() {
 			document.myForm.submit();
@@ -105,6 +153,10 @@
 		function submitRequest() {
 			document.forRequest.submit();
 		}
+		
+		function submitHomePage() {
+			document.forHomePage.submit();
+		}
 	</script>
 	<form name="myForm" action="" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
@@ -113,7 +165,7 @@
 			id="usId" name="usId" value="<%=usId%>">
 	</form>
 
-	<form name="forMessage" action="../ServletMessage" method="GET">
+	<form name="forMessage" action="./ServletMessage" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 
@@ -122,6 +174,10 @@
 	</form>
 
 	<form name="forRequest" action="../ServletRequest" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	
+	<form name="forHomePage" action="./HomePageServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 	<section id="container">
@@ -169,7 +225,7 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="../index.jsp">Logout</a></li>
+					<li><a class="logout" href="./index.jsp">Logout</a></li>
 				</ul>
 			</div>
 		</header>
@@ -190,10 +246,10 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
+					<li class="sub-menu"><a onclick="submitHomePage()" href="#"> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
-					<li class="sub-menu"><a href="../Quiz/CreateQuiz.html"> <i
+					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
 							class=" fa"></i> <span>Create Quiz</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
@@ -245,15 +301,14 @@
 
 
 						<div class="row mt">
-							<!-- SERVER STATUS PANELS -->
 							<div class="col-md-4 col-sm-4 mb">
 								<div class="darkblue-panel pn">
 									<div class="darkblue-header">
 										<h5>TOP POPULAR QUIZES</h5>
 									</div>
 									<%
-										for (int i = 0; i < PQSize; i++) {
-											out.println("<h5>" + nmPQls.get(i) + " Quiz"
+										for (int i = 0; i < qzPQls.size(); i++) {
+											out.println("<h5>" + qzPQls.get(i).getQuizname() + " Quiz"
 													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
 										}
 									%>
@@ -269,8 +324,8 @@
 										<h5>TOP NEW QUIZES</h5>
 									</div>
 									<%
-										for (int i = 0; i < NQSize; i++) {
-											out.println("<h5> <" + dtNQls.get(i) + "> " + nmNQls.get(i) + " Quiz"
+										for (int i = 0; i < qzNQls.size(); i++) {
+											out.println("<h5> <" + qzNQls.get(i).getCreationDate() + "> " + qzNQls.get(i).getQuizname() + " Quiz"
 													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
 										}
 									%>
@@ -285,8 +340,8 @@
 										<h5>QUIZES OF THE DAY</h5>
 									</div>
 									<%
-										for (int i = 0; i < DPSize; i++) {
-											out.println("<h5>" + nmDPls.get(i) + " Quiz"
+										for (int i = 0; i < qzDPls.size(); i++) {
+											out.println("<h5>" + qzDPls.get(i).getQuizname() + " Quiz"
 													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
 										}
 									%>
@@ -341,9 +396,8 @@
 						%>
 						<div class="desc">
 							<div class="thumb">
-								<img class="img-circle"
-									src="../loggedIn/assets/img/ui-divya.jpg" width="35px"
-									height="35px">
+								<img class="img-circle" src="./loggedIn/assets/img/ui-divya.jpg"
+									width="35px" height="35px">
 							</div>
 							<div class="details">
 								<p>
@@ -374,29 +428,30 @@
 	</section>
 
 	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="../loggedIn/assets/js/jquery.js"></script>
-	<script src="../loggedIn/assets/js/jquery-1.8.3.min.js"></script>
-	<script src="../loggedIn/assets/js/bootstrap.min.js"></script>
+	<script src="./loggedIn/assets/js/jquery.js"></script>
+	<script src="./loggedIn/assets/js/jquery-1.8.3.min.js"></script>
+	<script src="./loggedIn/assets/js/bootstrap.min.js"></script>
 	<script class="include" type="text/javascript"
-		src="../loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="../loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="../loggedIn/assets/js/jquery.nicescroll.js"
+		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
+	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
+	<script src="./loggedIn/assets/js/jquery.nicescroll.js"
 		type="text/javascript"></script>
-	<script src="../loggedIn/assets/js/jquery.sparkline.js"></script>
+	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
 
 
 	<!--common script for all pages-->
-	<script src="../loggedIn/assets/js/common-scripts.js"></script>
+	<script src="./loggedIn/assets/js/common-scripts.js"></script>
 
 	<script type="text/javascript"
-		src="../loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
+		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
 	<script type="text/javascript"
-		src="../loggedIn/assets/js/gritter-conf.js"></script>
+		src="./loggedIn/assets/js/gritter-conf.js"></script>
 
 	<!--script for this page-->
-	<script src="../loggedIn/assets/js/sparkline-chart.js"></script>
-	<script src="../loggedIn/assets/js/zabuto_calendar.js"></script>
+	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
+	<script src="./loggedIn/assets/js/zabuto_calendar.js"></script>
 
 
 </body>
 </html>
+
