@@ -60,9 +60,9 @@ public class CrQuizServlet extends HttpServlet {
 		int score = Integer.parseInt(request.getParameter("score"));
 		String category = request.getParameter("category");
 		String description = request.getParameter("description");
-		boolean random = request.getParameter("random").equals("isRandom");
-		boolean immediate = request.getParameter("immediate").equals("immediate");
-		boolean multiple = request.getParameter("Page").equals("Multiple");
+		boolean random = request.getParameter("random") != null && request.getParameter("random").equals("isRandom");
+		boolean immediate = request.getParameter("immediate")!=null && request.getParameter("immediate").equals("immediate");
+		boolean multiple = request.getParameter("Page")!=null && request.getParameter("Page").equals("Multiple");
 		Date createDate = new Date((new java.util.Date()).getTime());
 		ArrayList<Question> questions = new ArrayList<Question>();
 		int counter = 1;
