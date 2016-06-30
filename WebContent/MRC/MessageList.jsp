@@ -138,7 +138,7 @@
 					<!-- inbox dropdown start-->
 					<li id="header_inbox_bar" class="dropdown"><a
 						onclick="submitMessage()" data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
+						class="dropdown-toggle" href="#" onclick="submitMessage()"> <i
 							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
 								<%
 									out.println(newMsgs);
