@@ -120,7 +120,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
-			ResultSet res = stm.executeQuery("select friendID from Friends where userID = " + userID);
+			ResultSet res = stm.executeQuery("select friendID from Friends where userID = " + userID + "and isdelete = 0");
 			while(res.next()){
 				friends.add(res.getInt("friendID"));
 			}
