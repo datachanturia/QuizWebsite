@@ -15,6 +15,9 @@
 	String hidden = request.getParameter("inputName");
 	String fphoto = request.getParameter("fphoto");
 	String usId = request.getParameter("usId");
+
+	String isAdmin = request.getParameter("isAdmin");
+
 	int newMsgs = 4;
 	int newRequests = 5;
 
@@ -187,10 +190,11 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
+					<li class="sub-menu"><a href="../Quiz/CreateQuiz.html"> <i
+							class=" fa"></i> <span>Create Quiz</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
 							<span>My Friends</span>
@@ -206,7 +210,9 @@
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Change Profile Picture</span>
-					</a>
+					</a> <%
+ 	if (isAdmin.equals("true")) {
+ %>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Write Post</span>
 					</a>
@@ -216,12 +222,11 @@
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Bann User By Id</span>
 					</a>
-					<li class="sub-menu"><a href="../Quiz/CreateQuiz.html"> <i
-							class=" fa"></i> <span>Create Quiz</span>
-					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Remove Quiz</span>
-					</a>
+					</a> <%
+ 	}
+ %>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>
