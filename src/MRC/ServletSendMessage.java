@@ -3,6 +3,7 @@ package MRC;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.QuizDaoImpl;
+import Model.Quiz;
+import ULS.AccountManager;
 import dataSrc.DataSource;
 
 /**
@@ -19,38 +23,56 @@ import dataSrc.DataSource;
 @WebServlet("/ServletSendMessage")
 public class ServletSendMessage extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ServletSendMessage() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#HttpServlet()
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	public ServletSendMessage() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
+	 *      response)
+	 */
+	protected void doGet(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-		
-Connection con = null;
-		
+
+		response.getWriter().append("Served at: ").append(request.getContextPath());
+
+		Connection con = null;
+
 		RequestDispatcher rd;
-		
-		MessageManager mm = (MessageManager) getServletContext().getAttribute("MessMan");
+		MessageManager mm = new MessageManager(null);
+		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
+
 		int userID = Integer.parseInt(request.getParameter("usId"));
 		mm.setUserID(userID);
-		
+
 		try {
 			con = DataSource.getInstance().getConnection();
 			mm.setConnection(con);
 
-			rd = request.getRequestDispatcher("./MRC/NewMessage.jsp");
 			request.setAttribute("MessManager", mm);
-			
-			rd.forward(request, response);
+			// ------------------------------------------
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
+
+			request.setAttribute("accManager", am);
+
+			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+
+			request.setAttribute("dayPopuLs", dayPopuLs);
+			request.setAttribute("popQuizLs", popQuizLs);
+			request.setAttribute("newQuizLs", newQuizLs);
+			// --------------------------------------------------
+
+			rd = request.getRequestDispatcher("./MRC/NewMessage.jsp");
+
 		} finally {
 			if (con != null)
 				try {
@@ -59,12 +81,16 @@ Connection con = null;
 					e.printStackTrace();
 				}
 		}
+		rd.forward(request, response);
+
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
+	 *      response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
