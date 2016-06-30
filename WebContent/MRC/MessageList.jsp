@@ -13,7 +13,6 @@
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
 <title>Home <%
-	out.println("shemovida aqac");
 	AccountManager am = (AccountManager) request.getAttribute("accManager");
 
 	String hidden = am.getUser().getUsername();

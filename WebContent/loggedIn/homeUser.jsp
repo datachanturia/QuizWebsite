@@ -13,7 +13,6 @@
 	content="Dashboard, Bootstrap, Admin, Template, Theme, Responsive, Fluid, Retina">
 
 <title>Home <%
-	out.println("shemovida aqac");
 	AccountManager am = (AccountManager) request.getAttribute("accManager");
 
 	String hidden = am.getUser().getUsername();
@@ -24,7 +23,7 @@
 
 	int newMsgs = 4;
 	int newRequests = 5;
-	
+
 	ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
 	ArrayList<Quiz> qzPQls = (ArrayList<Quiz>) request.getAttribute("popQuizLs");
 	ArrayList<Quiz> qzNQls = (ArrayList<Quiz>) request.getAttribute("newQuizLs");
@@ -58,7 +57,7 @@
 </head>
 
 <body>
-	
+
 	<script>
 		function submitform() {
 			document.myForm.submit();
@@ -75,13 +74,17 @@
 		function submitRequest() {
 			document.forRequest.submit();
 		}
-		
+
 		function submitHomePage() {
 			document.forHomePage.submit();
 		}
-		
+
 		function forLoggedOut() {
 			document.forLogOut.submit();
+		}
+
+		function submitFriendsSearch() {
+			document.forFriendsSearch.submit();
 		}
 	</script>
 	<form name="myForm" action="" method="GET">
@@ -102,14 +105,15 @@
 	<form name="forRequest" action="../ServletRequest" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forHomePage" action="./HomePageServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forLogOut" action="./loggedInOutServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
+
 	<section id="container">
 		<!-- **********************************************************************************************************************************************************
       TOP BAR CONTENT & NOTIFICATIONS
@@ -176,8 +180,8 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a onclick="submitHomePage()" href="#"> <i class="fa fa-book"></i>
-							<span>Home Page</span>
+					<li class="sub-menu"><a onclick="submitHomePage()" href="#">
+							<i class="fa fa-book"></i> <span>Home Page</span>
 					</a>
 					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
 							class=" fa"></i> <span>Create Quiz</span>
@@ -185,8 +189,8 @@
 					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
 							<span>My Friends</span>
 					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
-							<span>Search Friends</span>
+					<li class="sub-menu"><a href="./friendsSearchServlet"> <i
+							class="fa"></i> <span>Search Friends</span>
 					</a>
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
