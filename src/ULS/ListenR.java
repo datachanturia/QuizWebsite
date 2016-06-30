@@ -34,10 +34,9 @@ public class ListenR implements ServletContextListener {
     public void contextInitialized(ServletContextEvent arg0)  { 
     	// pass null 
     	AccountManager am = new AccountManager(null);
-    	MessageManager mm = new MessageManager(null);
+
 		ServletContext sc = arg0.getServletContext();
 		sc.setAttribute("AccMan", am);
-		sc.setAttribute("MessMan", mm);
     }
 	
 }

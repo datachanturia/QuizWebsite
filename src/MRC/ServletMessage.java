@@ -42,8 +42,7 @@ public class ServletMessage extends HttpServlet {
 		Connection con = null;
 		
 		RequestDispatcher rd;
-		
-		MessageManager mm = (MessageManager) getServletContext().getAttribute("MessMan");
+		MessageManager mm = new MessageManager(null);
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 		
 		
