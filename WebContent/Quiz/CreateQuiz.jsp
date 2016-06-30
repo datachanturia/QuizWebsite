@@ -41,14 +41,13 @@
 		var i = 1;
 		var j = 1;
 		function addQuestion() {
-			if (i <= 3) {
 				i++;
 				j = 1;
 				var div = document.createElement('div');
 				div.setAttribute('class', 'myclass');
 				div.innerHTML = 'Question Type: <select name="QuestionType_'+i+'"><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_" rows="2" cols="30" placeholder="Enter Question Here"></textarea><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
 				document.getElementById('Questions').appendChild(div);
-			}
+			
 		}
 
 		function removeQuestion(div) {
@@ -57,13 +56,12 @@
 		}
 
 		function addAnswer() {
-			if (i <= 3) {
 				j++;
 				var div = document.createElement('div');
 				div.setAttribute('class', 'myclass');
 				div.innerHTML = 'Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<input type="button" id="remove_answer()" onClick="removeAnswer(this)" value="Remove Answer" /><br>';
 				document.getElementById('Questions').appendChild(div);
-			}
+			
 		}
 
 		function removeAnswer(div) {
