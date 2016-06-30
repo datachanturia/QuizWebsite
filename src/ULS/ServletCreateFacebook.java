@@ -3,6 +3,7 @@ package ULS;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.QuizDaoImpl;
+import Model.Quiz;
 import dataSrc.DataSource;
 
 /**
@@ -50,6 +53,8 @@ public class ServletCreateFacebook extends HttpServlet {
 
 			con = DataSource.getInstance().getConnection();
 			am.setConnection(con);
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
+
 
 			if (!am.isValidMail(ema)) {
 				rd = request.getRequestDispatcher("./logMenu/invalidMailing.html");
@@ -59,6 +64,15 @@ public class ServletCreateFacebook extends HttpServlet {
 				am.createSocAccount(usr, ema, pas, pho);
 
 				request.setAttribute("accManager", am);
+				
+				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+
+				request.setAttribute("dayPopuLs", dayPopuLs);
+				request.setAttribute("popQuizLs", popQuizLs);
+				request.setAttribute("newQuizLs", newQuizLs);
+				
 				if (am.getUser().isAdmin()) {
 					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
 				} else {

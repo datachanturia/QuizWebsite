@@ -3,6 +3,8 @@ package ULS;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +12,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.QuizDaoImpl;
+import Model.Quiz;
 import dataSrc.DataSource;
 
 /**
@@ -53,8 +57,17 @@ public class ServletLogin extends HttpServlet {
 		try {
 			con = DataSource.getInstance().getConnection();
 			am.setConnection(con);
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
 			if (am.matchesAccount(ema, pas)) {
+				ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+				ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+				ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+
+				request.setAttribute("dayPopuLs", dayPopuLs);
+				request.setAttribute("popQuizLs", popQuizLs);
+				request.setAttribute("newQuizLs", newQuizLs);
+				
 				if (am.getUser().isAdmin()) {
 					rd = request.getRequestDispatcher("./adminLoggedIn/welcomeUser.jsp");
 				} else {
