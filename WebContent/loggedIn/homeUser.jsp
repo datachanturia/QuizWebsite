@@ -79,6 +79,10 @@
 		function submitHomePage() {
 			document.forHomePage.submit();
 		}
+		
+		function forLoggedOut() {
+			document.forLogOut.submit();
+		}
 	</script>
 	<form name="myForm" action="" method="GET">
 		<input type="hidden" id="thisField" name="inputName"
@@ -100,6 +104,10 @@
 	</form>
 	
 	<form name="forHomePage" action="./HomePageServlet" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+	
+	<form name="forLogOut" action="./loggedInOutServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 	<section id="container">
@@ -147,7 +155,7 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="./index.jsp">Logout</a></li>
+					<li><a class="logout" href="#" onclick="forLoggedOut()">Logout</a></li>
 				</ul>
 			</div>
 		</header>

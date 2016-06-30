@@ -14,6 +14,7 @@ public class AccountManager {
 	private User currentUser;
 	private Encrypt en;
 	private UserDaoImpl udi;
+	private boolean loggedIn = false;
 
 	// constructor for account manager
 	public AccountManager(Connection con) {
@@ -103,4 +104,14 @@ public class AccountManager {
 	public User getUser() {
 		return currentUser;
 	}
+	
+	public void setLogStatus(boolean logged){
+		this.loggedIn = logged;
+	}
+	
+	public boolean getLogStatus(){
+		return loggedIn;
+	}
+	
+	
 }

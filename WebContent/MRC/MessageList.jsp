@@ -54,6 +54,7 @@
 </head>
 
 <body>
+
 	<script>
 		function submitform() {
 			document.myForm.submit();
@@ -70,9 +71,13 @@
 		function submitRequest() {
 			document.forRequest.submit();
 		}
-		
+
 		function submitHomePage() {
 			document.forHomePage.submit();
+		}
+		
+		function forLoggedOut() {
+			document.forLogOut.submit();
 		}
 	</script>
 	<form name="myForm" action="" method="GET">
@@ -93,8 +98,12 @@
 	<form name="forRequest" action="../ServletRequest" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forHomePage" action="./HomePageServlet" method="GET">
+		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
+	</form>
+
+	<form name="forLogOut" action="./loggedInOutServlet" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
 	<section id="container">
@@ -142,7 +151,7 @@
 			</div>
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="./index.jsp">Logout</a></li>
+					<li><a class="logout" href="#" onclick="forLoggedOut()">Logout</a></li>
 				</ul>
 			</div>
 		</header>
@@ -163,8 +172,8 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a onclick="submitHomePage()" href="#"> <i class="fa fa-book"></i>
-							<span>Home Page</span>
+					<li class="sub-menu"><a onclick="submitHomePage()" href="#">
+							<i class="fa fa-book"></i> <span>Home Page</span>
 					</a>
 					<li class="sub-menu"><a href="./Quiz/CreateQuiz.html"> <i
 							class=" fa"></i> <span>Create Quiz</span>
