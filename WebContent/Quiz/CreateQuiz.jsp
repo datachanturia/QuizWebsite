@@ -187,7 +187,7 @@
 
 				<div class="row">
 					<div class="col-lg-9 main-chart">
-						<form align="center" action="../CreateQuizServlet" method="post">
+						<form align="center" action="./CrQuizServlet" method="post">
 							Quiz Name: <input type="text" name="quizName"
 								placeholder="Enter Quiz Name Here"><br> Quiz
 							Category: <select name="QuizCategory">
