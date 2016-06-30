@@ -37,11 +37,17 @@
 	%>
 	<p>No More Messages</p>
 
+	<%
+		if (m != null) {
+	%>
 	<form name="readForm" action="./MRC/Message.jsp" method="GET">
 		<input type="hidden" id="message" name="message"
 			value="<%=m.getMessage()%>"> <input type="hidden" id="sender"
 			name="sender" value="<%=m.getSenderName()%>">
 	</form>
+	<%
+		}
+	%>
 
 </body>
 </html>
