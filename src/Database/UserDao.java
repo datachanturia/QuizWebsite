@@ -1,5 +1,7 @@
 package Database;
 
+import java.util.ArrayList;
+
 import Model.User;
 
 public interface UserDao {
@@ -9,4 +11,7 @@ public interface UserDao {
 	public boolean existsUser(String email);
 	public void deleteUser(int userID);
 	public void setAdmin(int userID, boolean isAdmin);
+	public ArrayList<Integer> getUserFriends(int userID);
+	public String getUserPhoto(int UserID);
+	public String getUserName(int userID);
 }
