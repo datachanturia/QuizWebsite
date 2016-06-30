@@ -1,4 +1,5 @@
-<%@ page import="ULS.AccountManager"%>
+<%@ page import="ULS.AccountManager" import="Model.Quiz"
+	import="java.util.ArrayList"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +17,44 @@
 	String usId = request.getParameter("usId");
 	int newMsgs = 4;
 	int newRequests = 5;
+
+	// <<<<<<<<<<<<<<<<< day popular quizes start here
+	ArrayList<String> idDPls = new ArrayList<String>();
+	ArrayList<String> nmDPls = new ArrayList<String>();
+
+	int DPSize = Integer.parseInt(request.getParameter("qzDPSize"));
+
+	for (int i = 0; i < DPSize; i++) {
+		nmDPls.add(request.getParameter("qzDPName" + i));
+		idDPls.add(request.getParameter("qzDPId" + i));
+	}
+	// day popular quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
+
+	// <<<<<<<<<<<<<<<<< popular quizes start here
+	ArrayList<String> idPQls = new ArrayList<String>();
+	ArrayList<String> nmPQls = new ArrayList<String>();
+
+	int PQSize = Integer.parseInt(request.getParameter("qzPQSize"));
+
+	for (int i = 0; i < PQSize; i++) {
+		nmPQls.add(request.getParameter("qzPQName" + i));
+		idPQls.add(request.getParameter("qzPQId" + i));
+	}
+	// popular quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
+
+	// <<<<<<<<<<<<<<<<< new quizes start here
+	ArrayList<String> idNQls = new ArrayList<String>();
+	ArrayList<String> nmNQls = new ArrayList<String>();
+	ArrayList<String> dtNQls = new ArrayList<String>();
+
+	int NQSize = Integer.parseInt(request.getParameter("qzNQSize"));
+
+	for (int i = 0; i < NQSize; i++) {
+		nmNQls.add(request.getParameter("qzNQName" + i));
+		idNQls.add(request.getParameter("qzNQId" + i));
+		dtNQls.add(request.getParameter("qzNQDt" + i));
+	}
+	// new quizes end here >>>>>>>>>>>>>>>>>>>>>>>>>
 %> <%=hidden%></title>
 
 
@@ -74,11 +113,11 @@
 	<form name="forMessage" action="../ServletMessage" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forChallenge" action="../ServletChallenge" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
-	
+
 	<form name="forRequest" action="../ServletRequest" method="GET">
 		<input type="hidden" id="usId" name="usId" value="<%=usId%>">
 	</form>
@@ -102,11 +141,12 @@
 				<!--  notification start -->
 				<ul class="nav top-menu">
 					<!-- settings start -->
-					<li class="dropdown"><a onclick="submitRequest()" data-toggle="dropdown"
-						class="dropdown-toggle" href="index.html#"> <i
-							class="fa fa-tasks"></i> <span class="badge bg-theme"> <%
- 	out.println(newRequests);
- %>
+					<li class="dropdown"><a onclick="submitRequest()"
+						data-toggle="dropdown" class="dropdown-toggle" href="index.html#">
+							<i class="fa fa-tasks"></i> <span class="badge bg-theme">
+								<%
+									out.println(newRequests);
+								%>
 						</span>
 					</a></li>
 					<!-- settings end -->
@@ -203,8 +243,14 @@
 							<div class="col-md-4 col-sm-4 mb">
 								<div class="darkblue-panel pn">
 									<div class="darkblue-header">
-										<h5>TOP 5 POPULAR QUIZES</h5>
+										<h5>TOP POPULAR QUIZES</h5>
 									</div>
+									<%
+										for (int i = 0; i < PQSize; i++) {
+											out.println("<h5>" + nmPQls.get(i) + " Quiz"
+													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
+										}
+									%>
 								</div>
 								<!-- /grey-panel -->
 							</div>
@@ -214,8 +260,14 @@
 							<div class="col-md-4 col-sm-4 mb">
 								<div class="white-panel pn">
 									<div class="white-header">
-										<h5>TOP 5 NEW QUIZES</h5>
+										<h5>TOP NEW QUIZES</h5>
 									</div>
+									<%
+										for (int i = 0; i < NQSize; i++) {
+											out.println("<h5> <" + dtNQls.get(i) + "> " + nmNQls.get(i) + " Quiz"
+													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
+										}
+									%>
 								</div>
 							</div>
 							<!-- /col-md-4 -->
@@ -226,6 +278,12 @@
 									<div class="darkblue-header">
 										<h5>QUIZES OF THE DAY</h5>
 									</div>
+									<%
+										for (int i = 0; i < DPSize; i++) {
+											out.println("<h5>" + nmDPls.get(i) + " Quiz"
+													+ " <button style=\"background-color:#555555\"> Take Quiz </button></h5>");
+										}
+									%>
 								</div>
 							</div>
 							<!-- /col-md-4 -->
@@ -370,6 +428,11 @@
 		
 		
 		
+		
+		
+		
+		
+		
         $(document).ready(function () {
             $("#date-popover").popover({html: true, trigger: "manual"});
             $("#date-popover").hide();
@@ -403,6 +466,11 @@
             console.log('nav ' + nav + ' to: ' + to.month + '/' + to.year);
         }
     
+	
+	
+	
+	
+	
 	
 	
 	
