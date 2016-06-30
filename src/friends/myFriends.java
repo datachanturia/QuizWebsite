@@ -48,6 +48,7 @@ public class myFriends extends HttpServlet{
 		
 		fdc.setConnection(con);
 		
+		//SHESACVLELIA
 		ArrayList<Integer> friends = fdc.getUserFriends(1);
 		
 		request.setAttribute("userFriends", friends);
