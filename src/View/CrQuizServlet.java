@@ -69,7 +69,10 @@ public class CrQuizServlet extends HttpServlet {
 			String questionType = request.getParameter("QuestionType_" + counter);
 			if (questionType == null)
 				break;
-			String question = request.getParameter("Question_" + counter);
+			String f = "";
+			if(questionType.equals("1"))
+				f += "#$%$#"+request.getParameter("member"+counter);
+			String question = request.getParameter("Question_" + counter)+f;
 			ArrayList<Answer> ans = new ArrayList<Answer>();
 			String[] answers = request.getParameterValues("Question_" + counter + "Answer");
 			String[] correct = request.getParameterValues("Question_" + counter + "AnswerCorrect");
