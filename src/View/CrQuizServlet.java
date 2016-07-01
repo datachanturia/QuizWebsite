@@ -53,7 +53,6 @@ public class CrQuizServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// TODO Auto-generated method stub
 		Connection con = null;
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 		String quizName = request.getParameter("quizName");
@@ -91,7 +90,7 @@ public class CrQuizServlet extends HttpServlet {
 			con = DataSource.getInstance().getConnection();
 			QuizDaoImpl quizdao = new QuizDaoImpl(con);
 			User user = am.getUser();
-			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, "", createDate, questions, description, random,
+			Quiz quiz = new Quiz(0, quizName, user.getUserID(), score, category, createDate, questions, description, random,
 					multiple, immediate);
 			quizdao.addUserCreatedQuiz(user.getUserID(), quiz);
 		} catch (Exception e) {

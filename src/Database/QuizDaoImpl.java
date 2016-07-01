@@ -27,7 +27,7 @@ public class QuizDaoImpl implements QuizDao {
 		try {
 			Statement stmt = con.createStatement();
 			ResultSet rs = stmt
-					.executeQuery("select quizID from Quiz where authorID = " + userID + " and isdelete = 0");
+					.executeQuery("select quizID from Quiz where authorID=" + userID + " and isdelete=0");
 			while (rs.next()) {
 				Quiz qz = getQuiz(rs.getInt("quizID"));
 				quizes.add(qz);
@@ -61,7 +61,7 @@ public class QuizDaoImpl implements QuizDao {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Quiz where quizID = " + quizID + " and isdelete = 0");
+			ResultSet rs = stmt.executeQuery("select * from quiz where quizID=" + quizID + " and isdelete=0");
 			while (rs.next()) {
 				QuestionDaoImpl qdi = new QuestionDaoImpl(con);
 
@@ -218,10 +218,7 @@ public class QuizDaoImpl implements QuizDao {
 			Statement stmt = con.createStatement();
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
-			PreparedStatement prdtmt = con
-					.prepareStatement("select * from TakenQuiz where userID="+userID+"and quizID="+quizID);
-
-			ResultSet rs = prdtmt.executeQuery();
+			ResultSet rs = stmt.executeQuery("select * from TakenQuiz where userID="+userID+" and quizID="+quizID);
 			while (rs.next()) {
 				tq.add(new TakenQuiz(rs.getDate("takedate"), rs.getInt("score")));
 			}
