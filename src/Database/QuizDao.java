@@ -15,6 +15,7 @@ public interface QuizDao {
 	public void addUserTakenQuiz(int userID, int quizID, Date taketime, int score);
 	public void deleteQuiz(int quizID);
 	public ArrayList<TakenQuiz> takenquiz(int quizID,int userID);
+	public ArrayList<TakenQuiz> topPerformers(int quizID, boolean lastday,boolean recent);
 	public ArrayList<Quiz> getPopularQuiz();
 	public ArrayList<Quiz> getDayPopularQuiz();
 	public ArrayList<Quiz> getNewQuiz();

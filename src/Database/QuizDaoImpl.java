@@ -229,4 +229,29 @@ public class QuizDaoImpl implements QuizDao {
 		return tq;
 	}
 
+	@Override
+	public ArrayList<TakenQuiz> topPerformers(int quizID, boolean lastday, boolean recent) {
+		ArrayList<TakenQuiz> tq = new ArrayList<TakenQuiz>();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+			String query = "";
+			if(lastday)
+				query = "select * from TakenQuiz where quizID="+quizID+" and date_sub(curdate(),interval 1 day) order by score desc limit 6";
+			else if(recent)
+				query = "select * from TakenQuiz where quizID="+quizID+" order by takedate desc limit 6";
+			else
+				query = "select * from TakenQuiz where quizID="+quizID+" order by score desc limit 6";
+			
+			ResultSet rs = stmt.executeQuery(query);
+			
+			while (rs.next()) {
+				tq.add(new TakenQuiz(rs.getInt("userID"),rs.getInt("quizID"),rs.getDate("takedate"), rs.getInt("score")));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return tq;
+	}
+
 }
