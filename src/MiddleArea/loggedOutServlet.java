@@ -49,18 +49,6 @@ public class loggedOutServlet extends HttpServlet {
 		try {
 			con = DataSource.getInstance().getConnection();
 
-			// ------------------------------------------
-			QuizDaoImpl qdi = new QuizDaoImpl(con);
-
-			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
-			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
-			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
-
-			request.setAttribute("dayPopuLs", dayPopuLs);
-			request.setAttribute("popQuizLs", popQuizLs);
-			request.setAttribute("newQuizLs", newQuizLs);
-			// --------------------------------------------------
-
 			rd = request.getRequestDispatcher("./index.jsp");
 
 		} finally {

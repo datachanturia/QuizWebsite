@@ -33,7 +33,7 @@
 					class=" fa"></i> <span><button
 							style="background-color: #555555">Change Password</button></span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="./ChangePictureServlet"> <i class=" fa"></i>
 					<span><button style="background-color: #555555">Change
 							Profile Picture</button></span>
 			</a></li>

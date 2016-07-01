@@ -16,12 +16,11 @@
       *********************************************************************************************************************************************************** -->
 
 
-<form align="center" action="../chProfilePicServlet" method="post">
+<form align="center" action="./chProfilePicServlet" method="POST">
 	<H3 align="center">Change profile picture</H3>
-	Type profile picture URL: <input type="text" name="picturePath"
-		placeholder="picture URL"> <input type="submit" value="Done" />
-
-	<input type="hidden" name="userID" value=1>
+	Type profile picture URL: <input name="picturePath" type="text"
+		placeholder="picture URL" id="picturePath" required />
+	<button>Done</button>
 </form>
 
 <!-- **********************************************************************************************************************************************************

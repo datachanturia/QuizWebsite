@@ -57,7 +57,7 @@ public class UserDaoImpl implements UserDao {
 
 			ResultSet rs = prdtmt.executeQuery();
 			if (rs.next()) {
-				return true;		
+				return true;
 			}
 			return false;
 		} catch (SQLException e) {
@@ -80,7 +80,6 @@ public class UserDaoImpl implements UserDao {
 			preparedStatement.setDate(5, user.getCreateDate());
 			preparedStatement.setBoolean(6, user.isAdmin());
 			preparedStatement.setBoolean(7, user.isSoc());
-			
 
 			preparedStatement.execute();
 		} catch (SQLException e) {
@@ -113,84 +112,85 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
-	public ArrayList<Integer> getUserFriends(int userID){
+	public ArrayList<Integer> getUserFriends(int userID) {
 		ArrayList<Integer> friends = new ArrayList<Integer>();
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
-			ResultSet res = stm.executeQuery("select friendID from Friends where userID = " + userID + "and isdelete = 0");
-			while(res.next()){
+			ResultSet res = stm
+					.executeQuery("select friendID from Friends where userID = " + userID + "and isdelete = 0");
+			while (res.next()) {
 				friends.add(res.getInt("friendID"));
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
-		}		
-		
+		}
+
 		return friends;
 	}
-	
-	public String getUserPhoto(int userID){
+
+	public String getUserPhoto(int userID) {
 		String photo = "";
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
 			ResultSet res = stm.executeQuery("select photo from Users where userID = " + userID);
-			while(res.next()){
+			while (res.next()) {
 				photo = res.getString("photo");
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return photo;		
+		return photo;
 	}
-	
-	public String getUserName(int userID){
+
+	public String getUserName(int userID) {
 		String userName = "";
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
 			ResultSet res = stm.executeQuery("select username from Users where userID = " + userID);
-			while(res.next()){
+			while (res.next()) {
 				userName = res.getString("username");
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		return userName;		
+		return userName;
 	}
-	
-	public ArrayList<Integer> getUserIDs(String username){
+
+	public ArrayList<Integer> getUserIDs(String username) {
 		ArrayList<Integer> users = new ArrayList<Integer>();
-		
+
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
-			ResultSet res = stm.executeQuery("select userID from Users where username = \"" + username + "\" and isdelete = 0");
-			while(res.next()){
+			ResultSet res = stm
+					.executeQuery("select userID from Users where username = \"" + username + "\" and isdelete = 0");
+			while (res.next()) {
 				users.add(res.getInt("userID"));
 			}
-			
+
 		} catch (SQLException e) {
-			
+
 			e.printStackTrace();
 		}
-		
+
 		return users;
 	}
-	
-	public void setProfilePicture(int userID, String picturePath){
-		
+
+	public void setProfilePicture(int userID, String picturePath) {
+
 		PreparedStatement preparedStatement;
 		try {
-			preparedStatement = con
-					.prepareStatement("update Users set photo = ? " + "where userID = " + userID);
+			preparedStatement = con.prepareStatement("update Users set photo = ? " + "where userID = " + userID);
 			preparedStatement.setString(1, picturePath);
 			preparedStatement.execute();
 		} catch (SQLException e) {

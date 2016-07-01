@@ -5,15 +5,14 @@ import java.sql.Connection;
 import Database.UserDaoImpl;
 
 public class changeProfPicDBaseCon {
-	
-	java.sql.Connection con;
-	UserDaoImpl udi;
-	
-	public changeProfPicDBaseCon(Connection con){
-		this.con = con;
+
+	private UserDaoImpl udi;
+
+	public changeProfPicDBaseCon(Connection con) {
+		udi = new UserDaoImpl(con);
 	}
-	
-	public void changePicture(int userID, String picturePath){
+
+	public void changePicture(int userID, String picturePath) {
 		udi.setProfilePicture(userID, picturePath);
 	}
 
