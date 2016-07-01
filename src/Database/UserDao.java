@@ -15,4 +15,5 @@ public interface UserDao {
 	public String getUserPhoto(int UserID);
 	public String getUserName(int userID);
 	public ArrayList<Integer> getUserIDs(String username);
+	public void setProfilePicture(int userID, String picturePath);
 }
