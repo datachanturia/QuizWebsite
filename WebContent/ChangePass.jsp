@@ -96,8 +96,8 @@
 					<h5 class="centered">
 						<%=hidden%>
 					</h5>
-					<li class="sub-menu"><a href="./HomePageServlet"> <i
-							class="fa fa-book"></i> <span>Home Page</span>
+					<li class="sub-menu"><a href="./HomePageServlet">
+							<i class="fa fa-book"></i> <span>Home Page</span>
 					</a></li>
 					<li class="sub-menu"><a href="./createQuizServlet"> <i
 							class=" fa"></i> <span>Create Quiz</span>
@@ -111,7 +111,7 @@
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
 					</a></li>
-					<li class="sub-menu"><a href="./ChangePassServlet"> <i
+					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Change Password</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
@@ -151,57 +151,22 @@
 				<div class="row">
 					<div class="col-lg-9 main-chart">
 
-
+						<!-- start row -->
 						<div class="row mt">
-							<%
-								MessageManager mm = (MessageManager) request.getAttribute("MessManager");
-								int len = 20;
-								Message m = null;
-
-								for (int i = 0; i < mm.getMessages().size(); i++) {
-									m = mm.getMessages().get(i);
-									String sender = m.getSenderName();
-									String msg = m.getMessage();
-									if (msg.length() > len) {
-										msg = msg.substring(0, len) + "...";
-									}
-							%>
-							<p>
-								<%
-									sender += "\t" + msg;
-								%>
-								<button onclick="readForm()">Read</button>
-							</p>
-
-							<br> <br>
-							<%
-								}
-							%>
-							<h5 class="centered">End Of Messages</h5>
-
-							<%
-								if (m != null) {
-							%>
-							<form name="readForm" action="./MRC/Message.jsp" method="GET">
-								<input type="hidden" id="message" name="message"
-									value="<%=m.getMessage()%>"> <input type="hidden"
-									id="sender" name="sender" value="<%=m.getSenderName()%>">
-							</form>
-							<%
-								}
-							%>
-
-
+							<!-- start 1 black panel -->
+							
+							<!-- end 3 black panel -->
 						</div>
-						<!-- /row -->
+						<!-- end row -->
 
 					</div>
-					<!-- /col-lg-9 END SECTION MIDDLE -->
+					<!-- END SECTION MIDDLE -->
 
 
 					<!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT
       *********************************************************************************************************************************************************** -->
+
 					<div class="col-lg-3 ds">
 						<!-- Admin Posts Start -->
 						<h3>

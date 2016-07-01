@@ -146,7 +146,7 @@
 					<li class="sub-menu"><a href="javascript:;"> <i
 							class=" fa"></i> <span>Search Quizes</span>
 					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
+					<li class="sub-menu"><a href="./ChangePassServlet"> <i
 							class=" fa"></i> <span>Change Password</span>
 					</a></li>
 					<li class="sub-menu"><a href="javascript:;"> <i
