@@ -23,7 +23,7 @@
 <%
 AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 int userid = am.getUser().getUserID();
-int quizid = request.getparameter("quizID");
+int quizid = Integer.parseInt(request.getParameter("quizID"));
 Connection con = null;
 Quiz currquiz = null;
 ArrayList<TakenQuiz> taken = null;
@@ -172,7 +172,6 @@ if (con != null){
 
 <form action="attemptQuizServlet">
   <input type="hidden" name="quizID" value=<%=quizid%>>
-  <br><br>
   <input type="submit" value="Attempt Quiz">
 </form>
 
