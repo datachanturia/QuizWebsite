@@ -76,8 +76,7 @@ public class chProfilePicServlet extends HttpServlet {
 			dbCon.changePicture(userID, picturePath);
 
 			am.getUser().setPhoto(picturePath);
-			System.out.println(picturePath);
-
+			
 			rd = request.getRequestDispatcher("./loggedIn/homeUser.jsp");
 		} finally {
 			if (con != null)
