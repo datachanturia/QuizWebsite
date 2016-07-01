@@ -15,15 +15,17 @@
 <script type="text/javascript">
 	var i = 1;
 	var j = 1;
+	var additionalfieldcounter = 0
 	function addQuestion() {
 		i++;
 		j = 1;
+		additionalfieldcounter=0;
 		var div = document.createElement('div');
 		div.setAttribute('class', 'myclass');
 		div.innerHTML = '<br>'
 				+ '---------------------------------------------------------------------------------------------------------------------------------------'
 				+ '<br>'
-				+ 'Question Type: <select name="QuestionType_'+i+'"><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_'+i+'" rows="2" cols="30" placeholder="Enter Question Here"></textarea><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
+				+ '<div id="Questiondiv_'+i+'">Question Type: <select name="QuestionType_'+i+'" onchange=\'addField(this)\'><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_'+i+'" rows="2" cols="30" placeholder="Enter Question Here"></textarea></div><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
 		document.getElementById('Questions').appendChild(div);
 
 	}
@@ -44,6 +46,27 @@
 
 	function removeAnswer(div) {
 		document.getElementById('Questions').removeChild(div.parentNode);
+	}
+	
+	function addField(div){
+		 var element=document.getElementById(div.parentNode.id);
+		 var currid = parseInt(div.name.split("_").pop());
+		 if(div.value==1 && additionalfieldcounter==0){
+			document.getElementsByName("Question_"+currid)[0].value="Enter Text Before Blank Here";
+			var input = document.createElement("textarea");
+			input.type = "text";
+		    input.name = "member" + currid;
+		    input.id = "member" + currid;
+		    input.placeholder = "Enter Text After Blank Here";
+		    element.appendChild(input);
+		    additionalfieldcounter++;
+		}else{
+			if(additionalfieldcounter > 0){
+				element.removeChild(document.getElementById("member"+currid));
+				document.getElementsByName("Question_"+currid)[0].value="Enter Question Here";
+				additionalfieldcounter--;
+			}
+		}
 	}
 </script>
 
@@ -73,8 +96,8 @@
 	<br>
 
 	<div id="Questions">
-
-		Question Type: <select name="QuestionType_1">
+		<div id="Questiondiv_1">
+		Question Type: <select name="QuestionType_1" onchange='addField(this)'>
 			<option value="0">Question Response</option>
 			<option value="1">Fill In The Blank</option>
 			<option value="2">Multiple Choice</option>
@@ -84,6 +107,7 @@
 		</select> <br> <br> Question Text:
 		<textarea name="Question_1" rows="2" cols="30"
 			placeholder="Enter Question Here"></textarea>
+		</div>
 		<br> Answer:
 		<textarea name="Question_1Answer" rows="2" cols="30"
 			placeholder="Enter Answer Here"></textarea>
