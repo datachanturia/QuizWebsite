@@ -4,7 +4,7 @@
 <meta charset="ISO-8859-1">
 
 <title>Quiz Website <%
-	AccountManager am = (AccountManager) request.getAttribute("accManager");
+	AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
 	String hidden = am.getUser().getUsername();
 	String fphoto = am.getUser().getPhoto();

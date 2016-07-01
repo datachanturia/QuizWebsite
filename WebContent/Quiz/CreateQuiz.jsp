@@ -65,7 +65,9 @@
 		type="radio" name="Page" value="One">One Page <br> <br>
 	<input type="checkbox" name="immediate" value="immediate">Immediate
 	Correction<br> <br> <input type="checkbox" name="practice"
-		value="practice">Practice Mode<br> <br>
+		value="practice">Practice Mode<br> <br> <br>
+	---------------------------------------------------------------------------------------------------------------------------------------
+	<br>
 
 	<div id="Questions">
 
@@ -84,9 +86,11 @@
 			placeholder="Enter Answer Here"></textarea>
 		<input type="checkbox" name="Question_1AnswerCorrect" value="q1a1">Correct
 		Answer
-
 	</div>
-	<input type="button" id="add_answer()" onClick="addAnswer()"
+
+	<br>
+	---------------------------------------------------------------------------------------------------------------------------------------
+	<br> <input type="button" id="add_answer()" onClick="addAnswer()"
 		value="Add Answer" /> <input type="button" id="add_kid()"
 		onClick="addQuestion()" value="Add Question" /> <input type="submit"
 		name="submit" value="submit" />
