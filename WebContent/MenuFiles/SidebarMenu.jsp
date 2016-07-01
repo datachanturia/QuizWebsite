@@ -32,6 +32,9 @@
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Change Profile Picture</span>
 			</a></li>
+			<%
+				if (isAdmin.equals("true")) {
+			%>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Write Post</span>
 			</a></li>
@@ -44,6 +47,9 @@
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Remove Quiz</span>
 			</a></li>
+			<%
+				}
+			%>
 		</ul>
 		<!-- sidebar menu end-->
 	</div>
