@@ -26,12 +26,18 @@
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Search Quizes</span>
 			</a></li>
+			<%
+				if (!am.getUser().isSoc()) {
+			%>
 			<li class="sub-menu"><a href="./ChangePassServlet"> <i
 					class=" fa"></i> <span>Change Password</span>
 			</a></li>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Change Profile Picture</span>
 			</a></li>
+			<%
+				}
+			%>
 			<%
 				if (isAdmin.equals("true")) {
 			%>
