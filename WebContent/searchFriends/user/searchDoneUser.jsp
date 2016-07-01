@@ -40,16 +40,18 @@
 								con = DataSource.getInstance().getConnection();
 								friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
 								frc.setConnection(con);
+								ArrayList <Integer> friends = (ArrayList<Integer>) request.getAttribute("users");
+								int numberOfFriends = friends.size();
 							%>
 
 							<%
-								int i = 0;
+								int written = 0;
 								for (int j = 0; j < numberOfFriends / 3 + numberOfFriends % 3; j++) {
 							%>
 
 							<tr>
 								<%
-									for (int k = 0; k < 3 && i < numberOfFriends; k++, i++) {
+									for (int k = 0; k < 3 && i < numberOfFriends; k++, written++) {
 								%>
 								<td bgcolor="#444c57" height="200" width="175" valign="top"
 									align="center">
