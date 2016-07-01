@@ -44,13 +44,8 @@ public class friendsSearchServlet extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
 		try {
-			con = DataSource.getInstance().getConnection();
-
-
-			request.setAttribute("accManager", am);
 
 			rd = request.getRequestDispatcher("./searchFriends/user/searchUserFriends.jsp");
 

@@ -45,15 +45,12 @@ public class HomePageServlet extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
 		try {
 			con = DataSource.getInstance().getConnection();
 
 			// ------------------------------------------
 			QuizDaoImpl qdi = new QuizDaoImpl(con);
-
-			request.setAttribute("accManager", am);
 
 			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();

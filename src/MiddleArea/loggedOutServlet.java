@@ -43,7 +43,7 @@ public class loggedOutServlet extends HttpServlet {
 
 		RequestDispatcher rd;
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
-		
+
 		am.setLogStatus(false);
 
 		try {
@@ -51,8 +51,6 @@ public class loggedOutServlet extends HttpServlet {
 
 			// ------------------------------------------
 			QuizDaoImpl qdi = new QuizDaoImpl(con);
-
-			request.setAttribute("accManager", am);
 
 			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();

@@ -41,11 +41,7 @@ public class ChangePassServlet extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
-
 		try {
-			request.setAttribute("accManager", am);
-
 			rd = request.getRequestDispatcher("./ChangePass.jsp");
 
 		} finally {

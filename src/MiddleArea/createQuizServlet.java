@@ -44,12 +44,8 @@ public class createQuizServlet extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
 		try {
-			con = DataSource.getInstance().getConnection();
-
-			request.setAttribute("accManager", am);
 
 			rd = request.getRequestDispatcher("./Quiz/CreateQuiz.jsp");
 

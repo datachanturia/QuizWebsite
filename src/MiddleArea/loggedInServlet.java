@@ -50,8 +50,6 @@ public class loggedInServlet extends HttpServlet {
 			// ------------------------------------------
 			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
-			request.setAttribute("accManager", am);
-
 			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
 			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
 			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
