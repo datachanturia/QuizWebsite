@@ -184,4 +184,18 @@ public class UserDaoImpl implements UserDao {
 		
 		return users;
 	}
+	
+	public void setProfilePicture(int userID, String picturePath){
+		
+		PreparedStatement preparedStatement;
+		try {
+			preparedStatement = con
+					.prepareStatement("update Users set photo = ? " + "where userID = " + userID);
+			preparedStatement.setString(1, picturePath);
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 }
