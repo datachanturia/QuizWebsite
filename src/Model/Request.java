@@ -9,13 +9,15 @@ public class Request {
 	private int recieverID;
 	private Date sendDate;
 	private boolean isread;
+	private String senderName;
 	
-	public Request(int requestID, int senderID, int recieverID, Date sendDate, boolean isread) {
+	public Request(int requestID, int senderID, int recieverID, Date sendDate, boolean isread, String senderName) {
 		this.requestID = requestID;
 		this.senderID = senderID;
 		this.recieverID = recieverID;
 		this.sendDate = sendDate;
 		this.isread = isread;
+		this.senderName = senderName;
 	}
 
 	public int getRequestID() {
@@ -58,6 +60,12 @@ public class Request {
 		this.isread = isread;
 	}
 	
+	public String getSenderName(){
+		return this.senderName;
+	}
 	
+	public void setSenderName(String senderName){
+		this.senderName = senderName;
+	}
 	
 }
