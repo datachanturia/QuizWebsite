@@ -24,9 +24,11 @@ public class RequestDaoImpl implements RequestDao {
 		ArrayList<Request> requests = new ArrayList<Request>();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from requests where senderID = "+userID+" or receiverID = "+userID);
+			ResultSet rs = stmt.executeQuery("select requestID, senderID, recieverID, senddate, isread, username "
+					+ "from requests inner join users on senderID = userID where receiverID = " + userID);
 			while(rs.next()){
-				Request r = new Request(rs.getInt("requestID"), rs.getInt("senderID"), rs.getInt("receiverID"),rs.getDate("senddate"),rs.getBoolean("isread"));
+				Request r = new Request(rs.getInt("requestID"), rs.getInt("senderID"), rs.getInt("receiverID"), rs.getDate("senddate"), 
+						rs.getBoolean("isread"), rs.getString("username"));
 				requests.add(r);
 			}
 		} catch (SQLException e) {
@@ -38,8 +40,8 @@ public class RequestDaoImpl implements RequestDao {
 	@Override
 	public void addRequest(Request request) {
 		try {
-			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO requests (senderID,receiverID,"
-					+ "senddate,isdeleted) VALUES(?,?,?,?)");
+			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO requests (senderID, receiverID, "
+					+ "senddate, isdeleted) VALUES(?,?,?,?)");
 			preparedStatement.setInt(1, request.getSenderID());
 			preparedStatement.setInt(2, request.getRecieverID());
 			preparedStatement.setDate(3, request.getSendDate());
@@ -52,7 +54,15 @@ public class RequestDaoImpl implements RequestDao {
 
 	@Override
 	public void deleteRequest(int requestID) {
-		// TODO Auto-generated method stub
+		try {
+			PreparedStatement prepst = con.prepareStatement("update Messages set isdelete = ? "
+					+ "where requestID = " + requestID);
+			prepst.setInt(1, 1);
+			prepst.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 
 	}
 
