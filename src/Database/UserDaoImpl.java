@@ -172,7 +172,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			Statement stm = con.createStatement();
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
-			ResultSet res = stm.executeQuery("select userID from Users where username = \"" + username + "\"");
+			ResultSet res = stm.executeQuery("select userID from Users where username = \"" + username + "\" and isdelete = 0");
 			while(res.next()){
 				users.add(res.getInt("userID"));
 			}
