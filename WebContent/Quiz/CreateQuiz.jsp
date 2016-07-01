@@ -41,13 +41,13 @@
 		var i = 1;
 		var j = 1;
 		function addQuestion() {
-				i++;
-				j = 1;
-				var div = document.createElement('div');
-				div.setAttribute('class', 'myclass');
-				div.innerHTML = 'Question Type: <select name="QuestionType_'+i+'"><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_" rows="2" cols="30" placeholder="Enter Question Here"></textarea><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
-				document.getElementById('Questions').appendChild(div);
-			
+			i++;
+			j = 1;
+			var div = document.createElement('div');
+			div.setAttribute('class', 'myclass');
+			div.innerHTML = 'Question Type: <select name="QuestionType_'+i+'"><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_" rows="2" cols="30" placeholder="Enter Question Here"></textarea><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
+			document.getElementById('Questions').appendChild(div);
+
 		}
 
 		function removeQuestion(div) {
@@ -56,12 +56,12 @@
 		}
 
 		function addAnswer() {
-				j++;
-				var div = document.createElement('div');
-				div.setAttribute('class', 'myclass');
-				div.innerHTML = 'Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<input type="button" id="remove_answer()" onClick="removeAnswer(this)" value="Remove Answer" /><br>';
-				document.getElementById('Questions').appendChild(div);
-			
+			j++;
+			var div = document.createElement('div');
+			div.setAttribute('class', 'myclass');
+			div.innerHTML = 'Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<input type="button" id="remove_answer()" onClick="removeAnswer(this)" value="Remove Answer" /><br>';
+			document.getElementById('Questions').appendChild(div);
+
 		}
 
 		function removeAnswer(div) {
@@ -119,62 +119,17 @@
 		<!-- **********************************************************************************************************************************************************
       MAIN SIDEBAR MENU
       *********************************************************************************************************************************************************** -->
-		<!--sidebar start-->
-		<aside>
-			<div id="sidebar" class="nav-collapse ">
-				<!-- sidebar menu start-->
-				<ul class="sidebar-menu" id="nav-accordion">
-
-					<p class="centered">
-						<a><img src="<%=fphoto%>" class="img-circle" width="60"></img></a>
-					</p>
-					<h5 class="centered">
-						<%=hidden%>
-					</h5>
-					<li class="sub-menu"><a href="./HomePageServlet"> <i
-							class="fa fa-book"></i> <span>Home Page</span>
-					</a></li>
-					<li class="sub-menu"><a href="./createQuizServlet"> <i
-							class=" fa"></i> <span>Create Quiz</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
-							<span>My Friends</span>
-					</a></li>
-					<li class="sub-menu"><a href="./friendsSearchServlet"> <i
-							class="fa"></i> <span>Search Friends</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Search Quizes</span>
-					</a></li>
-					<li class="sub-menu"><a href="./ChangePassServlet"> <i
-							class=" fa"></i> <span>Change Password</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Change Profile Picture</span>
-					</a></li>
-					<%
-						if (isAdmin.equals("true")) {
-					%>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Write Post</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Make User Admin By Id</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Bann User By Id</span>
-					</a></li>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Remove Quiz</span>
-					</a></li>
-					<%
-						}
-					%>
-				</ul>
-				<!-- sidebar menu end-->
-			</div>
-		</aside>
-		<!--sidebar end-->
+		<%
+			if (isAdmin.equals("true")) {
+		%>
+		<%@ include file="../SidebarMenuAdmin.html"%>
+		<%
+			} else {
+		%>
+		<%@ include file="../SidebarMenuUser.html"%>
+		<%
+			}
+		%>
 
 		<!-- **********************************************************************************************************************************************************
       MAIN CONTENT
