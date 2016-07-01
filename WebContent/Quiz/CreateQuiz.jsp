@@ -61,11 +61,11 @@
 		    element.appendChild(input);
 		    additionalfieldcounter++;
 		}else{
-			if(additionalfieldcounter > 0){
-				element.removeChild(document.getElementById("member"+currid));
-				document.getElementsByName("Question_"+currid)[0].value="Enter Question Here";
+			element.removeChild(document.getElementById("member"+currid));
+			document.getElementsByName("Question_"+currid)[0].value="Enter Question Here";
+			if(additionalfieldcounter > 0)
 				additionalfieldcounter--;
-			}
+			
 		}
 	}
 </script>
