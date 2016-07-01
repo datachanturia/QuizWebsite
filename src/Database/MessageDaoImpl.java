@@ -23,14 +23,16 @@ public class MessageDaoImpl implements MessageDao{
 		
 		try {
 			Statement st = con.createStatement();
-			ResultSet result = st.executeQuery("select * from((select messageID, message, senderName, recieverName, senddate, "
-					+ "isread from Messages join Users on Messages.senderId = Users.userID where Users.userID =" + userID 
-					+ " and isdelete = 0) union (select messageID, message, senderName, recieverName, senddate,"
-					+ "isread from Messages join Users on Messages.recieverID = Users.userID "
-					+ "where Users.userID =" + userID + " and isdelete = 0)) order by senddate DESC");
+			ResultSet result = st.executeQuery("select m.messageID, m.message, m.senderID, m.recieverID, "
+					+ "m.senddate, m.isread, m.username, u.username from "
+					+ "(select messageID, message, senderID, recieverID, senddate, isread, username from "
+					+ "messages inner join users on senderID = userID where (senderID = " + userID + " or "
+							+ "recieverID = " + userID + ") and isdelete = 0) m inner join users u on "
+									+ "m.recieverID = u.userID");
 			while(result.next()){
-				Message message = new Message(result.getInt("messageID"), result.getString("message"), result.getString("senderName"), 
-						result.getString("recieverName"), result.getDate("sendDate"), result.getBoolean("isread"));
+				Message message = new Message(result.getInt("m.messageID"), result.getInt("m.senderID"), result.getInt("m.recieverID"), 
+						result.getString("m.message"), result.getString("m.username"), result.getString("u.username"), 
+						result.getDate("sendDate"), result.getBoolean("isread"));
 				messages.add(message);
 			}
 			
@@ -45,19 +47,12 @@ public class MessageDaoImpl implements MessageDao{
 	@Override
 	public void addMessage(Message message) {
 		try {
-			PreparedStatement prepst = con.prepareStatement("insert into Messages (message,senderName,recieverName,sendDate) "
+			PreparedStatement prepst = con.prepareStatement("insert into Messages (message, senderID, recieverID, sendDate) "
 					+ " values (?,?,?,?)");
 			
-			Statement stForUsers = con.createStatement();
-			ResultSet result = stForUsers.executeQuery("select userID from Users where username = " + message.getSenderName());
-			String sender = result.getString("userID");
-			
-			result = stForUsers.executeQuery("select userID from Users where username = " + message.getRecieverName());
-			String reciever = result.getString("userID");
-			
 			prepst.setString(1, message.getMessage());
-			prepst.setString(2, sender);
-			prepst.setString(3, reciever);
+			prepst.setInt(2, message.getSenderID());
+			prepst.setInt(3, message.getRecieverID());
 			prepst.setDate(4, message.getSendDate());
 			prepst.execute();
 		} catch (SQLException e) {
