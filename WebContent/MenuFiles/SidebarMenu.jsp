@@ -30,10 +30,12 @@
 				if (!am.getUser().isSoc()) {
 			%>
 			<li class="sub-menu"><a href="./ChangePassServlet"> <i
-					class=" fa"></i> <span>Change Password</span>
+					class=" fa"></i> <span><button
+							style="background-color: #555555">Change Password</button></span>
 			</a></li>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
-					<span>Change Profile Picture</span>
+					<span><button style="background-color: #555555">Change
+							Profile Picture</button></span>
 			</a></li>
 			<%
 				}
