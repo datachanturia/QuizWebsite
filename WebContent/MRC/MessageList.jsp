@@ -12,63 +12,53 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-<!--main content start-->
-<section id="main-content">
-	<section class="wrapper">
 
-		<div class="row">
-			<div class="col-lg-9 main-chart">
+<div class="row mt">
+	<%
+		MessageManager mm = (MessageManager) request.getAttribute("MessManager");
+		int len = 20;
+		Message m = null;
 
+		for (int i = 0; i < mm.getMessages().size(); i++) {
+			m = mm.getMessages().get(i);
+			String sender = m.getSenderName();
+			String msg = m.getMessage();
+			if (msg.length() > len) {
+				msg = msg.substring(0, len) + "...";
+			}
+	%>
+	<p>
+		<%
+			sender += "\t" + msg;
+		%>
+		<button onclick="readForm()">Read</button>
+	</p>
 
-				<div class="row mt">
-					<%
-						MessageManager mm = (MessageManager) request.getAttribute("MessManager");
-						int len = 20;
-						Message m = null;
+	<br> <br>
+	<%
+		}
+	%>
+	<h5 class="centered">End Of Messages</h5>
 
-						for (int i = 0; i < mm.getMessages().size(); i++) {
-							m = mm.getMessages().get(i);
-							String sender = m.getSenderName();
-							String msg = m.getMessage();
-							if (msg.length() > len) {
-								msg = msg.substring(0, len) + "...";
-							}
-					%>
-					<p>
-						<%
-							sender += "\t" + msg;
-						%>
-						<button onclick="readForm()">Read</button>
-					</p>
-
-					<br> <br>
-					<%
-						}
-					%>
-					<h5 class="centered">End Of Messages</h5>
-
-					<%
-						if (m != null) {
-					%>
-					<form name="readForm" action="./MRC/Message.jsp" method="GET">
-						<input type="hidden" id="message" name="message"
-							value="<%=m.getMessage()%>"> <input type="hidden"
-							id="sender" name="sender" value="<%=m.getSenderName()%>">
-					</form>
-					<%
-						}
-					%>
+	<%
+		if (m != null) {
+	%>
+	<form name="readForm" action="./MRC/Message.jsp" method="GET">
+		<input type="hidden" id="message" name="message"
+			value="<%=m.getMessage()%>"> <input type="hidden" id="sender"
+			name="sender" value="<%=m.getSenderName()%>">
+	</form>
+	<%
+		}
+	%>
 
 
-				</div>
-				<!-- /row -->
-
-			</div>
-			<!-- /col-lg-9 END SECTION MIDDLE -->
+</div>
+<!-- /row -->
 
 
-			<!-- **********************************************************************************************************************************************************
+<!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
       *********************************************************************************************************************************************************** -->
 
-			<%@ include file="../MenuFiles/RightSidebarNFooter.jsp"%>
+<%@ include file="../MenuFiles/RightSidebarNFooter.jsp"%>

@@ -14,26 +14,15 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-<!--main content start-->
-<section id="main-content">
-	<section class="wrapper">
-
-		<div class="row">
-			<div class="col-lg-9 main-chart">
-
-				<form align="center" action="./searchFriendsServlet" method="post">
-					Search Friends: <input type="text" name="username"
-						placeholder="username"> <input type="submit"
-						value="search" />
-				</form>
-
-			</div>
-			<!-- /col-lg-9 END SECTION MIDDLE -->
+<form align="center" action="./searchFriendsServlet" method="post">
+	Search Friends: <input type="text" name="username"
+		placeholder="username"> <input type="submit" value="search" />
+</form>
 
 
 
-			<!-- **********************************************************************************************************************************************************
+<!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
       *********************************************************************************************************************************************************** -->
 
-			<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>
+<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>

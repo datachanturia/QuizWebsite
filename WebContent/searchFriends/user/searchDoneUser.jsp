@@ -14,97 +14,71 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-<!--main content start-->
-<section id="main-content">
-	<section class="wrapper">
 
-		<div class="row">
-			<div class="col-lg-9 main-chart">
-
-				<form align="center" action="./searchFriendsServlet" method="post">
-					Search Friends: <input type="text" name="username"
-						placeholder="username"> <input type="submit"
-						value="search" />
-				</form>
-				<h4 align="center">My Friends</h4>
+<form align="center" action="./searchFriendsServlet" method="post">
+	Search Friends: <input type="text" name="username"
+		placeholder="username"> <input type="submit" value="search" />
+</form>
+<h4 align="center">My Friends</h4>
 
 
-				<div class="row mt">
-					<!-- SERVER STATUS PANELS -->
-					<div class="center" align="center">
-						<table border="1">
+<div class="row mt">
+	<!-- SERVER STATUS PANELS -->
+	<div class="center" align="center">
+		<table border="1">
 
-							<%
-								
-								Connection con;
-								con = DataSource.getInstance().getConnection();
-								friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
-								frc.setConnection(con);
-								ArrayList <Integer> friends = (ArrayList<Integer>) request.getAttribute("users");
-								int numberOfFriends = friends.size();
-							%>
+			<%
+				Connection con;
+				con = DataSource.getInstance().getConnection();
+				friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
+				frc.setConnection(con);
 
-							<%
-								int written = 0;
-								for (int j = 0; j < numberOfFriends / 3 + numberOfFriends % 3; j++) {
-							%>
+				ArrayList<Integer> friends = (ArrayList<Integer>) request.getAttribute("users");
+				int numberOfFriends = friends.size();
+			%>
 
-							<tr>
-								<%
-									for (int k = 0; k < 3 && i < numberOfFriends; k++, written++) {
-								%>
-								<td bgcolor="#444c57" height="200" width="175" valign="top"
-									align="center">
-									<%
-										String userPhoto = frc.getUserPhoto(friends.get(j * 2 + k));
-												String userName = frc.getUserName(friends.get(j * 2 + k));
-									%>
-									<div class="darkblue-panel pn">
-										<img src="<%=userPhoto%>" vspace="10" width=80 height=80
-											class="img-circle"></img>
+			<%
+				int i = 0;
+				for (int j = 0; j < numberOfFriends / 3 + numberOfFriends % 3; j++) {
+			%>
 
-										<p align="center">
-											<font size="+1.5" color="#ffebbb"> <%=userName%></font>
-										<h5>
-											<button style="background-color: #555555">Add Friend</button>
-										</h5>
-										<h5>
-											<button style="background-color: #555555">Challenge
-												Friend</button>
-										</h5>
-										<h5>
-											<button style="background-color: #555555">Send
-												Message</button>
-										</h5>
-										</p>
-									</div>
-								</td>
-								<%
-									}
-								%>
-							</tr>
-							<%
-								}
-								if (con != null)
-									try {
-										con.close();
-									} catch (SQLException e) {
-									}
-							%>
+			<tr>
+				<%
+					for (int k = 0; k < 3 && i < numberOfFriends; k++, i++) {
+				%>
+				<td bgcolor="#444c57" height="200" width="175" valign="top"
+					align="center">
+					<%
+						String userPhoto = frc.getUserPhoto(friends.get(j * 2 + k));
+								String userName = frc.getUserName(friends.get(j * 2 + k));
+					%> <img src="<%=userPhoto%>" vspace="10" width=80 height=80
+					class="img-circle"></img>
+					<p align="center">
+						<font size="+1.5" color="#ffebbb"> <%=userName%></font>
+					</p>
+				</td>
+				<%
+					}
+				%>
+			</tr>
+			<%
+				}
+				if (con != null)
+					try {
+						con.close();
+					} catch (SQLException e) {
+					}
+			%>
 
-						</table>
-					</div>
+		</table>
+	</div>
 
-					<!-- /row -->
-				</div>
+	<!-- /row -->
+</div>
 
 
-			</div>
-			<!-- /col-lg-9 END SECTION MIDDLE -->
-
-
-			<!-- **********************************************************************************************************************************************************
+<!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
       *********************************************************************************************************************************************************** -->
 
-			<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>
+<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>

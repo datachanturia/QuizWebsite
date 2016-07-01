@@ -14,30 +14,30 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-<!--main content start-->
-<section id="main-content">
-	<section class="wrapper">
 
-		<div class="row">
-			<div class="col-lg-9 main-chart">
+<%
+	String username = request.getParameter("username");
+	String message = "No user with name '" + username + "' found...";
+	if (username == null || username == "")
+		message = "Please type username...";
+%>
 
-				<form align="center" action="./searchFriendsServlet" method="post">
-					Search Friends: <input type="text" name="username"
-						placeholder="username"> <input type="submit"
-						value="search" />
-				</form>
+<form align="center" action="./searchFriendsServlet" method="post">
+	Search Friends: <input type="text" name="username"
+		placeholder="username"> <input type="submit" value="search" />
+</form>
 
-				<h3 align="center">
-					<%=message%></h3>
-				<h3 align="center">Please try again...</h3>
+<h3 align="center">
+	<%=message%></h3>
 
-			</div>
-			<!-- /col-lg-9 END SECTION MIDDLE -->
+<h3 align="center">Please try again...</h3>
 
+<!-- /col-lg-9 END SECTION MIDDLE -->
 
 
-			<!-- **********************************************************************************************************************************************************
+
+<!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
       *********************************************************************************************************************************************************** -->
 
-			<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>
+<%@ include file="../../MenuFiles/RightSidebarNFooter.jsp"%>
