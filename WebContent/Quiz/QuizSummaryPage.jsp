@@ -9,21 +9,21 @@
 <%@page import="dataSrc.DataSource"%>
 <%@page import="ULS.AccountManager" %>
 
+<%@ include file="../MenuFiles/HeadOfFile.jsp"%>
+
+<!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+<%@ include file="../MenuFiles/SidebarMenu.jsp"%>
 
 
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Quiz Summary</title>
-</head>
-<body>
+<!-- **********************************************************************************************************************************************************
+      MAIN CONTENT
+      *********************************************************************************************************************************************************** -->
+
 <%
-AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 int userid = am.getUser().getUserID();
-int quizid = Integer.parseInt(request.getParameter("quizID"));
+int quizid = 1;//Integer.parseInt(request.getParameter("quizID"));
 Connection con = null;
 Quiz currquiz = null;
 ArrayList<TakenQuiz> taken = null;
@@ -175,10 +175,9 @@ if (con != null){
   <input type="submit" value="Attempt Quiz">
 </form>
 
+<!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT AND FOOTER
+      *********************************************************************************************************************************************************** -->
 
+<%@ include file="../MenuFiles/RightSidebarNFooter.jsp"%>
 
-
-
-
-</body>
-</html>
