@@ -35,6 +35,7 @@
 						<table border="1">
 
 							<%
+								
 								Connection con;
 								con = DataSource.getInstance().getConnection();
 								friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
