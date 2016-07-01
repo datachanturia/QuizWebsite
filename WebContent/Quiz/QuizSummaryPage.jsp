@@ -31,7 +31,7 @@ try {
 	con = DataSource.getInstance().getConnection();
 	QuizDaoImpl quizdao = new QuizDaoImpl(con);
 	currquiz = quizdao.getQuiz(1);
-	taken = quizdao.takenquiz(userid, currquiz.getQuizID());
+	taken = quizdao.takenquiz(currquiz.getQuizID(),userid);
 	UserDaoImpl userdao = new UserDaoImpl(con);
 	authorName = userdao.getUserName(currquiz.getAuthorID());
 } catch (Exception e) {
@@ -48,12 +48,12 @@ try {
 <label>Description : </label> <%=currquiz.getDescription() %><br><br>
 <label>Author : </label> 
 <%
-out.print("< a href = "+"servleti romelic userpages agenerirebs"+"> ");
+out.print("<a href = \"servlet.html\"> ");
 out.print(authorName) ;
 out.print("</a>");
 %>
 
-<table style="width:50%">
+<table border="1" style="width:50%">
   <tr>
     <th>Date</th>
     <th>Time</th>

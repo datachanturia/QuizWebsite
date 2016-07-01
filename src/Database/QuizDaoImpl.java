@@ -219,6 +219,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			ResultSet rs = stmt.executeQuery("select * from TakenQuiz where userID="+userID+" and quizID="+quizID);
+		
 			while (rs.next()) {
 				tq.add(new TakenQuiz(rs.getDate("takedate"), rs.getInt("score")));
 			}
