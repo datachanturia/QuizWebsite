@@ -19,7 +19,7 @@
 	Search Friends: <input type="text" name="username"
 		placeholder="username"> <input type="submit" value="search" />
 </form>
-<h4 align="center">My Friends</h4>
+<h4 align="center">Search Result</h4>
 
 
 <div class="row mt">
