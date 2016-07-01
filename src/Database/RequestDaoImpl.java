@@ -24,7 +24,7 @@ public class RequestDaoImpl implements RequestDao {
 		ArrayList<Request> requests = new ArrayList<Request>();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select requestID, senderID, recieverID, senddate, isread, username "
+			ResultSet rs = stmt.executeQuery("select requestID, senderID, receiverID, senddate, isread, username "
 					+ "from requests inner join users on senderID = userID where receiverID = " + userID + " isdelete = 0");
 			while(rs.next()){
 				Request r = new Request(rs.getInt("requestID"), rs.getInt("senderID"), rs.getInt("receiverID"), rs.getDate("senddate"), 
@@ -43,7 +43,7 @@ public class RequestDaoImpl implements RequestDao {
 			PreparedStatement preparedStatement = con.prepareStatement("INSERT INTO requests (senderID, receiverID, "
 					+ "senddate, isdeleted) VALUES(?,?,?,?)");
 			preparedStatement.setInt(1, request.getSenderID());
-			preparedStatement.setInt(2, request.getRecieverID());
+			preparedStatement.setInt(2, request.getReceiverID());
 			preparedStatement.setDate(3, request.getSendDate());
 			preparedStatement.setBoolean(4, false);
 			preparedStatement.execute();

@@ -6,15 +6,15 @@ public class Request {
 	
 	private int requestID;
 	private int senderID;
-	private int recieverID;
+	private int receiverID;
 	private Date sendDate;
 	private boolean isread;
 	private String senderName;
 	
-	public Request(int requestID, int senderID, int recieverID, Date sendDate, boolean isread, String senderName) {
+	public Request(int requestID, int senderID, int receiverID, Date sendDate, boolean isread, String senderName) {
 		this.requestID = requestID;
 		this.senderID = senderID;
-		this.recieverID = recieverID;
+		this.receiverID = receiverID;
 		this.sendDate = sendDate;
 		this.isread = isread;
 		this.senderName = senderName;
@@ -36,12 +36,12 @@ public class Request {
 		this.senderID = senderID;
 	}
 
-	public int getRecieverID() {
-		return recieverID;
+	public int getReceiverID() {
+		return receiverID;
 	}
 
-	public void setRecieverID(int recieverID) {
-		this.recieverID = recieverID;
+	public void setReceiverID(int receiverID) {
+		this.receiverID = receiverID;
 	}
 
 	public Date getSendDate() {

@@ -6,19 +6,19 @@ public class Message {
 	
 	private int messageID;
 	private int senderID;
-	private int recieverID;
+	private int receiverID;
 	private String message;
 	private String senderName;
 	private String recieverName;
 	private Date sendDate;
 	private boolean isread;
 	
-	public Message(int messageID, int senderID, int recieverID, String message, String senderName, String recieverName, Date sendDate,
+	public Message(int messageID, int senderID, int receiverID, String message, String senderName, String recieverName, Date sendDate,
 			boolean isread) {
 		super();
 		this.messageID = messageID;
 		this.senderID = senderID;
-		this.recieverID = recieverID;
+		this.receiverID = receiverID;
 		this.message = message;
 		this.senderName = senderName;
 		this.recieverName = recieverName;
@@ -37,11 +37,11 @@ public class Message {
 	public void setSenderID(int senderID){
 		this.senderID = senderID;
 	}
-	public int getRecieverID(){
-		return this.recieverID;
+	public int getReceiverID(){
+		return this.receiverID;
 	}
-	public void setRecieverID(int recieverID){
-		this.recieverID = recieverID;
+	public void setReceiverID(int receiverID){
+		this.receiverID = receiverID;
 	}
 	public String getMessage() {
 		return message;

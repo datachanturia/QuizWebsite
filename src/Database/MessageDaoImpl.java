@@ -23,14 +23,14 @@ public class MessageDaoImpl implements MessageDao{
 		
 		try {
 			Statement st = con.createStatement();
-			ResultSet result = st.executeQuery("select m.messageID, m.message, m.senderID, m.recieverID, "
+			ResultSet result = st.executeQuery("select m.messageID, m.message, m.senderID, m.receiverID, "
 					+ "m.senddate, m.isread, m.username, u.username from "
-					+ "(select messageID, message, senderID, recieverID, senddate, isread, username from "
+					+ "(select messageID, message, senderID, receiverID, senddate, isread, username from "
 					+ "messages inner join users on senderID = userID where (senderID = " + userID + " or "
-							+ "recieverID = " + userID + ") and isdelete = 0) m inner join users u on "
-									+ "m.recieverID = u.userID");
+							+ "receiverID = " + userID + ") and isdelete = 0) m inner join users u on "
+									+ "m.receiverID = u.userID");
 			while(result.next()){
-				Message message = new Message(result.getInt("m.messageID"), result.getInt("m.senderID"), result.getInt("m.recieverID"), 
+				Message message = new Message(result.getInt("m.messageID"), result.getInt("m.senderID"), result.getInt("m.receiverID"), 
 						result.getString("m.message"), result.getString("m.username"), result.getString("u.username"), 
 						result.getDate("sendDate"), result.getBoolean("isread"));
 				messages.add(message);
@@ -47,12 +47,12 @@ public class MessageDaoImpl implements MessageDao{
 	@Override
 	public void addMessage(Message message) {
 		try {
-			PreparedStatement prepst = con.prepareStatement("insert into Messages (message, senderID, recieverID, sendDate) "
+			PreparedStatement prepst = con.prepareStatement("insert into Messages (message, senderID, receiverID, sendDate) "
 					+ " values (?,?,?,?)");
 			
 			prepst.setString(1, message.getMessage());
 			prepst.setInt(2, message.getSenderID());
-			prepst.setInt(3, message.getRecieverID());
+			prepst.setInt(3, message.getReceiverID());
 			prepst.setDate(4, message.getSendDate());
 			prepst.execute();
 		} catch (SQLException e) {
