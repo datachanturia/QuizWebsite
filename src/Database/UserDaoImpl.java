@@ -19,6 +19,7 @@ public class UserDaoImpl implements UserDao {
 		this.con = con;
 	}
 
+	@Override
 	public User getUser(String email, String password) {
 		try {
 
@@ -47,6 +48,7 @@ public class UserDaoImpl implements UserDao {
 		return null;
 	}
 
+	@Override
 	public boolean existsUser(String email) {
 		try {
 			Statement stmt = con.createStatement();
@@ -119,9 +121,11 @@ public class UserDaoImpl implements UserDao {
 		ArrayList<Integer> friends = new ArrayList<Integer>();
 		try {
 			Statement stm = con.createStatement();
+
 			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
 			ResultSet res = stm
-					.executeQuery("select friendID from Friends where userID = " + userID + "and isdelete = 0");
+					.executeQuery("select friendID from Friends where userID = " + userID + " and isdelete = 0");
+
 			while (res.next()) {
 				friends.add(res.getInt("friendID"));
 			}
@@ -133,6 +137,7 @@ public class UserDaoImpl implements UserDao {
 		return friends;
 	}
 
+	@Override
 	public String getUserPhoto(int userID) {
 		String photo = "";
 		try {
@@ -150,6 +155,7 @@ public class UserDaoImpl implements UserDao {
 		return photo;
 	}
 
+	@Override
 	public String getUserName(int userID) {
 		String userName = "";
 		try {
@@ -167,6 +173,7 @@ public class UserDaoImpl implements UserDao {
 		return userName;
 	}
 
+	@Override
 	public ArrayList<Integer> getUserIDs(String username) {
 		ArrayList<Integer> users = new ArrayList<Integer>();
 
@@ -187,6 +194,7 @@ public class UserDaoImpl implements UserDao {
 		return users;
 	}
 
+	@Override
 	public void setProfilePicture(int userID, String picturePath) {
 
 		PreparedStatement preparedStatement;
@@ -200,6 +208,7 @@ public class UserDaoImpl implements UserDao {
 		}
 	}
 
+	@Override
 	public boolean setPass(int userID, String curPas, String newPas) throws CloneNotSupportedException {
 
 		PreparedStatement preparedStatement;
@@ -229,5 +238,29 @@ public class UserDaoImpl implements UserDao {
 			e.printStackTrace();
 		}
 		return false;
+	}
+
+	@Override
+	public User getUserById(int userId) {
+		try {
+
+			Statement stmt = con.createStatement();
+
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+			PreparedStatement prdtmt = con.prepareStatement("SELECT * FROM Users where userID = ? and isdelete = 0");
+			prdtmt.setInt(1, userId);
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				User user = new User(rs.getInt("userID"), rs.getString("username"), rs.getString("pass"),
+						rs.getString("mail"), rs.getString("photo"), rs.getDate("creationdate"),
+						rs.getBoolean("isadmin"), rs.getBoolean("isSoc"));
+
+				return user;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

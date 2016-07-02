@@ -29,4 +29,6 @@ public interface UserDao {
 	public void setProfilePicture(int userID, String picturePath);
 
 	public boolean setPass(int userID, String curPas, String newPas) throws CloneNotSupportedException;
+	
+	public User getUserById(int userId);
 }
