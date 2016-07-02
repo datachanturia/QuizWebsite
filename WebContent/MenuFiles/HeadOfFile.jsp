@@ -1,3 +1,4 @@
+<%@page import="ULS.AccountManager" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>

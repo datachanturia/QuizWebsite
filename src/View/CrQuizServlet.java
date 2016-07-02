@@ -105,6 +105,7 @@ public class CrQuizServlet extends HttpServlet {
 				} catch (SQLException e) {
 				}
 		}
+		request.getRequestDispatcher("Quiz/quizCreated.jsp").forward(request, response);
 	}
 
 }

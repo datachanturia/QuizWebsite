@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="ULS.AccountManager" %>
     
 <%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 
@@ -13,7 +14,7 @@
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
 
-Score: <%=request.getAttribute("score") %>
+<h1 align="center">Quiz Created Successfully</h1>
 
 <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
