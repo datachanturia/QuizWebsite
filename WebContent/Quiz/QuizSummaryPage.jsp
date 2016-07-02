@@ -170,7 +170,7 @@ if (con != null){
 %>
 </table><br>
 
-<form action="attemptQuizServlet">
+<form action="AttemptQuizServlet" method="post">
   <input type="hidden" name="quizID" value=<%=quizid%>>
   <input type="submit" value="Attempt Quiz">
 </form>

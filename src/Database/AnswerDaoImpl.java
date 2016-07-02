@@ -23,10 +23,10 @@ public class AnswerDaoImpl implements AnswerDao {
 		ArrayList<Answer> answers = new ArrayList<Answer>();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select * from Answers where questionID = " + questionID
-					+ "and isdelete = 0");
+			ResultSet rs = stmt.executeQuery("select * from Answers where questionID=" + questionID
+					+ " and isdelete =0");
 			while(rs.next()){
-				Answer ans = new Answer(rs.getString("answer"), rs.getBoolean("iscorrect"));
+				Answer ans = new Answer(rs.getInt("answerID"),rs.getString("answer"), rs.getBoolean("iscorrect"));
 				answers.add(ans);
 			}
 		} catch (SQLException e) {
@@ -61,6 +61,22 @@ public class AnswerDaoImpl implements AnswerDao {
 			e.printStackTrace();
 		}
 
+	}
+
+	@Override
+	public boolean isCorrect(int answerID) {
+		ArrayList<Answer> answers = new ArrayList<Answer>();
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select isCorrect from Answers where answerID=" + answerID
+					+ " and isdelete =0");
+			while(rs.next()){
+				return rs.getBoolean("iscorrect");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return false;
 	}
 
 }
