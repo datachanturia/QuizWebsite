@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 
 import Model.User;
+import ULS.Encrypt;
 import dataSrc.MyDBInfo;
 
 public class UserDaoImpl implements UserDao {
@@ -197,5 +198,36 @@ public class UserDaoImpl implements UserDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	public boolean setPass(int userID, String curPas, String newPas) throws CloneNotSupportedException {
+
+		PreparedStatement preparedStatement;
+		try {
+			Encrypt en = new Encrypt();
+			String curFinalPass = en.GenerationMode(curPas);
+			String newFinalPass = en.GenerationMode(newPas);
+
+			Statement stm = con.createStatement();
+			stm.executeQuery("use " + MyDBInfo.MYSQL_DATABASE_NAME);
+			ResultSet res = stm.executeQuery("select pass from Users where userID = \"" + userID + "\"");
+			String recCurPas = "";
+			while (res.next()) {
+				recCurPas = res.getString("pass");
+			}
+
+			if (recCurPas.equals(curFinalPass)) {
+
+				preparedStatement = con.prepareStatement("update Users set pass = ? " + "where userID = " + userID);
+				preparedStatement.setString(1, newFinalPass);
+				preparedStatement.execute();
+
+				return true;
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return false;
 	}
 }
