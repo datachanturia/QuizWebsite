@@ -26,9 +26,9 @@
 
 				for (int i = 0; i < qzPQls.size(); i++) {
 			%>
-			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+			<form name="PQqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
-					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+					<a href="#" onclick="document.forms['PQqzid<%=i%>'].submit()">
 						Take </a> or <a href='#'> Challenge </a>
 					<%=qzPQls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
@@ -53,9 +53,9 @@
 
 				for (int i = 0; i < qzNQls.size(); i++) {
 			%>
-			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+			<form name="NQqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
-					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+					<a href="#" onclick="document.forms['NQqzid<%=i%>'].submit()">
 						Take </a> or <a href='#'> Challenge </a>
 					<%=qzNQls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
@@ -82,9 +82,9 @@
 				for (int i = 0; i < qzDPls.size(); i++) {
 			%>
 
-			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+			<form name="DPqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
-					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+					<a href="#" onclick="document.forms['DPqzid<%=i%>'].submit()">
 						Take </a> or <a href='#'> Challenge </a>
 					<%=qzDPls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
