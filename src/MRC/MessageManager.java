@@ -11,9 +11,10 @@ public class MessageManager {
 	
 	private MessageDaoImpl mdi;
 	private int userID;
+	private ArrayList<Message> msgs;
 	
 	public MessageManager(Connection con){
-		
+		msgs = new ArrayList<Message>();
 	}
 	
 	public void setConnection(java.sql.Connection conn){
@@ -30,6 +31,14 @@ public class MessageManager {
 	
 	public void setUserID(int userId){
 		this.userID = userId;
+	}
+	
+	public void mySetMessages(ArrayList<Message> msgs){
+		this.msgs = msgs;
+	}
+	
+	public ArrayList<Message> myGetMessages(){
+		return this.msgs;
 	}
 	
 	

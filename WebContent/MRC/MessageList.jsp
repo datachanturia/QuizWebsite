@@ -19,8 +19,8 @@
 		int len = 20;
 		Message m = null;
 
-		for (int i = 0; i < mm.getMessages().size(); i++) {
-			m = mm.getMessages().get(i);
+		for (int i = 0; i < mm.myGetMessages().size(); i++) {
+			m = mm.myGetMessages().get(i);
 			String sender = m.getSenderName();
 			String msg = m.getMessage();
 			if (msg.length() > len) {
