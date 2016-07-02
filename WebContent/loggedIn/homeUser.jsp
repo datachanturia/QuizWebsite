@@ -25,8 +25,17 @@
 				ArrayList<Quiz> qzPQls = (ArrayList<Quiz>) request.getAttribute("popQuizLs");
 
 				for (int i = 0; i < qzPQls.size(); i++) {
-					out.println("<h5>" + " <a href='#'> Take </a>" + "or " + "<a href='#'> Challenge </a>"
-							+ qzPQls.get(i).getQuizname() + "</h5>");
+			%>
+			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+				<h5 align="left" style="border-left: 25px solid #444c57;">
+					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+						Take </a> or <a href='#'> Challenge </a>
+					<%=qzPQls.get(i).getQuizname()%>
+					<input type="hidden" name="quizID"
+						value="<%=qzPQls.get(i).getQuizID()%>">
+				</h5>
+			</form>
+			<%
 				}
 			%>
 		</div>
@@ -43,8 +52,17 @@
 				ArrayList<Quiz> qzNQls = (ArrayList<Quiz>) request.getAttribute("newQuizLs");
 
 				for (int i = 0; i < qzNQls.size(); i++) {
-					out.println("<h5>" + " <a href='#'> Take </a>" + "or " + "<a href='#'> Challenge </a>"
-							+ qzNQls.get(i).getQuizname() + " " + qzNQls.get(i).getCreationDate() + "</h5>");
+			%>
+			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+				<h5 align="left" style="border-left: 25px solid #444c57;">
+					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+						Take </a> or <a href='#'> Challenge </a>
+					<%=qzNQls.get(i).getQuizname()%>
+					<input type="hidden" name="quizID"
+						value="<%=qzNQls.get(i).getQuizID()%>">
+				</h5>
+			</form>
+			<%
 				}
 			%>
 		</div>
@@ -62,8 +80,18 @@
 				ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");
 
 				for (int i = 0; i < qzDPls.size(); i++) {
-					out.println("<h5>" + " <a href='#'> Take </a>" + "or " + "<a href='#'> Challenge </a>"
-							+ qzDPls.get(i).getQuizname() + "</h5>");
+			%>
+
+			<form name="qzid<%=i%>" method="Post" action="./QuizSummaryServlet">
+				<h5 align="left" style="border-left: 25px solid #444c57;">
+					<a href="#" onclick="document.forms['qzid<%=i%>'].submit()">
+						Take </a> or <a href='#'> Challenge </a>
+					<%=qzDPls.get(i).getQuizname()%>
+					<input type="hidden" name="quizID"
+						value="<%=qzDPls.get(i).getQuizID()%>">
+				</h5>
+			</form>
+			<%
 				}
 			%>
 		</div>

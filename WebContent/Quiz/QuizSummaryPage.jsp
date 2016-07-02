@@ -23,7 +23,7 @@
 
 <%
 int userid = am.getUser().getUserID();
-int quizid = 1;//Integer.parseInt(request.getParameter("quizID"));
+int quizid = Integer.parseInt(request.getParameter("quizID"));
 Connection con = null;
 Quiz currquiz = null;
 ArrayList<TakenQuiz> taken = null;

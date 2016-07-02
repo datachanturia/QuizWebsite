@@ -15,7 +15,7 @@
       *********************************************************************************************************************************************************** -->
 
 <form align="center" action="./chPassServlet" method="POST">
-	<H3 align="center">Change Password:</H3>
+	<H3 align="center">Changing Password Failed, TRY AGAIN!</H3>
 	Type in current password: <input name="curPas" type="password"
 		placeholder="current password" id="curPas" required /><br> <br>
 	Type new password: <input name="newPas1" type="password"
