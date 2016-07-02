@@ -7,17 +7,25 @@
 <title>Insert title here</title>
 </head>
 <body>
-
-	<p>From: &nbsp;</p>
 	<%
-		String sender = request.getParameter("sender");
+		String sender = "koka";//request.getParameter("sender");
+		String receiver = "avto";//request.getParameter("receiver");
+		String msg = "ludi";//request.getParameter("message");
 	%>
+	<p>
+		From: &nbsp;
+		<% out.println(sender); %>
+	</p>
+	<br>
+	<p> 
+		To: &nbsp;
+		<% out.println(receiver); %>
+	</p>
 	<br>
 	<br>
 	<br>
-	<%
-		String msg = request.getParameter("message");
-	%>
-
+	<p>
+		<% out.println(msg); %>
+	</p>
 </body>
 </html>
