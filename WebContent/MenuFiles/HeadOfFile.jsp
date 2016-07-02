@@ -1,4 +1,6 @@
-<%@page import="ULS.AccountManager" %>
+<%@ page import = "java.sql.Connection" import = "java.sql.SQLException"
+import = "java.util.ArrayList" import = "Database.MessageDaoImpl"
+import = "dataSrc.DataSource" import = "Database.RequestDaoImpl" %>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,9 +14,32 @@
 	String usId = Integer.toString(am.getUser().getUserID());
 
 	String isAdmin = Boolean.toString(am.getUser().isAdmin());
-
-	int newMsgs = 4;
-	int newRequests = 5;
+	
+	int newMsgs = 0;
+	int newRequests = 0;
+	Connection con = null;
+	try {
+		int userID = am.getUser().getUserID();
+		con = DataSource.getInstance().getConnection();
+		
+		MessageDaoImpl mdi = new MessageDaoImpl(con);
+		MessageManager mm = new MessageManager(con);
+		mm.mySetMessages(mdi.getUserMessages(userID));
+		ArrayList<Message> msgs = mm.myGetMessages();
+		
+		for(int i=0; i<msgs.size(); i++){
+			if (!msgs.get(i).isIsread())
+				newMsgs++;
+		}
+	} finally {
+		if (con != null)
+			try {
+				con.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+	}
+	
 %></title>
 
 
