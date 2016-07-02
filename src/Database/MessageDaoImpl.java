@@ -9,10 +9,10 @@ import java.util.ArrayList;
 
 import Model.Message;
 
-public class MessageDaoImpl implements MessageDao{
+public class MessageDaoImpl implements MessageDao {
 
 	private Connection con;
-	
+
 	public MessageDaoImpl(Connection con) {
 		this.con = con;
 	}
@@ -20,22 +20,23 @@ public class MessageDaoImpl implements MessageDao{
 	@Override
 	public ArrayList<Message> getUserMessages(int userID) {
 		ArrayList<Message> messages = new ArrayList<Message>();
-		
+
 		try {
 			Statement st = con.createStatement();
-			ResultSet result = st.executeQuery("select m.messageID, m.message, m.senderID, m.receiverID, "
-					+ "m.senddate, m.isread, m.username, u.username from "
+			ResultSet result = st.executeQuery("select messageID, message, senderID, receiverID, senddate, "
+					+ "isread, m.username as senderName, u.username as receiveName from "
 					+ "(select messageID, message, senderID, receiverID, senddate, isread, username from "
-					+ "messages inner join users on senderID = userID where (senderID = " + userID + " or "
-							+ "receiverID = " + userID + ") and isdelete = 0) m inner join users u on "
-									+ "m.receiverID = u.userID");
-			while(result.next()){
-				Message message = new Message(result.getInt("m.messageID"), result.getInt("m.senderID"), result.getInt("m.receiverID"), 
-						result.getString("m.message"), result.getString("m.username"), result.getString("u.username"), 
-						result.getDate("sendDate"), result.getBoolean("isread"));
+					+ "messages inner join users on senderID = userID where " + "(senderID = " + userID
+					+ " or receiverID = " + userID + ") and messages.isdelete = 0) "
+					+ "m inner join users u on m.receiverID = u.userId order by senddate desc");
+			
+			while (result.next()) {
+				Message message = new Message(result.getInt("messageID"), result.getInt("senderID"),
+						result.getInt("receiverID"), result.getString("message"), result.getString("senderName"),
+						result.getString("receiverName"), result.getDate("sendDate"), result.getBoolean("isread"));
 				messages.add(message);
 			}
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -47,9 +48,9 @@ public class MessageDaoImpl implements MessageDao{
 	@Override
 	public void addMessage(Message message) {
 		try {
-			PreparedStatement prepst = con.prepareStatement("insert into Messages (message, senderID, receiverID, sendDate) "
-					+ " values (?,?,?,?)");
-			
+			PreparedStatement prepst = con.prepareStatement(
+					"insert into Messages (message, senderID, receiverID, sendDate) " + " values (?,?,?,?)");
+
 			prepst.setString(1, message.getMessage());
 			prepst.setInt(2, message.getSenderID());
 			prepst.setInt(3, message.getReceiverID());
@@ -58,14 +59,14 @@ public class MessageDaoImpl implements MessageDao{
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}		
+		}
 	}
 
 	@Override
 	public void deleteMessage(int messageID) {
 		try {
-			PreparedStatement prepst = con.prepareStatement("update Messages set isdelete = ? "
-					+ "where messageID = " + messageID);
+			PreparedStatement prepst = con
+					.prepareStatement("update Messages set isdelete = ? " + "where messageID = " + messageID);
 			prepst.setInt(1, 1);
 			prepst.execute();
 		} catch (SQLException e) {
