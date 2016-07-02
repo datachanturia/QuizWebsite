@@ -14,13 +14,15 @@
       *********************************************************************************************************************************************************** -->
 
 <div class="row mt">
+	
 	<%
 		MessageManager mm = (MessageManager) request.getAttribute("MessManager");
+		ArrayList<Message> msgs = mm.myGetMessages();
 		int len = 20;
 		Message m = null;
 
-		for (int i = 0; i < mm.myGetMessages().size(); i++) {
-			m = mm.myGetMessages().get(i);
+		for (int i = 0; i < msgs.size(); i++) {
+			m = msgs.get(i);
 			String sender = m.getSenderName();
 			String msg = m.getMessage();
 			if (msg.length() > len) {
@@ -28,9 +30,11 @@
 			}
 	%>
 	<p>
-		<%
-			sender += "\t" + msg;
-		%>
+		 <% out.println(sender); %>
+		 &nbsp;&nbsp;&nbsp;&nbsp;
+		 Message: &nbsp;
+		 <% out.println(msg); %>
+		 &nbsp;&nbsp;&nbsp;&nbsp;
 		<button onclick="readForm()">Read</button>
 	</p>
 
@@ -46,8 +50,10 @@
 	<form name="readForm" action="./MRC/Message.jsp" method="GET">
 		<input type="hidden" id="message" name="message"
 			value="<%=m.getMessage()%>"> <input type="hidden" id="sender"
-			name="sender" value="<%=m.getSenderName()%>">
+			name="sender" value="<%=m.getSenderName()%>"> <input type="hidden" 
+			id="receiver" name="receiver" value="<%=m.getRecieverName()%>">
 	</form>
+	
 	<%
 		}
 	%>
