@@ -29,17 +29,11 @@ public class MessageDaoImpl implements MessageDao {
 					+ "messages inner join users on senderID = userID where " + "(senderID = " + userID
 					+ " or receiverID = " + userID + ") and messages.isdelete = 0) "
 					+ "m inner join users u on m.receiverID = u.userId order by senddate desc");
-			
+
 			while (result.next()) {
-<<<<<<< HEAD
 				Message message = new Message(result.getInt("m.messageID"), result.getInt("m.senderID"),
 						result.getInt("m.receiverID"), result.getString("m.message"), result.getString("senderName"),
 						result.getString("receiveName"), result.getDate("sendDate"), result.getBoolean("isread"));
-=======
-				Message message = new Message(result.getInt("messageID"), result.getInt("senderID"),
-						result.getInt("receiverID"), result.getString("message"), result.getString("senderName"),
-						result.getString("receiverName"), result.getDate("sendDate"), result.getBoolean("isread"));
->>>>>>> aa0a27f9c353bf255d8779027a34d6d7d6e56458
 				messages.add(message);
 			}
 
