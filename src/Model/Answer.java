@@ -1,6 +1,7 @@
 package Model;
 
 public class Answer {
+	private int answerID;
 	private String answer;
 	private boolean isCorrect;
 	
@@ -8,6 +9,27 @@ public class Answer {
 		this.answer = answer;
 		this.isCorrect = isCorrect;
 	}
+	
+	
+
+	public Answer(int answerID, String answer, boolean isCorrect) {
+		this.answerID = answerID;
+		this.answer = answer;
+		this.isCorrect = isCorrect;
+	}
+
+
+
+	public int getAnswerID() {
+		return answerID;
+	}
+
+
+
+	public void setAnswerID(int answerID) {
+		this.answerID = answerID;
+	}
+
 
 	public String getAnswer() {
 		return this.answer;

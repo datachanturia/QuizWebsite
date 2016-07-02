@@ -88,7 +88,7 @@
 		type="checkbox" name="random" value="isRandom">Random
 	Questions<br> <br> Display Questions On: <input type="radio"
 		name="Page" value="Multiple">Multiple pages <input
-		type="radio" name="Page" value="One">One Page <br> <br>
+		type="radio" name="Page" value="One" checked="checked">One Page <br> <br>
 	<input type="checkbox" name="immediate" value="immediate">Immediate
 	Correction<br> <br> <input type="checkbox" name="practice"
 		value="practice">Practice Mode<br> <br> <br>
