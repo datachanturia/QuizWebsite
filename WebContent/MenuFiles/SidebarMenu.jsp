@@ -17,7 +17,7 @@
 			<li class="sub-menu"><a href="./createQuizServlet"> <i
 					class=" fa"></i> <span>Create Quiz</span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class="fa"></i>
+			<li class="sub-menu"><a href="./MyFriendsServlet"> <i class="fa"></i>
 					<span>My Friends</span>
 			</a></li>
 			<li class="sub-menu"><a href="./friendsSearchServlet"> <i
