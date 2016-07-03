@@ -4,13 +4,13 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+<title>MESSAGE</title>
 </head>
 <body>
 	<%
-		String sender = "koka";//request.getParameter("sender");
-		String receiver = "avto";//request.getParameter("receiver");
-		String msg = "ludi";//request.getParameter("message");
+		String sender = request.getParameter("sender");
+		String receiver = request.getParameter("receiver");
+		String msg = request.getParameter("message");
 	%>
 	<p>
 		From: &nbsp;
