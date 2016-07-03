@@ -53,8 +53,6 @@
 				onclick="document.forms['myForm<%=indexx%>'].submit()">Block
 					Friend</a></td>
 
-
-
 			<%
 				}
 			%>

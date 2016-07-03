@@ -51,8 +51,8 @@ public class ServletSendMessage extends HttpServlet {
 		mm.setUserID(userID);
 
 		request.setAttribute("sender", userID);
-		request.setAttribute("receiver", request.getAttribute("receiver"));
-		request.setAttribute("receiverName", request.getAttribute("receiverName"));
+		request.setAttribute("receiver", request.getParameter("receiver"));
+		request.setAttribute("receiverName", request.getParameter("receiverName"));
 
 		try {
 			con = DataSource.getInstance().getConnection();
