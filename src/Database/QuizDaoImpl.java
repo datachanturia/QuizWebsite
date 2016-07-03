@@ -253,5 +253,25 @@ public class QuizDaoImpl implements QuizDao {
 		}
 		return tq;
 	}
+	
+	public ArrayList<Quiz> getQuizes(String prepStatement){
+		ArrayList<Quiz> ls = new ArrayList<Quiz>();
+		try {
+			Statement stmt = con.createStatement();
+			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
+
+			PreparedStatement prdtmt = con
+					.prepareStatement(prepStatement);
+
+			ResultSet rs = prdtmt.executeQuery();
+			while (rs.next()) {
+				Quiz qzz = getQuiz(rs.getInt("quizID"));
+				ls.add(qzz);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return ls;
+	};
 
 }
