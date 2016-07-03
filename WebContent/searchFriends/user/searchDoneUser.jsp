@@ -51,8 +51,11 @@
 					<%
 						String userPhoto = frc.getUserPhoto(friends.get(j * 2 + k));
 								String userName = frc.getUserName(friends.get(j * 2 + k));
-					%> <img src="<%=userPhoto%>" vspace="10" width=80 height=80
-					class="img-circle"></img>
+					%> 
+					<a href =<%="\"./cabin/friendCabin.jsp?friendID=" + friends.get(j * 2 + k) + 
+				 			"\""%>>
+					<img src="<%=userPhoto%>" vspace="10" width=80 height=80
+					class="img-circle"></img></a>
 					<p align="center">
 						<font size="+1.5" color="#ffebbb"> <%=userName%></font>
 					</p>
