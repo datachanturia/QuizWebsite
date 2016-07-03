@@ -18,6 +18,7 @@
 	<%
 		MessageManager mm = (MessageManager) request.getAttribute("MessManager");
 		ArrayList<Message> msgs = mm.myGetMessages();
+		int userID = mm.getUserID();
 		int len = 20;
 		Message m = null;
 
@@ -25,13 +26,20 @@
 			m = msgs.get(i);
 			String sender = m.getSenderName();
 			String msg = m.getMessage();
+			String newOne = "";
 			if (msg.length() > len) {
 				msg = msg.substring(0, len) + "...";
 			}
+			if (m.getSenderID() != userID && !m.isIsread()){
+				newOne += "New";
+			}
+				
 	%>
 	<p>
 		 <% out.println(sender); %>
 		 &nbsp;&nbsp;&nbsp;&nbsp;
+		 <% out.println(newOne); %>
+		 &nbsp;
 		 Message: &nbsp;
 		 <% out.println(msg); %>
 		 &nbsp;&nbsp;&nbsp;&nbsp;
