@@ -1,7 +1,8 @@
 <%@ page import="ULS.AccountManager" import="Model.Quiz"
 	import="Model.User" import="
 	java.util.ArrayList"
-	import="MRC.MessageManager" import="Model.Message"%>
+	import="MRC.MessageManager" import="Model.Message"
+	import="cabin.cabinServlet"%>
 
 <%@ include file="./MenuFiles/HeadOfFile.jsp"%>
 
@@ -44,8 +45,12 @@
 			</form>
 
 			<td bgcolor="#444c57" height="200" width="175" valign="top"
-				align="center"><img src="<%=mfriends.get(indexx).getPhoto()%>"
-				vspace="10" width=80 height=80 class="img-circle"></img>
+				align="center">
+				
+				<a href =<%="\"./cabin/friendCabin.jsp?friendID=" + mfriends.get(indexx).getUserID() + 
+				 			"\""%>>
+				<img src="<%=mfriends.get(indexx).getPhoto()%>"
+				vspace="10" width=80 height=80 class="img-circle"></img></a>
 				<p align="center">
 					<font size="+1.5" color="#ffebbb"> <%=mfriends.get(indexx).getUsername()%></font>
 				</p> <a href="#" onclick="document.forms['myForm<%=indexx%>'].submit()">Send
