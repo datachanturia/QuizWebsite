@@ -35,29 +35,26 @@
 		 Message: &nbsp;
 		 <% out.println(msg); %>
 		 &nbsp;&nbsp;&nbsp;&nbsp;
-		<button onclick="readForm()">Read</button>
 	</p>
-
-	<br> <br>
-	<%
-		}
-	%>
-	<h5 class="centered">End Of Messages</h5>
-
 	<%
 		if (m != null) {
 	%>
-	<form name="readForm" action="./MRC/Message.jsp" method="GET">
+	<form name="readForm" action="ServletReadMesage" method="GET">
 		<input type="hidden" id="message" name="message"
 			value="<%=m.getMessage()%>"> <input type="hidden" id="sender"
 			name="sender" value="<%=m.getSenderName()%>"> <input type="hidden" 
 			id="receiver" name="receiver" value="<%=m.getRecieverName()%>">
+			<input type="hidden" id="messageID" name="messageID" value="<%=m.getMessageID()%>">
+			<input type="submit" value="Read">
 	</form>
+	<br> <br>
+
 	
 	<%
 		}
+		}
 	%>
-
+	<h5 class="centered">End Of Messages</h5>
 
 </div>
 <!-- /row -->
