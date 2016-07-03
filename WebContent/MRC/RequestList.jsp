@@ -1,7 +1,7 @@
 <%@ page import="ULS.AccountManager" import="Model.Quiz"
 	import="java.util.ArrayList" import="MRC.RequestManager"
 	import="Model.Request" import="java.sql.Connection"
-	import="Database.RequestDaoImpl" import = "java.sql.SQLException"%>
+	import="Database.RequestDaoImpl" import="java.sql.SQLException"%>
 
 <%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 
@@ -13,12 +13,16 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-
+<style type="text/css">
+form {
+	float: left;
+}
+</style>
 <div class="row mt">
 
 	<%
-		RequestManager rm = (RequstManager) request.getAttribute("RequManager");
-		ArrayList<Requests> req = rm.getRequests();
+		RequestManager rm = (RequestManager) request.getAttribute("RequManager");
+		ArrayList<Request> req = rm.getRequests();
 		int userID = rm.getUserID();
 		Request r = null;
 
@@ -28,21 +32,34 @@
 			String requ = "wants to be your friend";
 	%>
 	<p>
+		&nbsp;
 		<%
 			out.println(sender);
 		%>
 		&nbsp;
 		<%
-			out.println(req);
+			out.println(requ);
 		%>
-		&nbsp;&nbsp;&nbsp;&nbsp;
+		&nbsp;&nbsp;
 	</p>
 	<%
 		if (r != null) {
 	%>
-	<button type="button" onclick="accept()">Accept</button>
-	<p>&nbsp;</p>
-	<button type="button" onclick="reject()">Reject</button>
+	<form name="acceptForm" action="ServletAcceptRequest" method="GET">
+		<input type="hidden" id="requestID" name="requestID"
+			value="<%=r.getRequestID()%>"> <input type="hidden"
+			id="sender" name="sender" value="<%=r.getSenderID()%>"> <input
+			type="hidden" id="receiver" name="receiver"
+			value="<%=r.getReceiverID()%>"> <input type="submit"
+			value="accept">
+	</form>
+
+	<form name="rejectForm" action="ServletRejectRequest" method="GET">
+		<input type="hidden" id="requestID" name="requestID"
+			value="<%=r.getRequestID()%>"> <input type="submit"
+			value="reject">
+	</form>
+
 	<br> <br>
 
 	<%
@@ -51,48 +68,7 @@
 	%>
 	<h5 class="centered">End Of Requests</h5>
 
-	<script>
-		function accept() {
-			Date
-			date = new Date();
-			java.sql.Date
-			sqlDate = new java.sql.Date(date.getTime());
-			Connection con = null;
-			try {
-				con = DataSource.getInstance().getConnection();
-				RequestDaoImpl rdi = new RequestDaoImpl(con);
-				rdi.deleteRequest(userrID);
-				// TODO add friend!!!
-			} finally {
-				if (con != null)
-					try {
-						con.close();
-					} catch (SQLException ) {
-						//e.printStackTrace();
-					}
-			}
-		}
-		
-		function reject() {
-			Date
-			date = new Date();
-			java.sql.Date
-			sqlDate = new java.sql.Date(date.getTime());
-			Connection con = null;
-			try {
-				con = DataSource.getInstance().getConnection();
-				RequestDaoImpl rdi = new RequestDaoImpl(con);
-				rdi.deleteRequest(userrID);
-			} finally {
-				if (con != null)
-					try {
-						con.close();
-					} catch (SQLException ) {
-						//e.printStackTrace();
-					}
-			}
-		}
-	</script>
+
 
 </div>
 <!-- /row -->
