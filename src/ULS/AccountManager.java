@@ -10,11 +10,12 @@ import Database.UserDaoImpl;
 import Model.User;
 
 public class AccountManager {
-	
+
 	private User currentUser;
 	private Encrypt en;
 	private UserDaoImpl udi;
 	private boolean loggedIn;
+	private int requestN;
 
 	// constructor for account manager
 	public AccountManager(Connection con) {
@@ -48,8 +49,9 @@ public class AccountManager {
 		currentUser = us;
 		return true;
 	}
-	
-	// return true if user name and password match account and they try to log in with soc network
+
+	// return true if user name and password match account and they try to log
+	// in with soc network
 	public boolean matchesSocAccount(String email, String password)
 			throws ClassNotFoundException, SQLException, CloneNotSupportedException {
 
@@ -104,14 +106,21 @@ public class AccountManager {
 	public User getUser() {
 		return currentUser;
 	}
-	
-	public void setLogStatus(boolean logged){
+
+	public void setLogStatus(boolean logged) {
 		this.loggedIn = logged;
 	}
-	
-	public boolean getLogStatus(){
+
+	public boolean getLogStatus() {
 		return loggedIn;
 	}
-	
-	
+
+	public void setRequestN(int nrequest) {
+		this.requestN = nrequest;
+	}
+
+	public int getRequestN() {
+		return this.requestN;
+	}
+
 }
