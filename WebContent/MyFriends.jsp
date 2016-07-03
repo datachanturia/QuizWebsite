@@ -35,15 +35,23 @@
 				for (int j = 0; j < ssize; j++) {
 							int indexx = i * 3 + j;
 			%>
+			<form action="./ServletSendMessage" method="get"
+				name="myForm<%=indexx%>">
+				<input name="receiver" type="hidden"
+					value="<%=Integer.toString(mfriends.get(indexx).getUserID())%>" />
+				<input name="receiverName" type="hidden"
+					value="<%=mfriends.get(indexx).getUsername()%>" />
+			</form>
 
 			<td bgcolor="#444c57" height="200" width="175" valign="top"
 				align="center"><img src="<%=mfriends.get(indexx).getPhoto()%>"
 				vspace="10" width=80 height=80 class="img-circle"></img>
 				<p align="center">
 					<font size="+1.5" color="#ffebbb"> <%=mfriends.get(indexx).getUsername()%></font>
-				</p> <a href="#" onclick="document.forms['PQqzid<%=i%>'].submit()">Send
+				</p> <a href="#" onclick="document.forms['myForm<%=indexx%>'].submit()">Send
 					Message</a><br> <a href="#"
-				onclick="document.forms['PQqzid<%=i%>'].submit()">Block Friend</a></td>
+				onclick="document.forms['myForm<%=indexx%>'].submit()">Block
+					Friend</a></td>
 
 
 

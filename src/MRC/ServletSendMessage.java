@@ -41,35 +41,24 @@ public class ServletSendMessage extends HttpServlet {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 
-		response.getWriter().append("Served at: ").append(request.getContextPath());
-
 		Connection con = null;
 
 		RequestDispatcher rd;
 		MessageManager mm = new MessageManager(null);
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
-		int userID = Integer.parseInt(request.getParameter("usId"));
+		int userID = am.getUser().getUserID();
 		mm.setUserID(userID);
+
+		request.setAttribute("sender", userID);
+		request.setAttribute("receiver", request.getAttribute("receiver"));
+		request.setAttribute("receiverName", request.getAttribute("receiverName"));
 
 		try {
 			con = DataSource.getInstance().getConnection();
 			mm.setConnection(con);
 
 			request.setAttribute("MessManager", mm);
-			// ------------------------------------------
-			QuizDaoImpl qdi = new QuizDaoImpl(con);
-
-			request.setAttribute("accManager", am);
-
-			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
-			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
-			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
-
-			request.setAttribute("dayPopuLs", dayPopuLs);
-			request.setAttribute("popQuizLs", popQuizLs);
-			request.setAttribute("newQuizLs", newQuizLs);
-			// --------------------------------------------------
 
 			rd = request.getRequestDispatcher("./MRC/NewMessage.jsp");
 
