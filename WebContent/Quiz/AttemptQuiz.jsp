@@ -9,7 +9,6 @@
 <%@page import="Database.QuizDaoImpl"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="dataSrc.DataSource"%>
-<%@page import="ULS.AccountManager" %>
 <%@page import="Database.QuestionDaoImpl" %>
 <%@page import="Model.Question" %>
 <%@page import="Model.Answer" %>

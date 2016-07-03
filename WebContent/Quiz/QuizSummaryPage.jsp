@@ -7,7 +7,6 @@
 <%@page import="Database.QuizDaoImpl"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="dataSrc.DataSource"%>
-<%@page import="ULS.AccountManager" %>
 
 <%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 

@@ -1,6 +1,6 @@
-<%@ page import="ULS.AccountManager" import="Model.Quiz"
-	import="java.util.ArrayList" import="MRC.MessageManager"
-	import="Model.Message"%>
+<%@page import ="Model.Quiz"
+	import="java.util.ArrayList"
+	import="MRC.MessageManager" import="Model.Message"%>
 
 <%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 

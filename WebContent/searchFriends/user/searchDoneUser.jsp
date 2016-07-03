@@ -1,6 +1,6 @@
 <%@ page import="java.sql.SQLException" import="dataSrc.DataSource"
 	import="java.sql.Connection" import="java.util.ArrayList"
-	import="friends.friendsDatabaseConnector" import="ULS.AccountManager"
+	import="friends.friendsDatabaseConnector"
 	import="Model.Quiz" import="java.util.ArrayList"
 	import="MRC.MessageManager" import="Model.Message"%>
 
@@ -51,11 +51,16 @@
 					<%
 						String userPhoto = frc.getUserPhoto(friends.get(j * 2 + k));
 								String userName = frc.getUserName(friends.get(j * 2 + k));
-					%> 
-					<a href =<%="\"./cabin/friendCabin.jsp?friendID=" + friends.get(j * 2 + k) + 
-				 			"\""%>>
-					<img src="<%=userPhoto%>" vspace="10" width=80 height=80
-					class="img-circle"></img></a>
+					%>
+					<form action="./ServletToCab" method="get"
+						name="myForm1<%=j * 2 + k%>">
+						<input name="friendID" type="hidden"
+							value="<%=Integer.toString(friends.get(j * 2 + k))%>" />
+					</form> <a href="#"
+					onclick="document.forms['myForm1<%=j * 2 + k%>'].submit()"\> <img
+						src="<%=userPhoto%>" vspace="10" width=80 height=80
+						class="img-circle"></img>
+				</a>
 					<p align="center">
 						<font size="+1.5" color="#ffebbb"> <%=userName%></font>
 					</p>

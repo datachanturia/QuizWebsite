@@ -1,4 +1,4 @@
-<%@page import="ULS.AccountManager" import="Model.Message"
+<%@page import="Model.Message"
 	import="java.util.Date" import="MRC.MessageManager"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>

@@ -1,4 +1,4 @@
-<%@ page import="ULS.AccountManager" import="Model.Quiz"
+<%@ page  import="Model.Quiz"
 	import="java.util.ArrayList" import="MRC.RequestManager"
 	import="Model.Request" import="java.sql.Connection"
 	import="Database.RequestDaoImpl" import="java.sql.SQLException"%>

@@ -1,4 +1,4 @@
-<%@ page import="ULS.AccountManager" import="Model.Quiz"
+<%@ page  import="Model.Quiz"
 	import="java.util.ArrayList" import="MRC.MessageManager"
 	import="Model.Message"%>
 
