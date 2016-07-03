@@ -94,11 +94,13 @@ public class MessageDaoImpl implements MessageDao {
 		try {
 			Statement st = con.createStatement();
 			ResultSet result = st.executeQuery(
-					"select messageID from messages where isread = 0 and isdelete=0 and receiverID = " + userID + ")");
+					"select messageID from messages where isread = 0 and isdelete=0 and receiverID = " + userID);
 
 			while (result.next()) {
 				messagesN++;
 			}
+			
+			return messagesN;
 
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
