@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.RequestDaoImpl;
 import Database.QuizDaoImpl;
 import Model.Quiz;
 import ULS.AccountManager;
@@ -44,17 +45,19 @@ public class ServletRequest extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		RequestManager rm = new RequestManager(null);
+
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
-		int userID = Integer.parseInt(request.getParameter("usId"));
-		rm.setUserID(userID);
-
+		int userID = am.getUser().getUserID();
 		try {
 			con = DataSource.getInstance().getConnection();
-			rm.setConnection(con);
-
+			RequestDaoImpl rdi = new RequestDaoImpl(con);
+			RequestManager rm = new RequestManager(con);
+			rm.setUserID(userID);
+			rm.setRequests(rdi.getUserRequests(userID));
+			
 			request.setAttribute("RequManager", rm);
+
 			// ------------------------------------------
 			QuizDaoImpl qdi = new QuizDaoImpl(con);
 
@@ -69,7 +72,7 @@ public class ServletRequest extends HttpServlet {
 			request.setAttribute("newQuizLs", newQuizLs);
 			// --------------------------------------------------
 
-			rd = request.getRequestDispatcher("./MRC/RequestList.jsp");
+			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
 
 		} finally {
 			if (con != null)
