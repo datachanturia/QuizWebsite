@@ -53,7 +53,7 @@ public class ServletMessage extends HttpServlet {
 			con = DataSource.getInstance().getConnection();
 			MessageDaoImpl mdi = new MessageDaoImpl(con);
 			MessageManager mm = new MessageManager(con);
-
+			mm.setUserID(userID);
 			mm.mySetMessages(mdi.getUserMessages(userID));
 			
 			request.setAttribute("MessManager", mm);
