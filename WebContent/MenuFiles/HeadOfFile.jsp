@@ -1,3 +1,4 @@
+<%@ page import="ULS.AccountManager"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -12,11 +13,9 @@
 	String usId = Integer.toString(am.getUser().getUserID());
 
 	String isAdmin = Boolean.toString(am.getUser().isAdmin());
-	
+
 	int newMsgs = 4;
 	int newRequests = 5;
-	
-	
 %></title>
 
 

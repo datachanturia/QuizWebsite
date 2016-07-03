@@ -1,8 +1,7 @@
 <%@ page import="ULS.AccountManager" import="Model.Quiz"
 	import="Model.User" import="
 	java.util.ArrayList"
-	import="MRC.MessageManager" import="Model.Message"
-	import="cabin.cabinServlet"%>
+	import="MRC.MessageManager" import="Model.Message"%>
 
 <%@ include file="./MenuFiles/HeadOfFile.jsp"%>
 
@@ -44,13 +43,17 @@
 					value="<%=mfriends.get(indexx).getUsername()%>" />
 			</form>
 
+			<form action="./ServletToCab" method="get" name="myForm1<%=indexx%>">
+				<input name="friendID" type="hidden"
+					value="<%=Integer.toString(mfriends.get(indexx).getUserID())%>" />
+			</form>
+
 			<td bgcolor="#444c57" height="200" width="175" valign="top"
-				align="center">
-				
-				<a href =<%="\"./cabin/friendCabin.jsp?friendID=" + mfriends.get(indexx).getUserID() + 
-				 			"\""%>>
-				<img src="<%=mfriends.get(indexx).getPhoto()%>"
-				vspace="10" width=80 height=80 class="img-circle"></img></a>
+				align="center"><a href="#"
+				onclick="document.forms['myForm1<%=indexx%>'].submit()"\> <img
+					src="<%=mfriends.get(indexx).getPhoto()%>" vspace="10" width=80
+					height=80 class="img-circle"></img>
+			</a>
 				<p align="center">
 					<font size="+1.5" color="#ffebbb"> <%=mfriends.get(indexx).getUsername()%></font>
 				</p> <a href="#" onclick="document.forms['myForm<%=indexx%>'].submit()">Send
