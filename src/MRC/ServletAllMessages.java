@@ -19,29 +19,27 @@ import ULS.AccountManager;
 import dataSrc.DataSource;
 
 /**
- * Servlet implementation class ServletMessage
+ * Servlet implementation class ServletAllMessages
  */
-@WebServlet("/ServletMessage")
-public class ServletMessage extends HttpServlet {
+@WebServlet("/ServletAllMessages")
+public class ServletAllMessages extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+       
+    /**
+     * @see HttpServlet#HttpServlet()
+     */
+    public ServletAllMessages() {
+        super();
+        // TODO Auto-generated constructor stub
+    }
 
 	/**
-	 * @see HttpServlet#HttpServlet()
+	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	public ServletMessage() {
-		super();
-		// TODO Auto-generated constructor stub
-	}
-
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse
-	 *      response)
-	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		response.getWriter().append("Served at: ").append(request.getContextPath());
-
+		
 		Connection con = null;
 
 		RequestDispatcher rd;
@@ -72,7 +70,7 @@ public class ServletMessage extends HttpServlet {
 			request.setAttribute("newQuizLs", newQuizLs);
 			// --------------------------------------------------
 
-			rd = request.getRequestDispatcher("./MRC/NewMessageList.jsp");
+			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
 
 		} finally {
 			if (con != null)
@@ -86,11 +84,9 @@ public class ServletMessage extends HttpServlet {
 	}
 
 	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
-	 *      response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		doGet(request, response);
 	}
