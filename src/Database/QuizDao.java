@@ -19,4 +19,5 @@ public interface QuizDao {
 	public ArrayList<Quiz> getPopularQuiz();
 	public ArrayList<Quiz> getDayPopularQuiz();
 	public ArrayList<Quiz> getNewQuiz();
+	public ArrayList<Quiz> getQuizes(String prepStatement);
 }
