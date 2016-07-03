@@ -72,7 +72,7 @@ public class ServletMessage extends HttpServlet {
 			request.setAttribute("newQuizLs", newQuizLs);
 			// --------------------------------------------------
 
-			rd = request.getRequestDispatcher("./MRC/MessageList.jsp");
+			rd = request.getRequestDispatcher("./MRC/NewMessageList.jsp");
 
 		} finally {
 			if (con != null)
