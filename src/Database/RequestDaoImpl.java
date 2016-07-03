@@ -24,11 +24,11 @@ public class RequestDaoImpl implements RequestDao {
 		ArrayList<Request> requests = new ArrayList<Request>();
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select requestID, senderID, receiverID, senddate, isread, username "
-					+ "from requests inner join users on senderID = userID where receiverID = " + userID + " isdelete = 0");
+			ResultSet rs = stmt.executeQuery("select requestID, senderID, receiverID, senddate, username "
+					+ "from requests inner join users on senderID = userID where receiverID = " + userID + " requests.isdelete = 0");
 			while(rs.next()){
-				Request r = new Request(rs.getInt("requestID"), rs.getInt("senderID"), rs.getInt("receiverID"), rs.getDate("senddate"), 
-						rs.getBoolean("isread"), rs.getString("username"));
+				Request r = new Request(rs.getInt("requestID"), rs.getInt("senderID"), rs.getInt("receiverID"), 
+						rs.getDate("senddate"), rs.getString("username"));
 				requests.add(r);
 			}
 		} catch (SQLException e) {
