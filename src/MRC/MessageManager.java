@@ -33,6 +33,10 @@ public class MessageManager {
 		this.userID = userId;
 	}
 	
+	public int getUserID(){
+		return this.userID;
+	}
+	
 	public void mySetMessages(ArrayList<Message> msgs){
 		this.msgs = msgs;
 	}
