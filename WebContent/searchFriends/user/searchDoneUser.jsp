@@ -1,6 +1,6 @@
 <%@ page import="java.sql.SQLException" import="dataSrc.DataSource"
 	import="java.sql.Connection" import="java.util.ArrayList"
-	import="friends.friendsDatabaseConnector" import="ULS.AccountManager"
+	 import="ULS.AccountManager"
 	import="Model.Quiz" import="java.util.ArrayList"
 	import="MRC.MessageManager" import="Model.Message"%>
 
