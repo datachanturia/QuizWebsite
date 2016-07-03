@@ -8,15 +8,13 @@ public class Request {
 	private int senderID;
 	private int receiverID;
 	private Date sendDate;
-	private boolean isread;
 	private String senderName;
 	
-	public Request(int requestID, int senderID, int receiverID, Date sendDate, boolean isread, String senderName) {
+	public Request(int requestID, int senderID, int receiverID, Date sendDate, String senderName) {
 		this.requestID = requestID;
 		this.senderID = senderID;
 		this.receiverID = receiverID;
 		this.sendDate = sendDate;
-		this.isread = isread;
 		this.senderName = senderName;
 	}
 
@@ -50,14 +48,6 @@ public class Request {
 
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
-	}
-
-	public boolean isread() {
-		return isread;
-	}
-
-	public void setIsread(boolean isread) {
-		this.isread = isread;
 	}
 	
 	public String getSenderName(){
