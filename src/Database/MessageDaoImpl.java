@@ -73,5 +73,18 @@ public class MessageDaoImpl implements MessageDao {
 			e.printStackTrace();
 		}
 	}
+	
+	@Override
+	public void read(int messageID){
+		try {
+			PreparedStatement prepst = con
+					.prepareStatement("update Messages set isread = ? " + "where messageID = " + messageID);
+			prepst.setInt(1, 1);
+			prepst.execute();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
 
 }
