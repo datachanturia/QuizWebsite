@@ -17,13 +17,13 @@
 			<li class="sub-menu"><a href="./createQuizServlet"> <i
 					class=" fa"></i> <span>Create Quiz</span>
 			</a></li>
-			<li class="sub-menu"><a href="./MyFriendsServlet"> <i class="fa"></i>
-					<span>My Friends</span>
+			<li class="sub-menu"><a href="./MyFriendsServlet"> <i
+					class="fa"></i> <span>My Friends</span>
 			</a></li>
 			<li class="sub-menu"><a href="./friendsSearchServlet"> <i
 					class="fa"></i> <span>Search Friends</span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="./SearchQuizServlet"> <i class=" fa"></i>
 					<span>Search Quizes</span>
 			</a></li>
 			<%
@@ -33,9 +33,9 @@
 					class=" fa"></i> <span><button
 							style="background-color: #555555">Change Password</button></span>
 			</a></li>
-			<li class="sub-menu"><a href="./ChangePictureServlet"> <i class=" fa"></i>
-					<span><button style="background-color: #555555">Change
-							Profile Picture</button></span>
+			<li class="sub-menu"><a href="./ChangePictureServlet"> <i
+					class=" fa"></i> <span><button
+							style="background-color: #555555">Change Profile Picture</button></span>
 			</a></li>
 			<%
 				}
@@ -47,10 +47,10 @@
 					<span>Write Post</span>
 			</a></li>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
-					<span>Make User Admin By Id</span>
+					<span>Make User Admin</span>
 			</a></li>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
-					<span>Bann User By Id</span>
+					<span>Bann User</span>
 			</a></li>
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Remove Quiz</span>
