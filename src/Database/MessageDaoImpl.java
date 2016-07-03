@@ -73,9 +73,9 @@ public class MessageDaoImpl implements MessageDao {
 			e.printStackTrace();
 		}
 	}
-	
+
 	@Override
-	public void read(int messageID){
+	public void read(int messageID) {
 		try {
 			PreparedStatement prepst = con
 					.prepareStatement("update Messages set isread = ? " + "where messageID = " + messageID);
@@ -85,6 +85,26 @@ public class MessageDaoImpl implements MessageDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public int getUserUnreadMessagesN(int userID) {
+		int messagesN = 0;
+
+		try {
+			Statement st = con.createStatement();
+			ResultSet result = st.executeQuery("select messageID from messages where isread = 0 and (senderID = "
+					+ userID + " or receiverID = " + userID + ")");
+
+			while (result.next()) {
+				messagesN++;
+			}
+
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return messagesN;
 	}
 
 }

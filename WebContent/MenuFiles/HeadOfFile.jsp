@@ -1,5 +1,5 @@
+<%@page import="Database.MessageDaoImpl"%>
 <%@ page import="ULS.AccountManager"%>
-<%@page import="Database.RequestDaoImpl"%>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -9,10 +9,14 @@
 <title>Quiz Website <%
 	AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
+	int newMsgs;
+	int newRequests;
+
 	java.sql.Connection conn = null;
 	try {
 		conn = dataSrc.DataSource.getInstance().getConnection();
-		am.setRequestN((new RequestDaoImpl(conn)).getUserRequests(am.getUser().getUserID()).size());
+		newMsgs = (new MessageDaoImpl(conn)).getUserUnreadMessagesN(am.getUser().getUserID());
+		newRequests = (new Database.RequestDaoImpl(conn)).getUserRequests(am.getUser().getUserID()).size();
 
 	} finally {
 		if (conn != null)
@@ -28,9 +32,6 @@
 	String usId = Integer.toString(am.getUser().getUserID());
 
 	String isAdmin = Boolean.toString(am.getUser().isAdmin());
-
-	int newMsgs = 4;
-	int newRequests = am.getRequestN();
 %></title>
 
 
