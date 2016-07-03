@@ -17,7 +17,7 @@
 	<p>
 		To: &nbsp;
 		<%
-			String reciever = request.getParameter("reciever");
+			String reciever = request.getParameter("receiver");
 		%>
 	</p>
 	<br>
