@@ -1,5 +1,4 @@
-<%@page import="Model.Message"
-	import="java.util.Date" import="MRC.MessageManager"%>
+<%@page import="java.util.Date"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 
@@ -16,14 +15,12 @@
 
 
 <%
-	String sender = request.getParameter("sender");
-	MessageManager mm = (MessageManager) request.getAttribute("MessManager");
+	String receiverName = request.getParameter("receiverName");
 %>
 <p>
-	To:
-	<%=request.getAttribute("receiverName")%>
+	To: &nbsp;
 	<%
-		String reciever = request.getParameter("receiver");
+		out.println(receiverName);
 	%>
 </p>
 <br>
@@ -31,23 +28,13 @@
 	</textarea>
 <br>
 <br>
-<button type="button" onclick="send()">Send</button>
 
-<script>
-	function send() {
-		var x = document.getElementById("myTextarea").value;
-		String
-		msg = (String)
-		x;
-		Date
-		date = new Date();
-		java.sql.Date
-		sqlDate = new java.sql.Date(date.getTime());
-		Message
-		ms = new Message(0, msg, sender, reciever, sqlDate, false);
-		mm.sendMessage(ms);
-	}
-</script>
+<form name="sendForm" action="ServletSendingMessage" method="GET">
+	<input type="hidden" name="message"
+		value="<script>(String) document.getElementById('myTextarea').value </script>">
+	<input type="submit" value="Send">
+</form>
+
 
 <!-- **********************************************************************************************************************************************************
       RIGHT SIDEBAR CONTENT AND FOOTER
