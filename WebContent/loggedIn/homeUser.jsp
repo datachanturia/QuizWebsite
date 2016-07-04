@@ -26,10 +26,16 @@
 
 				for (int i = 0; i < qzPQls.size(); i++) {
 			%>
+			<form name="PQqzidd<%=i%>" method="get" action="./servletChallenge">
+				<input type="hidden" name="quizID"
+					value="<%=qzPQls.get(i).getQuizID()%>">
+			</form>
 			<form name="PQqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
 					<a href="#" onclick="document.forms['PQqzid<%=i%>'].submit()">
-						Take </a> or <a href='#'> Challenge </a>
+						Take </a> or <a href='#'
+						onclick="document.forms['PQqzidd<%=i%>'].submit()"> Challenge
+					</a>
 					<%=qzPQls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
 						value="<%=qzPQls.get(i).getQuizID()%>">
@@ -53,10 +59,16 @@
 
 				for (int i = 0; i < qzNQls.size(); i++) {
 			%>
+			<form name="NQqzidd<%=i%>" method="get" action="./servletChallenge">
+				<input type="hidden" name="quizID"
+					value="<%=qzNQls.get(i).getQuizID()%>">
+			</form>
 			<form name="NQqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
 					<a href="#" onclick="document.forms['NQqzid<%=i%>'].submit()">
-						Take </a> or <a href='#'> Challenge </a>
+						Take </a> or <a href='#'
+						onclick="document.forms['NQqzidd<%=i%>'].submit()"> Challenge
+					</a>
 					<%=qzNQls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
 						value="<%=qzNQls.get(i).getQuizID()%>">
@@ -82,10 +94,16 @@
 				for (int i = 0; i < qzDPls.size(); i++) {
 			%>
 
+			<form name="DPqzidd<%=i%>" method="get" action="./servletChallenge">
+				<input type="hidden" name="quizID"
+					value="<%=qzDPls.get(i).getQuizID()%>">
+			</form>
 			<form name="DPqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 				<h5 align="left" style="border-left: 25px solid #444c57;">
 					<a href="#" onclick="document.forms['DPqzid<%=i%>'].submit()">
-						Take </a> or <a href='#'> Challenge </a>
+						Take </a> or <a href='#'
+						onclick="document.forms['DPqzidd<%=i%>'].submit()"> Challenge
+					</a>
 					<%=qzDPls.get(i).getQuizname()%>
 					<input type="hidden" name="quizID"
 						value="<%=qzDPls.get(i).getQuizID()%>">
