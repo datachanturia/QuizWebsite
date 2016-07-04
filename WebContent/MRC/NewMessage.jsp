@@ -15,6 +15,8 @@
 
 
 <%
+	int sender = (int) request.getAttribute("sender");
+	int receiver = Integer.parseInt(request.getParameter("receiver"));
 	String receiverName = request.getParameter("receiverName");
 %>
 <p>
@@ -24,15 +26,13 @@
 	%>
 </p>
 <br>
-<textarea rows=15, cols=70, id="myTextarea">
-	</textarea>
-<br>
-<br>
+
 
 <form name="sendForm" action="ServletSendingMessage" method="GET">
-	<input type="hidden" name="message"
-		value="<script>(String) document.getElementById('myTextarea').value </script>">
-	<input type="submit" value="Send">
+	<input type="hidden" name="sender" value=<%=sender%>> <input
+		type="hidden" name="receiver" value=<%=receiver%>>
+	<textarea rows=15, cols=70, name="message"> </textarea>
+	<br> <br> <input type="submit" value="Send">
 </form>
 
 
