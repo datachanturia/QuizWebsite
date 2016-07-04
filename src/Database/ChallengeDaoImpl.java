@@ -43,7 +43,7 @@ public class ChallengeDaoImpl implements ChallengeDao {
 	@Override
 	public void addChallenge(Challenge challenge) {
 		try {
-			PreparedStatement prepst = con.prepareStatement("insert into Challenges (senderID,recieverID,quizID,sendDate) values (?,?,?,?)");
+			PreparedStatement prepst = con.prepareStatement("insert into Challenges (senderID,receiverID,quizID,senddate) values (?,?,?,?)");
 			prepst.setInt(1, challenge.getSenderID());
 			prepst.setInt(2, challenge.getRecieverID());
 			prepst.setInt(3, challenge.getQuizID());
