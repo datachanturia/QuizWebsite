@@ -2,7 +2,7 @@
 	import="java.sql.Connection" import="java.util.ArrayList"
 	import="friends.friendsDatabaseConnector" import="Model.Quiz"
 	import="java.util.ArrayList" import="MRC.MessageManager"
-	import="Model.Message"%>
+	import="Model.Message" import="Database.UserDaoImpl"%>
 
 <%@ include file="../../MenuFiles/HeadOfFile.jsp"%>
 
@@ -30,6 +30,10 @@
 			<%
 				Connection con;
 				con = DataSource.getInstance().getConnection();
+				
+				UserDaoImpl udi = new UserDaoImpl(con);
+				ArrayList<Integer> friendIds = udi.getUserFriends(am.getUser().getUserID());
+				
 				friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
 				frc.setConnection(con);
 
@@ -63,7 +67,51 @@
 				</a>
 					<p align="center">
 						<font size="+1.5" color="#ffebbb"> <%=userName%></font>
-					</p>
+					</p> 
+					
+					<!-- ****************** forms start here ******************** -->
+					<form action="./ServletSendMessage" method="get"
+						name="sendMessageForm<%=friends.get(j * 2 + k)%>">
+						<input name="receiver" type="hidden"
+							value="<%=Integer.toString(friends.get(j * 2 + k))%>" />
+						<input name="receiverName" type="hidden"
+							value="<%=userName%>" />
+					</form>
+					
+					<form action="./ServletSendRequest" method="get"
+						name="requestForm<%=friends.get(j * 2 + k)%>">
+						<input name="receiver" type="hidden"
+							value="<%=Integer.toString(friends.get(j * 2 + k))%>" />
+					</form>
+					
+					<form action="./ServletBlockFriend" method="get"
+						name="blockForm<%=friends.get(j * 2 + k)%>">
+						<input name="receiver" type="hidden"
+							value="<%=Integer.toString(friends.get(j * 2 + k))%>" />
+					</form>
+					<!-- ****************** forms end here ******************** -->
+					<% 
+						boolean isFriend = false;
+					
+					 	for(int aa = 0; aa < friendIds.size(); aa++){
+					 		if(friendIds.get(aa) == friends.get(j * 2 + k)){
+					 			isFriend = true;
+					 		}
+					 	}
+					 	if(isFriend){
+					%>
+							<a href="#" onclick="document.forms['sendMessageForm<%=friends.get(j * 2 + k)%>'].submit()">Send
+								Message</a><br> 
+							<a href="#" onclick="document.forms['blockForm<%=friends.get(j * 2 + k)%>'].submit()">Block
+								Friend</a>
+					<%	
+					 	}else if(friends.get(j * 2 + k) != am.getUser().getUserID()){ 
+					 %>
+					 		<a href="#" onclick="document.forms['requestForm<%=friends.get(j * 2 + k)%>'].submit()">Send
+									Request</a><br>
+					<%
+					 	}
+					%>
 				</td>
 				<%
 					}
