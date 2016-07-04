@@ -1,3 +1,7 @@
+<%@page import="org.omg.CORBA.FREE_MEM"%>
+<%@page import="Database.RequestDaoImpl"%>
+<%@page import="Database.ChallengeDaoImpl"%>
+<%@page import="Database.QuizDaoImpl"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="Model.User"%>
 <%@page import="dataSrc.DataSource"%>
@@ -23,6 +27,22 @@
 	con = DataSource.getInstance().getConnection();
 	UserDaoImpl user = new UserDaoImpl(con);
 	User friend = user.getUserById(friendID);
+	QuizDaoImpl qzImpl = new QuizDaoImpl(con);
+	ChallengeDaoImpl chImpl = new ChallengeDaoImpl(con);
+	RequestDaoImpl reqImpl = new RequestDaoImpl(con);
+	MessageDaoImpl msgImpl = new MessageDaoImpl(con);
+	friend.setQuizesCreated(qzImpl.userCreatedQuizes(friendID));
+	friend.setQuizesTaken(qzImpl.userTakenQuizes(friendID));
+	friend.setChallenges(chImpl.getUserChallenges(friendID));
+	friend.setRequests(reqImpl.getUserRequests(friendID));
+	friend.setMessages(msgImpl.getUserMessages(friendID));
+	
+	ArrayList<Integer> frFrsIds = user.getUserFriends(friendID);
+	ArrayList<User> friendFriends = new ArrayList<User>();
+	friend.setFriends(friendFriends);
+	for(int i=0; i<frFrsIds.size(); i++){
+		friendFriends.add(user.getUserById(frFrsIds.get(i)));
+	}
 %>
 <div align="center">
 	<table>
@@ -36,6 +56,13 @@
 		</tr>
 	</table>
 </div>
+
+<div align="center">Friends: <%=friend.getFriends().size() %></div>
+<div align="center">Quizzes Taken: <%=friend.getQuizesTaken().size() %></div>
+
+<%if(friend.isAdmin() == true){
+%>	<div align="center">Quizzes Created: <%=friend.getQuizesCreated().size() %></div>
+<% }%>
 
 
 <!-- **********************************************************************************************************************************************************
