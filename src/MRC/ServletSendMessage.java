@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import Database.MessageDaoImpl;
 import Database.QuizDaoImpl;
 import Model.Quiz;
 import ULS.AccountManager;
@@ -44,21 +45,28 @@ public class ServletSendMessage extends HttpServlet {
 		Connection con = null;
 
 		RequestDispatcher rd;
-		MessageManager mm = new MessageManager(null);
+
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 
 		int userID = am.getUser().getUserID();
-		mm.setUserID(userID);
-
-		request.setAttribute("sender", userID);
-		request.setAttribute("receiver", request.getParameter("receiver"));
-		request.setAttribute("receiverName", request.getParameter("receiverName"));
-
 		try {
 			con = DataSource.getInstance().getConnection();
-			mm.setConnection(con);
+			
+			request.setAttribute("sender", userID);
 
-			request.setAttribute("MessManager", mm);
+			// ------------------------------------------
+			QuizDaoImpl qdi = new QuizDaoImpl(con);
+
+			request.setAttribute("accManager", am);
+
+			ArrayList<Quiz> dayPopuLs = qdi.getDayPopularQuiz();
+			ArrayList<Quiz> popQuizLs = qdi.getPopularQuiz();
+			ArrayList<Quiz> newQuizLs = qdi.getNewQuiz();
+
+			request.setAttribute("dayPopuLs", dayPopuLs);
+			request.setAttribute("popQuizLs", popQuizLs);
+			request.setAttribute("newQuizLs", newQuizLs);
+			// --------------------------------------------------
 
 			rd = request.getRequestDispatcher("./MRC/NewMessage.jsp");
 
@@ -71,7 +79,6 @@ public class ServletSendMessage extends HttpServlet {
 				}
 		}
 		rd.forward(request, response);
-
 	}
 
 	/**
