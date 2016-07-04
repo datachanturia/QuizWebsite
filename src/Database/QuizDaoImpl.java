@@ -47,7 +47,7 @@ public class QuizDaoImpl implements QuizDao {
 			ResultSet rs = stmt
 					.executeQuery("select quizID from TakenQuiz where userID = " + userID + " and isdelete = 0");
 			while (rs.next()) {
-				quizes.add(getQuiz(rs.getInt("userID")));
+				quizes.add(getQuiz(rs.getInt("quizID")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
