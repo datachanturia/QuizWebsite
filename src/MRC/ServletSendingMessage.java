@@ -79,16 +79,15 @@ public class ServletSendingMessage extends HttpServlet {
 			request.setAttribute("popQuizLs", popQuizLs);
 			request.setAttribute("newQuizLs", newQuizLs);
 			// --------------------------------------------------
-			System.out.print("esec qna da gadasvlaze urevs");
+			
 			rd = request.getRequestDispatcher("./MRC/SentMessage.jsp");
-			System.out.println("ar urevs gadasvlaze");
+			
 
 		} finally {
 			if (con != null)
 				try {
 					con.close();
 				} catch (SQLException e) {
-					System.out.print("oh no!!!");
 					e.printStackTrace();
 				}
 		}
