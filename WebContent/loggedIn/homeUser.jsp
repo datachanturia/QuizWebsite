@@ -26,7 +26,7 @@
 
 				for (int i = 0; i < qzPQls.size(); i++) {
 			%>
-			<form name="PQqzidd<%=i%>" method="get" action="./servletChallenge">
+			<form name="PQqzidd<%=i%>" method="get" action="./ServletChallenge">
 				<input type="hidden" name="quizID"
 					value="<%=qzPQls.get(i).getQuizID()%>">
 			</form>
@@ -59,7 +59,7 @@
 
 				for (int i = 0; i < qzNQls.size(); i++) {
 			%>
-			<form name="NQqzidd<%=i%>" method="get" action="./servletChallenge">
+			<form name="NQqzidd<%=i%>" method="get" action="./ServletChallenge">
 				<input type="hidden" name="quizID"
 					value="<%=qzNQls.get(i).getQuizID()%>">
 			</form>
@@ -94,7 +94,7 @@
 				for (int i = 0; i < qzDPls.size(); i++) {
 			%>
 
-			<form name="DPqzidd<%=i%>" method="get" action="./servletChallenge">
+			<form name="DPqzidd<%=i%>" method="get" action="./ServletChallenge">
 				<input type="hidden" name="quizID"
 					value="<%=qzDPls.get(i).getQuizID()%>">
 			</form>
