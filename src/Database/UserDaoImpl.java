@@ -269,4 +269,26 @@ public class UserDaoImpl implements UserDao {
 		}
 		return null;
 	}
+
+	@Override
+	public void BanByMail(String mail) {
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("update Users set isdelete = 1 " + "where mail = \"" + mail + "\"");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	public void MakeAdmin(String mail) {
+		try {
+			PreparedStatement preparedStatement = con
+					.prepareStatement("update Users set isadmin = 1 " + "where mail = \"" + mail + "\"");
+			preparedStatement.execute();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+	}
 }

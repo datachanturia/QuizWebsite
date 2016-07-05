@@ -31,4 +31,8 @@ public interface UserDao {
 	public boolean setPass(int userID, String curPas, String newPas) throws CloneNotSupportedException;
 	
 	public User getUserById(int userId);
+
+	void BanByMail(String mail);
+	
+	void MakeAdmin(String mail);
 }
