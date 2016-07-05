@@ -1,9 +1,9 @@
 <%@ page import="java.sql.SQLException" import="dataSrc.DataSource"
 	import="java.sql.Connection" import="java.util.ArrayList"
-	import="friends.friendsDatabaseConnector"
-	import="Model.Quiz" import="java.util.ArrayList"
-	import="MRC.MessageManager" import="Model.Message"
-	import="searchQuiz.searchQuizServlet" import="Model.Quiz"%>
+	import="friends.friendsDatabaseConnector" import="Model.Quiz"
+	import="java.util.ArrayList" import="MRC.MessageManager"
+	import="Model.Message" import="searchQuiz.searchQuizServlet"
+	import="Model.Quiz"%>
 
 <%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 
@@ -35,10 +35,15 @@
 
 	for (int i = 0; i < quizzes.size(); i++) {
 %>
+<form name="PQqzidd<%=i%>" method="get" action="./ServletChallenge">
+	<input type="hidden" name="quizID"
+		value="<%=quizzes.get(i).getQuizID()%>">
+</form>
 <form name="PQqzid<%=i%>" method="Post" action="./QuizSummaryServlet">
 	<h5 align="center">
 		<a href="#" onclick="document.forms['PQqzid<%=i%>'].submit()">
-			Take </a> or <a href='#'> Challenge </a>
+			Take </a> or <a href='#'
+			onclick="document.forms['PQqzidd<%=i%>'].submit()"> Challenge </a>
 		<%=quizzes.get(i).getQuizname()%>
 		<input type="hidden" name="quizID"
 			value="<%=quizzes.get(i).getQuizID()%>">
