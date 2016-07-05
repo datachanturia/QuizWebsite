@@ -52,7 +52,7 @@
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Bann User</span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="./RemoveQuizServlet"> <i class=" fa"></i>
 					<span>Remove Quiz</span>
 			</a></li>
 			<%

@@ -33,7 +33,7 @@
 
 	<!-- Challenges Start -->
 	<h3>
-		NEW CHALLENGES <a href=""> -- see all</a>
+		NEW CHALLENGES <a href="./ServletChallengeList"> -- see all</a>
 	</h3>
 
 	<%
