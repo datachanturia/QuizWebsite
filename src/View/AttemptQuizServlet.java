@@ -18,6 +18,7 @@ import Model.Question;
 import Model.Quiz;
 import dataSrc.DataSource;
 import java.util.Collections;
+import java.util.Date;
 
 /**
  * Servlet implementation class AttemptQuizServlet
@@ -76,6 +77,7 @@ public class AttemptQuizServlet extends HttpServlet {
 		session.setAttribute("quiz", quiz);
 		session.setAttribute("questions", questions);
 		session.setAttribute("currindex", 1);
+		session.setAttribute("startTime", (new Date()).getTime());
 		if(Boolean.parseBoolean(request.getParameter("isMultiple"))){
 		request.getSession(false).setAttribute("quizID", request.getParameter("quizID"));
 			response.sendRedirect("Quiz/MultPage.jsp");

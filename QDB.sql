@@ -131,6 +131,7 @@ create table if not exists TakenQuiz(
     quizID int,
     takedate datetime,
     score int default 0,
+    quiztime bigint default 0,
     isdelete tinyint(1) default 0,
     
     foreign key (userID) references Users (userID),

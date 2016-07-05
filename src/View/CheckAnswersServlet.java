@@ -151,7 +151,10 @@ public class CheckAnswersServlet extends HttpServlet {
 		}
 		
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
-		quizdao.addUserTakenQuiz(am.getUser().getUserID(), quizid, new Date((new java.util.Date()).getTime()), score);
+		long d = (Long)ses.getAttribute("startTime");
+		long diffMins = ((new java.util.Date()).getTime()-d)/(60*1000)%60;
+		
+		quizdao.addUserTakenQuiz(am.getUser().getUserID(), quizid, new Date((new java.util.Date()).getTime()), score,diffMins);
 		
 		
 		if (con != null)
@@ -161,6 +164,7 @@ public class CheckAnswersServlet extends HttpServlet {
 	 		}
 		request.setAttribute("score", score);
 		request.setAttribute("quizID", quizid);
+		request.setAttribute("time", diffMins);
 		RequestDispatcher rd = request.getRequestDispatcher("./Quiz/ResultPage.jsp");
 		rd.forward(request, response);
 	}

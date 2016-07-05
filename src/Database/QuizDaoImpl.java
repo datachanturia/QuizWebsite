@@ -113,16 +113,16 @@ public class QuizDaoImpl implements QuizDao {
 	}
 
 	@Override
-	public void addUserTakenQuiz(int userID, int quizID, Date takedate, int score) {
+	public void addUserTakenQuiz(int userID, int quizID, Date takedate, int score,long time) {
 		try {
 			PreparedStatement preparedStatement = con
-					.prepareStatement("INSERT INTO TakenQuiz (userID, quizID, takedate, score) VALUES(?,?,?,?)");
+					.prepareStatement("INSERT INTO TakenQuiz (userID, quizID, takedate, score,quiztime) VALUES(?,?,?,?,?)");
 
 			preparedStatement.setInt(1, userID);
 			preparedStatement.setInt(2, quizID);
 			preparedStatement.setDate(3, takedate);
 			preparedStatement.setInt(4, score);
-
+			preparedStatement.setLong(5, time);
 			preparedStatement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -220,7 +220,7 @@ public class QuizDaoImpl implements QuizDao {
 			ResultSet rs = stmt.executeQuery("select * from TakenQuiz where userID="+userID+" and quizID="+quizID);
 		
 			while (rs.next()) {
-				tq.add(new TakenQuiz(rs.getDate("takedate"), rs.getInt("score")));
+				tq.add(new TakenQuiz(rs.getDate("takedate"), rs.getInt("score"),rs.getLong("quiztime")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -245,7 +245,7 @@ public class QuizDaoImpl implements QuizDao {
 			ResultSet rs = stmt.executeQuery(query);
 			
 			while (rs.next()) {
-				tq.add(new TakenQuiz(rs.getInt("userID"),rs.getInt("quizID"),rs.getDate("takedate"), rs.getInt("score")));
+				tq.add(new TakenQuiz(rs.getInt("userID"),rs.getInt("quizID"),rs.getDate("takedate"), rs.getInt("score"),rs.getLong("quiztime")));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
