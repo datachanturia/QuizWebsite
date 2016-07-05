@@ -9,14 +9,18 @@ public class Challenge {
 	private int recieverID;
 	private int quizID;
 	private Date sendDate;
+	private String senderName;
+	private String quizName;
 	
-	public Challenge(int challengeID, int senderID, int recieverID, int quizID, Date sendDate) {
+	public Challenge(int challengeID, int senderID, int recieverID, int quizID, Date sendDate, String senderName, String quizName) {
 		super();
 		this.challengeID = challengeID;
 		this.senderID = senderID;
 		this.recieverID = recieverID;
 		this.quizID = quizID;
 		this.sendDate = sendDate;
+		this.senderName = senderName;
+		this.quizName = quizName;
 	}
 
 	public int getChallengeID() {
@@ -58,6 +62,21 @@ public class Challenge {
 	public void setSendDate(Date sendDate) {
 		this.sendDate = sendDate;
 	}
-
+	
+	public String getSenderName(){
+		return this.senderName;
+	}
+	
+	public void setSenderName(String senderName){
+		this.senderName = senderName;
+	}
+	
+	public String getQuizName(){
+		return this.quizName;
+	}
+	
+	public void setQuizName(String quizName){
+		this.quizName = quizName;
+	}
 	
 }
