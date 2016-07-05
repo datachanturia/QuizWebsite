@@ -26,11 +26,14 @@ public class ChallengeDaoImpl implements ChallengeDao {
 		
 		try {
 			Statement st = con.createStatement();
-			ResultSet result = st.executeQuery("select * from Challenges where (senderID = " + userID + " or receiverID = " + userID + ")"
-					+ " and isdelete = 0");
+			ResultSet result = st.executeQuery("select challengeID, senderID, receiverID, c.quizID, senddate, username, quizname"
+					+ " from (select challengeID, senderID, receiverID, quizID, senddate, username from "
+					+ "Challenges inner join users on senderID = userID where "
+					+ "receiverID = " + userID + " and challenges.isdelete = 0) c inner join quiz q on "
+					+ "c.quizID = q.quizID where q.isdelete = 0");
 			while(result.next()){
-				Challenge challenge = new Challenge(result.getInt("challengeID"), result.getInt("senderID"), 
-						result.getInt("recieverID"), result.getInt("quizID"), result.getDate("senddate"));
+				Challenge challenge = new Challenge(result.getInt("challengeID"), result.getInt("senderID"), result.getInt("receiverID"), 
+						result.getInt("quizID"), result.getDate("senddate"), result.getString("username"), result.getString("quizname"));
 				challenges.add(challenge);
 			}
 		} catch (SQLException e) {
