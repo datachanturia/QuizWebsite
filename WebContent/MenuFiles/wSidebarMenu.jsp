@@ -46,10 +46,10 @@
 			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
 					<span>Write Post</span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="../Admin/MakeAdmin.jsp"> <i class=" fa"></i>
 					<span>Make User Admin</span>
 			</a></li>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="../Admin/BanUser.jsp"> <i class=" fa"></i>
 					<span>Bann User</span>
 			</a></li>
 			<li class="sub-menu"><a href="../RemoveHomeServlet"> <i class=" fa"></i>

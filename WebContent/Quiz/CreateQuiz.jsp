@@ -83,8 +83,8 @@
 	</select> <br> <br> Description:
 	<textarea name="description" rows="2" cols="30"
 		placeholder="Enter Text Here"></textarea>
-	<br> <br> Score: <input type="text" name="score"
-		placeholder="Enter Score Here"><br> <br> <input
+	<br> <br> Score: <input type="number" name="score"
+		placeholder="Enter Score Here" required><br> <br> <input
 		type="checkbox" name="random" value="isRandom">Random
 	Questions<br> <br> Display Questions On: <input type="radio"
 		name="Page" value="Multiple">Multiple pages <input
