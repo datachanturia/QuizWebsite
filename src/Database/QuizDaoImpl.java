@@ -133,8 +133,7 @@ public class QuizDaoImpl implements QuizDao {
 	public void deleteQuiz(int quizID) {
 		try {
 			PreparedStatement preparedStatement = con
-					.prepareStatement("update Quiz set isdelete = ? " + "where quizID = " + quizID);
-			preparedStatement.setInt(1, 1);
+					.prepareStatement("update Quiz set isdelete = 1 where quizID = " + quizID);
 			preparedStatement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -152,7 +151,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("SELECT quizID FROM takenquiz GROUP BY quizID desc limit 6");
+					.prepareStatement("SELECT quizID FROM takenquiz where isdelete = 0 GROUP BY quizID desc limit 6");
 
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
@@ -198,7 +197,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("select quizID from quiz order by creationdate desc limit 6");
+					.prepareStatement("select quizID from quiz where isdelete = 0 order by creationdate desc limit 6");
 
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
