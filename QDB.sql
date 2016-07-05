@@ -145,3 +145,14 @@ create table if not exists UsersAchievement(
     foreign key (userID) references Users (userID),
     foreign key (achievementID) references Achievements (achievementID)
 );
+
+create table if not exists AdminPosts(
+	messageID int not null auto_increment,
+    adminID int,
+    message varchar(2048) CHARACTER SET utf8 default null,
+    senddate datetime,
+    isdelete tinyint(1) default 0,
+    
+    primary key (messageID),
+    foreign key (adminID) references Users (userID)
+);
