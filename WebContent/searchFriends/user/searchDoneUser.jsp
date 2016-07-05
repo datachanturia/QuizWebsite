@@ -2,7 +2,7 @@
 	import="java.sql.Connection" import="java.util.ArrayList"
 	import="friends.friendsDatabaseConnector" import="Model.Quiz"
 	import="java.util.ArrayList" import="MRC.MessageManager"
-	import="Model.Message" import="Database.UserDaoImpl"%>
+	import="Model.Message" import="Database.UserDaoImpl" import="Database.RequestDaoImpl"%>
 
 <%@ include file="../../MenuFiles/HeadOfFile.jsp"%>
 
@@ -36,6 +36,9 @@
 				
 				friendsDatabaseConnector frc = new friendsDatabaseConnector(con);
 				frc.setConnection(con);
+				
+				RequestDaoImpl rdi = new RequestDaoImpl(con);
+				ArrayList<Integer> sendReqz = rdi.sendRequestIDs(am.getUser().getUserID());
 
 				ArrayList<Integer> friends = (ArrayList<Integer>) request.getAttribute("users");
 				int numberOfFriends = friends.size();
@@ -92,7 +95,13 @@
 					<!-- ****************** forms end here ******************** -->
 					<% 
 						boolean isFriend = false;
-					
+						boolean isReqSend = false;
+						
+						for(int aa = 0; aa < sendReqz.size(); aa++){
+							if(sendReqz.get(aa) == friends.get(j*2 + k)){
+								isReqSend = true;
+							}
+						}
 					 	for(int aa = 0; aa < friendIds.size(); aa++){
 					 		if(friendIds.get(aa) == friends.get(j * 2 + k)){
 					 			isFriend = true;
@@ -105,7 +114,7 @@
 							<a href="#" onclick="document.forms['blockForm<%=friends.get(j * 2 + k)%>'].submit()">Block
 								Friend</a>
 					<%	
-					 	}else if(friends.get(j * 2 + k) != am.getUser().getUserID()){ 
+					 	}else if(friends.get(j * 2 + k) != am.getUser().getUserID() && !isReqSend){ 
 					 %>
 					 		<a href="#" onclick="document.forms['requestForm<%=friends.get(j * 2 + k)%>'].submit()">Send
 									Request</a><br>

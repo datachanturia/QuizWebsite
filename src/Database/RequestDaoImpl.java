@@ -83,8 +83,25 @@ public class RequestDaoImpl implements RequestDao {
 			System.out.println("oh no!");
 			e.printStackTrace();
 		}
-
-
 	}
+	
+	@Override
+	public ArrayList<Integer> sendRequestIDs(int userID) {
+		ArrayList<Integer> ids = new ArrayList<Integer>();
+		
+		try {
+			Statement stmt = con.createStatement();
+			ResultSet rs = stmt.executeQuery("select receiverID from requests where senderID = " + userID);
+			while(rs.next()){
+				ids.add(rs.getInt("receiverID"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return ids;
+	}
+	
+	
 
 }

@@ -10,4 +10,5 @@ public interface RequestDao {
 	public void addRequest(Request request);
 	public void addFriend(int userID, int friendID);
 	public void deleteRequest(int requestID);
+	public ArrayList<Integer> sendRequestIDs(int userID);
 }
