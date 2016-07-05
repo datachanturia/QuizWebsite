@@ -9,9 +9,7 @@
 
 <div class="col-lg-3 ds">
 	<!-- Admin Posts Start -->
-	<h3>
-		ADMIN POSTS <a href=""> -- see all</a>
-	</h3>
+	<h3>ADMIN POSTS</h3>
 
 	<%
 		for (int ii = 0; ii < 4; ii++) {
