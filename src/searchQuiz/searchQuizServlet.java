@@ -66,8 +66,8 @@ public class searchQuizServlet extends HttpServlet {
 			
 			if(quizName.length() > 0){
 				prepStatement = "select * from Quiz where quizname = \"" + quizName + "\" "
-						+ "and category = \"" + quizType + "\"";
-			}else prepStatement = "select * from Quiz where category = \"" + quizType + "\"";
+						+ "and isdelete = 0 and category = \"" + quizType + "\"";
+			}else prepStatement = "select * from Quiz where category = \"" + quizType + "\" and isdelete = 0";
 			
 			ArrayList<Quiz> quizzes = qdi.getQuizes(prepStatement);
 			
