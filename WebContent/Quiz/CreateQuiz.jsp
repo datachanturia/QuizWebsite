@@ -25,7 +25,7 @@
 		div.innerHTML = '<br>'
 				+ '---------------------------------------------------------------------------------------------------------------------------------------'
 				+ '<br>'
-				+ '<div id="Questiondiv_'+i+'">Question Type: <select name="QuestionType_'+i+'" onchange=\'addField(this)\'><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_'+i+'" rows="2" cols="30" placeholder="Enter Question Here"></textarea></div><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
+				+ '<div id="Questiondiv_'+i+'">Question Type: <select name="QuestionType_'+i+'" onchange=\'addField(this)\'><option value="0">Question Response</option><option value="1">Fill In The Blank</option><option value="2">Multiple Choice</option><option value="3">Picture Response</option><option value="4">Multiple Answer</option><option value="5">Multiple Choice Multiple Answer</option></select><br><br>Question Text: <textarea name="Question_'+i+'" rows="2" cols="30" placeholder="Enter Question Here" required></textarea></div><br><input type="button" id="removeQuestion()" onClick="removeQuestion(this)" value="Remove Question" /><br>Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here" required></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<br>';
 		document.getElementById('Questions').appendChild(div);
 
 	}
@@ -39,7 +39,7 @@
 		j++;
 		var div = document.createElement('div');
 		div.setAttribute('class', 'myclass');
-		div.innerHTML = 'Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here"></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<input type="button" id="remove_answer()" onClick="removeAnswer(this)" value="Remove Answer" /><br>';
+		div.innerHTML = 'Answer: <textarea name="Question_'+i+'Answer" rows="2" cols="30" placeholder="Enter Answer Here" required></textarea><input type="checkbox" name="Question_'+i+'AnswerCorrect" value="q'+i+'a'+j+'">Correct Answer<input type="button" id="remove_answer()" onClick="removeAnswer(this)" value="Remove Answer" /><br>';
 		document.getElementById('Questions').appendChild(div);
 
 	}
@@ -72,7 +72,7 @@
 
 <form align="center" action="./CrQuizServlet" method="post">
 	Quiz Name: <input type="text" name="quizName"
-		placeholder="Enter Quiz Name Here"><br> Quiz Category: <select
+		placeholder="Enter Quiz Name Here" required><br> Quiz Category: <select
 		name="QuizCategory">
 		<option value="0">Question Response</option>
 		<option value="1">Fill In The Blank</option>
@@ -82,7 +82,7 @@
 		<option value="5">Multiple Choice Multiple Answer</option>
 	</select> <br> <br> Description:
 	<textarea name="description" rows="2" cols="30"
-		placeholder="Enter Text Here"></textarea>
+		placeholder="Enter Text Here" required></textarea>
 	<br> <br> Score: <input type="number" name="score"
 		placeholder="Enter Score Here" required><br> <br> <input
 		type="checkbox" name="random" value="isRandom">Random
@@ -106,11 +106,11 @@
 			<option value="5">Multiple Choice Multiple Answer</option>
 		</select> <br> <br> Question Text:
 		<textarea name="Question_1" rows="2" cols="30"
-			placeholder="Enter Question Here"></textarea>
+			placeholder="Enter Question Here" required></textarea>
 		</div>
 		<br> Answer:
 		<textarea name="Question_1Answer" rows="2" cols="30"
-			placeholder="Enter Answer Here"></textarea>
+			placeholder="Enter Answer Here" required></textarea>
 		<input type="checkbox" name="Question_1AnswerCorrect" value="q1a1">Correct
 		Answer
 	</div>
