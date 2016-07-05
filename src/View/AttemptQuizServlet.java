@@ -12,13 +12,12 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import javax.websocket.Session;
-
 import Database.QuestionDaoImpl;
 import Database.QuizDaoImpl;
 import Model.Question;
 import Model.Quiz;
 import dataSrc.DataSource;
+import java.util.Collections;
 
 /**
  * Servlet implementation class AttemptQuizServlet
@@ -70,7 +69,9 @@ public class AttemptQuizServlet extends HttpServlet {
 				} catch (SQLException e) {
 				}
 		}
-		
+		if(quiz.isRandom()){
+			Collections.shuffle(questions);
+		}
 		HttpSession session = request.getSession();
 		session.setAttribute("quiz", quiz);
 		session.setAttribute("questions", questions);
