@@ -24,7 +24,7 @@ public class PostDaoImpl implements PostDao {
 
 		try {
 			Statement st = con.createStatement();
-			ResultSet result = st.executeQuery("select * from AdminPosts order by senddate desc limit 4");
+			ResultSet result = st.executeQuery("select * from AdminPosts order by messageID desc limit 4");
 
 			while (result.next()) {
 				Post post = new Post(result.getInt("messageID"), result.getInt("adminID"),

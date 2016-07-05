@@ -197,7 +197,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con
-					.prepareStatement("select quizID from quiz where isdelete = 0 order by creationdate desc limit 6");
+					.prepareStatement("select quizID from quiz where isdelete = 0 order by quizID desc limit 6");
 
 			ResultSet rs = prdtmt.executeQuery();
 			while (rs.next()) {
