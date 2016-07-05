@@ -10,14 +10,13 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="dataSrc.DataSource"%>
     
+<%@ include file="../MenuFiles/HeadOfFile.jsp"%>
 
-<script type="text/javascript">
-$('document').ready(function(){
-	
-	$$("#Submit").hide();
-});
+<!-- **********************************************************************************************************************************************************
+      MAIN SIDEBAR MENU
+      *********************************************************************************************************************************************************** -->
+<%@ include file="../MenuFiles/SidebarMenu.jsp"%>
 
-</script>
 
 
 <%
@@ -38,13 +37,14 @@ try {
 
 %>
 Your Score: <%=request.getAttribute("score") %> <br><br>
-Time: <br><br>
+Time: <%=request.getAttribute("time") %><br><br>
 
 <table border="1" style="width:50%">
 <caption>Top Performers</caption>
   <tr>
     <th>User</th>
     <th>Date</th>
+    <th>Time</th>
     <th>Score</th>
     <th>Percent</th>
   </tr>
@@ -59,6 +59,9 @@ for(TakenQuiz t : topperformers){
 		out.print(t.getTakeDate().toString());
 		out.print("</td>\n");
 		out.print("<td>");
+		out.print(t.getQuiztime());
+		out.print("</td>\n");
+		out.print("<td>");
 		out.print(t.getScore());
 		out.print("</td>\n");
 		out.print("<td>");
@@ -68,3 +71,11 @@ for(TakenQuiz t : topperformers){
 }
 %>
 </table><br>
+
+
+<!-- **********************************************************************************************************************************************************
+      RIGHT SIDEBAR CONTENT AND FOOTER
+      *********************************************************************************************************************************************************** -->
+
+<%@ include file="../MenuFiles/RightSidebarNFooter.jsp"%>
+

@@ -76,7 +76,7 @@
 			out.print(t.getTakeDate().toString());
 			out.print("</td>\n");
 			out.print("<td>");
-			out.print(t.getTakeDate().toString());
+			out.print(t.getQuiztime());
 			out.print("</td>\n");
 			out.print("<td>");
 			out.print(t.getScore());
@@ -96,6 +96,7 @@
 	<tr>
 		<th>User</th>
 		<th>Date</th>
+		<th>Time</th>
 		<th>Score</th>
 		<th>Percent</th>
 	</tr>
@@ -107,6 +108,9 @@
 			out.print("</td>\n");
 			out.print("<td>");
 			out.print(t.getTakeDate().toString());
+			out.print("</td>\n");
+			out.print("<td>");
+			out.print(t.getQuiztime());
 			out.print("</td>\n");
 			out.print("<td>");
 			out.print(t.getScore());
@@ -124,6 +128,7 @@
 	<caption>Top Performers Last Day</caption>
 	<tr>
 		<th>User</th>
+		<th>Time</th>
 		<th>Score</th>
 		<th>Percent</th>
 	</tr>
@@ -132,6 +137,9 @@
 			out.println("<tr>");
 			out.print("<td>");
 			out.print(userdao.getUserName(t.getUserID()));
+			out.print("</td>\n");
+			out.print("<td>");
+			out.print(t.getQuiztime());
 			out.print("</td>\n");
 			out.print("<td>");
 			out.print(t.getScore());

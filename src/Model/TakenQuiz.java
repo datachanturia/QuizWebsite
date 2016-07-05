@@ -8,6 +8,8 @@ public class TakenQuiz {
 	private int quizID;
 	private Date takeDate;
 	private int score;
+	private long quiztime;
+	
 	public TakenQuiz(int userID, int quizID, Date takeDate, int score) {
 		super();
 		this.userID = userID;
@@ -16,10 +18,23 @@ public class TakenQuiz {
 		this.score = score;
 	}
 	
-	public TakenQuiz(Date takeDate, int score) {
+	
+	
+	public TakenQuiz(int userID, int quizID, Date takeDate, int score, long quiztime) {
+		this.userID = userID;
+		this.quizID = quizID;
+		this.takeDate = takeDate;
+		this.score = score;
+		this.quiztime = quiztime;
+	}
+
+
+
+	public TakenQuiz(Date takeDate, int score,long quiztime) {
 		super();
 		this.takeDate = takeDate;
 		this.score = score;
+		this.quiztime = quiztime;
 	}
 
 	public int getUserID() {
@@ -53,6 +68,19 @@ public class TakenQuiz {
 	public void setScore(int score) {
 		this.score = score;
 	}
+
+
+
+	public long getQuiztime() {
+		return quiztime;
+	}
+
+
+
+	public void setQuiztime(long quiztime) {
+		this.quiztime = quiztime;
+	}
+	
 	
 	
 
