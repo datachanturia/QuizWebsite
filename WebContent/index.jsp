@@ -194,7 +194,7 @@
 							}
 						%>
 						<%
-							for (int ii = 0; ii < 7; ii++) {
+							for (int ii = 0; ii<posts.size() && ii < 7; ii++) {
 						%>
 						<div class="desc">
 							<div class="thumb">

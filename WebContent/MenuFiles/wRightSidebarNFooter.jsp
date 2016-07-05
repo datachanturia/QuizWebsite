@@ -30,7 +30,7 @@
 		}
 	%>
 	<%
-		for (int ii = 0; ii < 4; ii++) {
+		for (int ii = 0; ii < 4 && ii < posts.size(); ii++) {
 	%>
 	<div class="desc">
 		<div class="thumb">
