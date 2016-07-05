@@ -12,25 +12,7 @@
 	<h3>ADMIN POSTS</h3>
 
 	<%
-		java.util.ArrayList<Model.Post> posts = new java.util.ArrayList<Model.Post>();
-
-		try {
-			conn = dataSrc.DataSource.getInstance().getConnection();
-			Database.PostDaoImpl pdi = new Database.PostDaoImpl(conn);
-
-			posts = pdi.getPosts();
-
-		} finally {
-			if (conn != null)
-				try {
-					conn.close();
-				} catch (java.sql.SQLException e) {
-					e.printStackTrace();
-				}
-		}
-	%>
-	<%
-		for (int ii = 0; ii < posts.size(); ii++) {
+		for (int ii = 0; ii < 4; ii++) {
 	%>
 	<div class="desc">
 		<div class="thumb">
@@ -38,8 +20,7 @@
 		</div>
 		<div class="details">
 			<p>
-				<br /> <a href="#"><%=posts.get(ii).getAdminName()%>: </a>
-				<%=posts.get(ii).getPost()%><br />
+				<br /> <a href="#">James Brown</a> subscribed to your newsletter.<br />
 			</p>
 		</div>
 	</div>
