@@ -133,8 +133,7 @@ public class QuizDaoImpl implements QuizDao {
 	public void deleteQuiz(int quizID) {
 		try {
 			PreparedStatement preparedStatement = con
-					.prepareStatement("update Quiz set isdelete = ? " + "where quizID = " + quizID);
-			preparedStatement.setInt(1, 1);
+					.prepareStatement("update Quiz set isdelete = 1 where quizID = " + quizID);
 			preparedStatement.execute();
 		} catch (SQLException e) {
 			e.printStackTrace();
