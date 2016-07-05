@@ -150,6 +150,7 @@ create table if not exists UsersAchievement(
 create table if not exists AdminPosts(
 	messageID int not null auto_increment,
     adminID int,
+	adminName varchar(2048) CHARACTER SET utf8 default null,
     message varchar(2048) CHARACTER SET utf8 default null,
     senddate datetime,
     isdelete tinyint(1) default 0,

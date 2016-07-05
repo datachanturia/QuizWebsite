@@ -75,7 +75,7 @@
 					<!-- settings end -->
 
 					<!-- inbox dropdown start-->
-					<li id="header_inbox_bar"><a href="./ServletMessage"> <i
+					<li id="header_inbox_bar"><a href="../ServletMessage"> <i
 							class="fa fa-envelope-o"></i> <span class="badge bg-theme">
 								<%=newMsgs%>
 						</span>
@@ -89,7 +89,7 @@
 
 			<div class="top-menu">
 				<ul class="nav pull-right top-menu">
-					<li><a class="logout" href="./loggedOutServlet">Logout</a></li>
+					<li><a class="logout" href="../loggedOutServlet">Logout</a></li>
 				</ul>
 			</div>
 		</header>

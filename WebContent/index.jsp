@@ -104,9 +104,6 @@
 					<li class="sub-menu"><a href=""> <i class="fa fa-book"></i>
 							<span>Home Page</span>
 					</a>
-					<li class="sub-menu"><a href="javascript:;"> <i
-							class=" fa"></i> <span>Search Quizes</span>
-					</a>
 				</ul>
 				<!-- sidebar menu end-->
 			</div>

@@ -43,7 +43,7 @@
 			<%
 				if (isAdmin.equals("true")) {
 			%>
-			<li class="sub-menu"><a href="javascript:;"> <i class=" fa"></i>
+			<li class="sub-menu"><a href="./Admin/WritePost.jsp"> <i class=" fa"></i>
 					<span>Write Post</span>
 			</a></li>
 			<li class="sub-menu"><a href="./Admin/MakeAdmin.jsp"> <i class=" fa"></i>
