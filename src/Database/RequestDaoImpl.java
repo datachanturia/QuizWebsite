@@ -91,7 +91,7 @@ public class RequestDaoImpl implements RequestDao {
 		
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select receiverID from requests where senderID = " + userID);
+			ResultSet rs = stmt.executeQuery("select receiverID from requests where senderID = " + userID + " and isdelete = 0");
 			while(rs.next()){
 				ids.add(rs.getInt("receiverID"));
 			}
