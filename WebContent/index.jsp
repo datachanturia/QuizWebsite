@@ -172,14 +172,29 @@
       *********************************************************************************************************************************************************** -->
 
 					<div class="col-lg-3 ds">
-						<!--COMPLETED ACTIONS DONUTS CHART-->
-						<h3>
-							ADMIN POSTS <a href=""> -- see all</a>
-						</h3>
+						<!-- Admin Posts Start -->
+						<h3>ADMIN POSTS</h3>
 
-						<!-- First Action -->
 						<%
-							for (int i = 0; i < 6; i++) {
+							java.util.ArrayList<Model.Post> posts = new java.util.ArrayList<Model.Post>();
+							java.sql.Connection conn = null;
+							try {
+								conn = dataSrc.DataSource.getInstance().getConnection();
+								Database.PostDaoImpl pdi = new Database.PostDaoImpl(conn);
+
+								posts = pdi.getPosts();
+
+							} finally {
+								if (conn != null)
+									try {
+										conn.close();
+									} catch (java.sql.SQLException e) {
+										e.printStackTrace();
+									}
+							}
+						%>
+						<%
+							for (int ii = 0; ii < 7; ii++) {
 						%>
 						<div class="desc">
 							<div class="thumb">
@@ -187,14 +202,15 @@
 							</div>
 							<div class="details">
 								<p>
-									<br /> <a href="#">James Brown</a> subscribed to your
-									newsletter.<br />
+									<br /> <a href="#"><%=posts.get(ii).getAdminName()%>: </a>
+									<%=posts.get(ii).getPost()%><br />
 								</p>
 							</div>
 						</div>
 						<%
 							}
 						%>
+						<!-- Admin Posts End -->
 
 
 					</div>
