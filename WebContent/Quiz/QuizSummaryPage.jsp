@@ -18,7 +18,6 @@
 <!-- **********************************************************************************************************************************************************
       MAIN CONTENT
       *********************************************************************************************************************************************************** -->
-
 <%
 	int userid = am.getUser().getUserID();
 	int quizid = Integer.parseInt(request.getParameter("quizID"));
@@ -56,15 +55,19 @@
 	out.print(authorName);
 	out.print("</a>");
 %>
+<script type="text/javascript" src="Quiz/sorttable.js"></script> 
 
-<table border="1" style="width: 50%">
+<table class="sortable" border="1" style="width: 50%" >
 	<caption>Your Last Attempts</caption>
+	<thead>
 	<tr>
 		<th>Date</th>
 		<th>Time</th>
 		<th>Score</th>
 		<th>Percent</th>
 	</tr>
+	</thead>
+	<tbody>
 	<%
 		int quizScore = currquiz.getScore();
 		for (TakenQuiz t : taken) {
@@ -84,6 +87,7 @@
 			out.println("</tr>");
 		}
 	%>
+	</tbody>
 </table>
 <br>
 

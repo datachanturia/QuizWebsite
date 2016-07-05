@@ -103,7 +103,7 @@
 		%>
 	</div>
 </form>
-<button id="Submit">press here</button>
+<button id="Submit">Submit</button>
 
 
 
