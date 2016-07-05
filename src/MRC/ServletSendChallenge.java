@@ -57,7 +57,7 @@ public class ServletSendChallenge extends HttpServlet {
 		java.util.Date currentDate = calendar.getTime();
 		java.sql.Date date = new java.sql.Date(currentDate.getTime());
 		
-		Challenge chal = new Challenge(0, senderID, receiverID, quizID, date);
+		Challenge chal = new Challenge(0, senderID, receiverID, quizID, date, "", "");
 
 		try {
 			con = DataSource.getInstance().getConnection();
