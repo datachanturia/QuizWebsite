@@ -29,25 +29,15 @@
 
 <%
 Connection con = null;
+HttpSession ses = request.getSession();
 int quizid = Integer.parseInt(request.getParameter("quizID"));
-ArrayList<Question> questions = null;
-Quiz quiz = null;
+ArrayList<Question> questions = (ArrayList<Question>)ses.getAttribute("questions");
+Quiz quiz = (Quiz)ses.getAttribute("quiz");
 try {
 	con = DataSource.getInstance().getConnection();
-	QuizDaoImpl quizdao = new QuizDaoImpl(con);
-	QuestionDaoImpl qd = new QuestionDaoImpl(con);
-	quiz = quizdao.getQuiz(quizid);
-	questions = qd.getQuizQuestions(quizid);
 } catch (Exception e) {
 	e.printStackTrace();
 }
-// finally {
-// 	if (con != null)
-// 		try {
-// 			con.close();
-// 		} catch (SQLException e) {
-// 		}
-// }
 %>
 
 <form action="CheckAnswersServlet" method="post">
@@ -56,8 +46,8 @@ try {
 AnswerDaoImpl ad = new AnswerDaoImpl(con);
 for(int i = 0; i < questions.size();i++){
 	Question q = questions.get(i);
-	String html = "";
 	ArrayList<Answer> answers = null;
+	out.println("Question #"+(i+1)+":<br>");
 	switch(q.getType()){
 	case Question_Response:
 		out.println(q.getQuestion() + "<br><br>");
@@ -94,16 +84,14 @@ for(int i = 0; i < questions.size();i++){
 		}
 		break;
 	}
-	request.setAttribute("questions", questions);
 }
+if (con != null)
+	try {
+		con.close();
+	} catch (SQLException e) {
+	}
 %>
 <input type="hidden" name="score" value="<%=quiz.getScore() %>">
 <input type="hidden" name="quizID" value="<%=quizid %>">
 <input type="submit" value="Submit">
 </form>
-
-<!-- **********************************************************************************************************************************************************
-      RIGHT SIDEBAR CONTENT AND FOOTER
-      *********************************************************************************************************************************************************** -->
-
-<%@ include file="../MenuFiles/RightSidebarNFooter.jsp"%>

@@ -13,12 +13,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import Database.AnswerDaoImpl;
 import Database.QuestionDaoImpl;
 import Database.QuizDaoImpl;
 import Model.Answer;
 import Model.Question;
+import Model.Quiz;
 import ULS.AccountManager;
 import dataSrc.DataSource;
 import jdk.internal.org.objectweb.asm.commons.GeneratorAdapter;
@@ -51,17 +53,17 @@ public class CheckAnswersServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Connection con = null;
-		int quizid = Integer.parseInt(request.getParameter("quizID"));
-		int quizScore = Integer.parseInt(request.getParameter("score"));
-		ArrayList<Question> questions = null;
+		HttpSession ses = request.getSession();
+		ArrayList<Question> questions = (ArrayList<Question>)ses.getAttribute("questions");
+		Quiz quiz = (Quiz)ses.getAttribute("quiz");
+		int quizid = quiz.getQuizID();
+		int quizScore = quiz.getScore();
 		AnswerDaoImpl ansdao = null;
 		QuizDaoImpl quizdao = null;
 		try {
 			con = DataSource.getInstance().getConnection();
-			ansdao = new AnswerDaoImpl(con);
-			QuestionDaoImpl qd = new QuestionDaoImpl(con);
 			quizdao = new QuizDaoImpl(con);
-			questions = qd.getQuizQuestions(quizid);
+			ansdao = new AnswerDaoImpl(con);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -150,6 +152,8 @@ public class CheckAnswersServlet extends HttpServlet {
 		
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 		quizdao.addUserTakenQuiz(am.getUser().getUserID(), quizid, new Date((new java.util.Date()).getTime()), score);
+		
+		
 		if (con != null)
 	 		try {
 	 			con.close();

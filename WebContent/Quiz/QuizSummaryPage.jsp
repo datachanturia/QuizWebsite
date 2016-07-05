@@ -171,6 +171,9 @@ if (con != null){
 
 <form action="AttemptQuizServlet" method="post">
   <input type="hidden" name="quizID" value=<%=quizid%>>
+  <input type="hidden" name="isMultiple" value="<%=currquiz.isMultiple_page()%>">
+  <input type="hidden" name="isRandom" value="<%=currquiz.isRandom()%>">
+  <input type="hidden" name="isImmediate" value="<%=currquiz.isImmediate_correction()%>">
   <input type="submit" value="Attempt Quiz">
 </form>
 
