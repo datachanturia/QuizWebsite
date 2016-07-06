@@ -21,6 +21,11 @@
 <%
 	int userid = am.getUser().getUserID();
 	int quizid = Integer.parseInt(request.getParameter("quizID"));
+	boolean isChallenge = request.getParameter("challengerID") != null;
+	int challengerID = 0;
+	if(isChallenge){
+		challengerID = Integer.parseInt(request.getParameter("challengerID));
+	}
 	Connection con = null;
 	Quiz currquiz = null;
 	ArrayList<TakenQuiz> taken = null;
@@ -28,6 +33,7 @@
 	ArrayList<TakenQuiz> topperformers = null;
 	ArrayList<TakenQuiz> topperformerslastday = null;
 	ArrayList<TakenQuiz> recentperformers = null;
+	TakenQuiz challenger = null;
 	UserDaoImpl userdao = null;
 	try {
 		con = DataSource.getInstance().getConnection();
@@ -37,7 +43,15 @@
 		topperformers = quizdao.topPerformers(quizid, false, false);
 		topperformerslastday = quizdao.topPerformers(quizid, true, false);
 		recentperformers = quizdao.topPerformers(quizid, false, true);
+		if(isChallenge){
+			challenger = quizdao.userMaxInQuiz(quizid, challengerID);
+			<label> : </label>
+		}
 		userdao = new UserDaoImpl(con);
+		if(isChallenge){
+			challenger = quizdao.userMaxInQuiz(quizid, challengerID);
+			out.println("<label>"+userdao.getUserName(challengerID)+"'s Max Score : </label>"+challenger.getScore());
+		}
 		authorName = userdao.getUserName(currquiz.getAuthorID());
 	} catch (Exception e) {
 		e.printStackTrace();

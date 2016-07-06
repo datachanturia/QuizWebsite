@@ -188,10 +188,12 @@ public class QuestionServlet extends HttpServlet {
 			con = DataSource.getInstance().getConnection();
 			AnswerDaoImpl ansdao = new AnswerDaoImpl(con);
 			String s = QuestionHtml(index+1, questions.get(index), ansdao);
-			if(checkAnswer(questions.get(index-1), request, ansdao))
-				s+="CORRECT";
-			else{
-				s+="INCORRECT";
+			if(quiz.isImmediate_correction()){
+				if(checkAnswer(questions.get(index-1), request, ansdao))
+					s+="CORRECT";
+				else{
+					s+="INCORRECT";
+				}
 			}
 			response.getWriter().println(s);
 			ses.setAttribute("currindex", index+1);
