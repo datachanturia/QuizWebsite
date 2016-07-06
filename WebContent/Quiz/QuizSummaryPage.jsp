@@ -22,9 +22,10 @@
 	int userid = am.getUser().getUserID();
 	int quizid = Integer.parseInt(request.getParameter("quizID"));
 	boolean isChallenge = request.getParameter("challengerID") != null;
+	
 	int challengerID = 0;
 	if(isChallenge){
-		challengerID = Integer.parseInt(request.getParameter("challengerID));
+		challengerID = Integer.parseInt(request.getParameter("challengerID"));
 	}
 	Connection con = null;
 	Quiz currquiz = null;
@@ -43,14 +44,14 @@
 		topperformers = quizdao.topPerformers(quizid, false, false);
 		topperformerslastday = quizdao.topPerformers(quizid, true, false);
 		recentperformers = quizdao.topPerformers(quizid, false, true);
-		if(isChallenge){
-			challenger = quizdao.userMaxInQuiz(quizid, challengerID);
-			<label> : </label>
-		}
 		userdao = new UserDaoImpl(con);
 		if(isChallenge){
 			challenger = quizdao.userMaxInQuiz(quizid, challengerID);
-			out.println("<label>"+userdao.getUserName(challengerID)+"'s Max Score : </label>"+challenger.getScore());
+			if(challenger == null){
+				out.println("<label>"+userdao.getUserName(challengerID)+" Has Not Done This Quiz Yet </label><br><br>");
+			}else{
+				out.println("<label>"+userdao.getUserName(challengerID)+"'s Max Score : </label>"+challenger.getScore());
+			}
 		}
 		authorName = userdao.getUserName(currquiz.getAuthorID());
 	} catch (Exception e) {
