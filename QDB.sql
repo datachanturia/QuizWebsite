@@ -1,6 +1,6 @@
 -- create schema if not exists Shaurma;
 
-
+drop table if exists AdminPosts;
 drop table if exists UsersAchievement;
 drop table if exists TakenQuiz;
 drop table if exists Challenges;
