@@ -10,7 +10,6 @@
 <%@page import="java.sql.SQLException"%>
 <%@page import="dataSrc.DataSource"%>
 
-
 <%
 Connection con = null;
 HttpSession ses = request.getSession();
