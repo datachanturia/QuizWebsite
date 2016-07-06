@@ -66,7 +66,7 @@
 <br>
 <label>Author : </label>
 <%
-	out.print("<a href = \"servlet.html\"> ");
+	out.print("<a href = \"ServletToCab?friendID="+currquiz.getAuthorID()+"\"> ");
 	out.print(authorName);
 	out.print("</a>");
 %>
