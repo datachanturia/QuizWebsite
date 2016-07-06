@@ -79,6 +79,88 @@ public class QuestionServlet extends HttpServlet {
     	html+= "</div>";
     	return html;
     }
+    
+    private boolean checkAnswer(Question q, HttpServletRequest request,AnswerDaoImpl ansdao){
+    	boolean iscorrect = false;
+    	String answer = "";
+		ArrayList<Answer> answers = null;
+    	switch (q.getType()) {
+		case Question_Response:
+			answer = request.getParameter(Integer.toString(q.getQuestionID()));
+			answers = ansdao.getQuestionAnswers(q.getQuestionID());
+			for(Answer a:answers){
+				if(a.getAnswer().equals(answer)){
+					iscorrect = true;
+					break;
+				}
+			}
+			break;
+		case Fill_In_The_Blank:
+			answer = request.getParameter(Integer.toString(q.getQuestionID()));
+			answers = ansdao.getQuestionAnswers(q.getQuestionID());
+			for(Answer a:answers){
+				if(a.getAnswer().equals(answer)){
+					iscorrect = true;
+					break;
+				}
+			}
+			break;
+		case Multiple_Choice:
+			answer = request.getParameter(Integer.toString(q.getQuestionID()));
+			if(answer!=null && ansdao.isCorrect(Integer.parseInt(answer))){
+				iscorrect = true;
+			}
+			break;
+		case Picture_Response:
+			answer = request.getParameter(Integer.toString(q.getQuestionID()));
+			answers = ansdao.getQuestionAnswers(q.getQuestionID());
+			for(Answer a:answers){
+				if(a.getAnswer().equals(answer)){
+					iscorrect = true;
+					break;
+				}
+			}
+			break;
+		case Mult_Choice_Answer:
+			String[] answerIDs1 = request.getParameterValues(Integer.toString(q.getQuestionID()));
+			if(answerIDs1 == null)break;
+			answers = ansdao.getQuestionAnswers(q.getQuestionID());
+			int correctcounter = 0;
+			for(Answer a : answers){
+				if(a.getCorrect())
+					correctcounter++;
+			}
+			double currentscore = 0;
+			for (int i = 0; i < answerIDs1.length; i++) {
+				if(ansdao.isCorrect(Integer.parseInt(answerIDs1[i]))){
+					currentscore += (double)5/correctcounter;
+				}else{
+					currentscore -= (double)5/correctcounter;
+				}
+			}
+			if(currentscore>0)
+				iscorrect = true;
+			break;
+		case Multi_Answer:
+			String[] answerstrs = request.getParameterValues(Integer.toString(q.getQuestionID()));
+			if(answerstrs == null)
+				break;
+			answers = ansdao.getQuestionAnswers(q.getQuestionID());
+			currentscore = 0;
+			for (int i = 0; i < answerstrs.length; i++) {
+				for(Answer a : answers){
+					if(a.getAnswer().equals(answerstrs[i])){
+						currentscore++;
+					}
+				}
+			}
+			break;
+
+		default:
+			break;
+		}
+    	return iscorrect;
+    }
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -100,10 +182,17 @@ public class QuestionServlet extends HttpServlet {
 			request.getRequestDispatcher("CheckAnswersServlet").forward(request, response);
 			index--;
 		}
+		
 		Quiz quiz = (Quiz)ses.getAttribute("quiz");
 		try {
 			con = DataSource.getInstance().getConnection();
-			String s = QuestionHtml(index+1, questions.get(index), new AnswerDaoImpl(con));
+			AnswerDaoImpl ansdao = new AnswerDaoImpl(con);
+			String s = QuestionHtml(index+1, questions.get(index), ansdao);
+			if(checkAnswer(questions.get(index-1), request, ansdao))
+				s+="CORRECT";
+			else{
+				s+="INCORRECT";
+			}
 			response.getWriter().println(s);
 			ses.setAttribute("currindex", index+1);
 		} catch (Exception e) {
