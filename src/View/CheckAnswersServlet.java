@@ -165,7 +165,11 @@ public class CheckAnswersServlet extends HttpServlet {
 		request.setAttribute("score", score);
 		request.setAttribute("quizID", quizid);
 		request.setAttribute("time", diffMins);
-		RequestDispatcher rd = request.getRequestDispatcher("./Quiz/ResultPage.jsp");
+		String link = "./Quiz/ResultPage.jsp";
+		if(quiz.isMultiple_page()){
+			link = "./Quiz/MultipleRes.jsp";
+		}
+		RequestDispatcher rd = request.getRequestDispatcher(link);
 		rd.forward(request, response);
 	}
 
