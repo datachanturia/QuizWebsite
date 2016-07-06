@@ -20,16 +20,9 @@
 <!--external css-->
 <link href="./loggedIn/assets/font-awesome/css/font-awesome.css"
 	rel="stylesheet" />
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/css/zabuto_calendar.css">
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/js/gritter/css/jquery.gritter.css" />
-<link rel="stylesheet" type="text/css"
-	href="./loggedIn/assets/lineicons/style.css">
 
 <!-- Custom styles for this template -->
 <link href="./loggedIn/assets/css/style.css" rel="stylesheet">
-<link href="./loggedIn/assets/css/style-responsive.css" rel="stylesheet">
 
 <script src="./loggedIn/assets/js/chart-master/Chart.js"></script>
 
@@ -221,7 +214,8 @@
 		</section>
 
 		<!--main content end-->
-		<!--footer start-->
+		
+		<!--footer start
 		<footer class="site-footer">
 			<div class="text-center">
 				2016 - www.freeuni.edu.ge - QUIZ WEBSITE <a href="" class="go-top">
@@ -229,33 +223,7 @@
 				</a>
 			</div>
 		</footer>
-		<!--footer end-->
+		footer end-->
 	</section>
-
-	<!-- js placed at the end of the document so the pages load faster -->
-	<script src="./loggedIn/assets/js/jquery.js"></script>
-	<script src="./loggedIn/assets/js/jquery-1.8.3.min.js"></script>
-	<script src="./loggedIn/assets/js/bootstrap.min.js"></script>
-	<script class="include" type="text/javascript"
-		src="./loggedIn/assets/js/jquery.dcjqaccordion.2.7.js"></script>
-	<script src="./loggedIn/assets/js/jquery.scrollTo.min.js"></script>
-	<script src="./loggedIn/assets/js/jquery.nicescroll.js"
-		type="text/javascript"></script>
-	<script src="./loggedIn/assets/js/jquery.sparkline.js"></script>
-
-
-	<!--common script for all pages-->
-	<script src="./loggedIn/assets/js/common-scripts.js"></script>
-
-	<script type="text/javascript"
-		src="./loggedIn/assets/js/gritter/js/jquery.gritter.js"></script>
-	<script type="text/javascript"
-		src="./loggedIn/assets/js/gritter-conf.js"></script>
-
-	<!--script for this page-->
-	<script src="./loggedIn/assets/js/sparkline-chart.js"></script>
-	<script src="./loggedIn/assets/js/zabuto_calendar.js"></script>
-
-
 </body>
 </html>

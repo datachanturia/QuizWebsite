@@ -1,4 +1,9 @@
+<%@ page import="ULS.AccountManager" import="dataSrc.DataSource"
+	import="Database.ChallengeDaoImpl" import="MRC.ChallengeManager"
+	import="Model.Challenge" import="Database.PostDaoImpl"
+	import="Model.Post" import="java.util.ArrayList" %>
 </div>
+
 <!-- /col-lg-9 END SECTION MIDDLE -->
 
 
@@ -50,23 +55,64 @@
 
 	<!-- Challenges Start -->
 	<h3>
-		NEW CHALLENGES <a href="../ServletChallengeList"> -- see all</a>
+		NEW CHALLENGES <a href="./ServletChallengeList"> -- see all</a>
 	</h3>
 
 	<%
-		for (int ii = 0; ii < 4; ii++) {
+		
+		ChallengeManager challmanager = null;
+		am = (AccountManager) getServletContext().getAttribute("AccMan");
+
+		int userId = am.getUser().getUserID();
+		try {
+			conn = DataSource.getInstance().getConnection();
+
+			ChallengeDaoImpl cdi = new ChallengeDaoImpl(conn);
+			challmanager = new ChallengeManager(conn);
+			challmanager.setUserID(userId);
+			challmanager.setChallenges(cdi.getUserChallenges(userId));
+		} finally {
+			if (conn != null)
+				try {
+					conn.close();
+				} catch (java.sql.SQLException e) {
+					e.printStackTrace();
+				}
+		}
+
+		ArrayList<Challenge> chall = challmanager.getChallenges();
+		Challenge ch = null;
+		String sender = "";
+		String text = " wants to challenge you in quiz: ";
+		String quizname = "";
+
+		for (int ii = 0; ii < 4 && ii < chall.size(); ii++) {
+			ch = chall.get(ii);
+			sender = ch.getSenderName();
+			quizname = ch.getQuizName();
+			out.println(sender + text);
+			out.println(quizname);
 	%>
-	<div class="desc">
-		<div class="thumb">
-			<img class="img-circle" src="../loggedIn/assets/img/ui-divya.jpg"
-				width="35px" height="35px">
-		</div>
-		<div class="details">
-			<p>
-				<a href="#">DIVYA MANIAN</a><br />
-			</p>
-		</div>
-	</div>
+
+	<form name="challengeAccept<%=ii%>" method="Get"
+		action="./ServletAcceptChallenge">
+		<a href='#'
+			onclick="document.forms['challengeAccept<%=ii%>'].submit()">
+			Accept </a> <input type="hidden" id="challengerID" name="challengerID"
+			value=<%=ch.getSenderID()%>> <input type="hidden" id="quizID"
+			name="quizID" value=<%=ch.getQuizID()%>> <input type="hidden"
+			id="challengeID" name="challengeID" value=<%=ch.getChallengeID()%>>
+	</form>
+
+	<form name="challengeReject<%=ii%>" method="Get"
+		action="./ServletRejectChallenge">
+		<a href='#'
+			onclick="document.forms['challengeReject<%=ii%>'].submit()">
+			Reject </a> <input type="hidden" id="challengeID" name="challengeID"
+			value=<%=ch.getChallengeID()%>>
+	</form>
+
+	<div class="desc"></div>
 	<%
 		}
 	%>
@@ -78,9 +124,9 @@
 <!--MAIN + RIGHT END -->
 </section>
 </section>
-<!--main content end-->
+<!--main content end
 
-<!--footer start-->
+<!--footer start
 <footer class="site-footer">
 	<div class="text-center">
 		2016 - www.freeuni.edu.ge - QUIZ WEBSITE <a href="#" class="go-top">
@@ -88,7 +134,7 @@
 		</a>
 	</div>
 </footer>
-<!--footer end-->
+footer end-->
 
 </section>
 </body>

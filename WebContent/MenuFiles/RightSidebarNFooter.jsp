@@ -1,7 +1,7 @@
 <%@ page import="ULS.AccountManager" import="dataSrc.DataSource"
 	import="Database.ChallengeDaoImpl" import="MRC.ChallengeManager"
 	import="Model.Challenge" import="Database.PostDaoImpl"
-	import="Model.Post" %>
+	import="Model.Post" import="java.util.ArrayList"%>
 
 </div>
 <!-- /col-lg-9 END SECTION MIDDLE -->
@@ -59,7 +59,6 @@
 	</h3>
 
 	<%
-		
 		ChallengeManager challmanager = null;
 		am = (AccountManager) getServletContext().getAttribute("AccMan");
 
@@ -126,7 +125,7 @@
 </section>
 <!--main content end-->
 
-<!--footer start-->
+<!--footer start
 <footer class="site-footer">
 	<div class="text-center">
 		2016 - www.freeuni.edu.ge - QUIZ WEBSITE <a href="#" class="go-top">
@@ -134,7 +133,7 @@
 		</a>
 	</div>
 </footer>
-<!--footer end-->
+footer end-->
 
 </section>
 </body>
