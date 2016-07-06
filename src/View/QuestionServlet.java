@@ -76,7 +76,6 @@ public class QuestionServlet extends HttpServlet {
 	    		break;
 	    	default:break;
     	}
-    	html+= "</div>";
     	return html;
     }
     
@@ -195,7 +194,7 @@ public class QuestionServlet extends HttpServlet {
 					s+="INCORRECT";
 				}
 			}
-			response.getWriter().println(s);
+			response.getWriter().println(s+"</div>");
 			ses.setAttribute("currindex", index+1);
 		} catch (Exception e) {
 			e.printStackTrace();

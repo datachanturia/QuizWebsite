@@ -11,7 +11,7 @@
 
 <form action="../MakeAdminServlet" method="post">
 	Type new admin's email: <input type="text" name="userMail" required>
-	<button>Ban User</button>
+	<button>Make Admin</button>
 </form>
 
 <!-- **********************************************************************************************************************************************************
