@@ -18,6 +18,7 @@ public class User {
 	private ArrayList<Request> requests;
 	private ArrayList<Challenge> challenges;
 	private ArrayList<User> friends;
+	private ArrayList<Achievement> achievements;
 
 	private boolean isSocAcc;
 
@@ -143,5 +144,13 @@ public class User {
 
 	public void setFbBool(boolean isSocAcc) {
 		this.isSocAcc = isSocAcc;
+	}
+	
+	public void setAchievements(ArrayList<Achievement> achievements){
+		this.achievements = achievements;
+	}
+	
+	public ArrayList<Achievement> getAchievements(){
+		return achievements;
 	}
 }
