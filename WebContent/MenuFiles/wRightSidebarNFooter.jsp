@@ -38,7 +38,8 @@
 		</div>
 		<div class="details">
 			<p>
-				<br /> <a href="#">James Brown</a> subscribed to your newsletter.<br />
+				<br /> <a href="#"><%=posts.get(ii).getAdminName()%>: </a>
+				<%=posts.get(ii).getPost()%><br />
 			</p>
 		</div>
 	</div>
