@@ -23,16 +23,22 @@ public class AchievementDaoImpl implements AchievementDao {
 	@Override
 	public ArrayList<Achievement> getuserAchievements(int userID) {
 		ArrayList<Achievement> achiev = new ArrayList<Achievement>();
+		System.out.println("HERE");
 		try {
 			Statement stmt = con.createStatement();
-			ResultSet rs = stmt.executeQuery("select u.userID, a.achievement, from UsersAchievement u inner join "
-					+ "Achievements a on u.achievementID = u.achievementID "
-					+ "where userID = " + userID + "and u.isdelete = 0");
+			System.out.println("HERE before select");
+			ResultSet rs = stmt.executeQuery("select userID, achievement from UsersAchievement u inner join "
+					 + "Achievements a on u.achievementID = a.achievementID "
+					 + "where userID = " + userID + " and a.isdelete = 0 and u.isdelete = 0");
+			System.out.println("HERE from select");
 			while(rs.next()){
-				Achievement ach = new Achievement(rs.getInt("achievementID"),  AchievementType.values()[rs.getInt("senderID")]);
+				Achievement ach = new Achievement(rs.getInt("achievement"),  AchievementType.values()[rs.getInt("userID")]);
 				achiev.add(ach);
+				System.out.println("HERE from wehre" + achiev.size());
 			}
+			System.out.println("achivs" + achiev.size());
 		} catch (SQLException e) {
+			System.out.println("ERROR DICK");
 			e.printStackTrace();
 		}
 		
