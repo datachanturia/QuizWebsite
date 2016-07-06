@@ -74,12 +74,13 @@
 	Quiz Name: <input type="text" name="quizName"
 		placeholder="Enter Quiz Name Here" required><br> Quiz Category: <select
 		name="QuizCategory">
-		<option value="0">Question Response</option>
-		<option value="1">Fill In The Blank</option>
-		<option value="2">Multiple Choice</option>
-		<option value="3">Picture Response</option>
-		<option value="4">Multiple Answer</option>
-		<option value="5">Multiple Choice Multiple Answer</option>
+		<option value="0">Physics</option>
+		<option value="1">Mathematics</option>
+		<option value="2">Aptitude</option>
+		<option value="3">English</option>
+		<option value="4">History</option>
+		<option value="5">Star Wars</option>
+		<option value="6">Biology</option>
 	</select> <br> <br> Description:
 	<textarea name="description" rows="2" cols="30"
 		placeholder="Enter Text Here" required></textarea>

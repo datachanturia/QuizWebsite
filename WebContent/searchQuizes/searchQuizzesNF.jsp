@@ -21,12 +21,13 @@
 	Search Quizzes: <input type="text" name="quizName"
 		placeholder="Quiz name"> <br> Select category: <select
 		name="quizCategory">
-		<option value="0">Question Response</option>
-		<option value="1">Fill In The Blank</option>
-		<option value="2">Multiple Choice</option>
-		<option value="3">Picture Response</option>
-		<option value="4">Multiple Answer</option>
-		<option value="5">Multiple Choice Multiple Answer</option>
+		<option value="0">Physics</option>
+		<option value="1">Mathematics</option>
+		<option value="2">Aptitude</option>
+		<option value="3">English</option>
+		<option value="4">History</option>
+		<option value="5">Star Wars</option>
+		<option value="6">Biology</option>
 	</select><br> <input type="submit" value="search" />
 </form>
 
