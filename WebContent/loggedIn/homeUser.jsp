@@ -87,7 +87,7 @@
 		<!-- BLACK PANNEL - TOP FRIENDS -->
 		<div class="darkblue-panel pn">
 			<div class="darkblue-header">
-				<h5>QUIZES OF THE DAY</h5>
+				<h5>QUIZES OF THE DAY BY SCORE</h5>
 			</div>
 			<%
 				ArrayList<Quiz> qzDPls = (ArrayList<Quiz>) request.getAttribute("dayPopuLs");

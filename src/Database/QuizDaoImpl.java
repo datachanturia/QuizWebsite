@@ -173,7 +173,7 @@ public class QuizDaoImpl implements QuizDao {
 			stmt.executeQuery("USE " + MyDBInfo.MYSQL_DATABASE_NAME);
 
 			PreparedStatement prdtmt = con.prepareStatement(
-					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE creationdate > SUBDATE(NOW(),1) and isdelete=0) GROUP BY quizID desc limit 6");
+					"SELECT quizID FROM takenquiz WHERE quizID IN (SELECT quizID FROM Quiz WHERE creationdate > SUBDATE(NOW(),1) and isdelete=0) GROUP BY score desc limit 6");
 			
 			ResultSet rs = prdtmt.executeQuery();
 			
