@@ -20,7 +20,6 @@ import Model.Quiz;
 import Model.User;
 import ULS.AccountManager;
 import dataSrc.DataSource;
-import jdk.nashorn.internal.runtime.arrays.ArrayLikeIterator;
 
 /**
  * Servlet implementation class CreateQuizServlet
@@ -57,7 +56,7 @@ public class CrQuizServlet extends HttpServlet {
 		AccountManager am = (AccountManager) getServletContext().getAttribute("AccMan");
 		String quizName = request.getParameter("quizName");
 		int score = Integer.parseInt(request.getParameter("score"));
-		String category = request.getParameter("category");
+		String category = request.getParameter("QuizCategory");
 		String description = request.getParameter("description");
 		boolean random = request.getParameter("random") != null && request.getParameter("random").equals("isRandom");
 		boolean immediate = request.getParameter("immediate")!=null && request.getParameter("immediate").equals("immediate");
